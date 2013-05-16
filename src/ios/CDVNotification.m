@@ -18,7 +18,7 @@
  */
 
 #import "CDVNotification.h"
-#import "NSDictionary+Extensions.h"
+#import <Cordova/NSDictionary+Extensions.h>
 
 #define DIALOG_TYPE_ALERT @"alert"
 #define DIALOG_TYPE_PROMPT @"prompt"

@@ -13,7 +13,7 @@ id="org.apache.cordova.core.Notification"
             
     <!-- android -->
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="plugins">
+        <config-file target="res/xml/config.xml" parent="/*">
             <plugin name="Notification" value="org.apache.cordova.core.Notification"/>
         </config-file>
 
@@ -26,7 +26,7 @@ id="org.apache.cordova.core.Notification"
 
     <!-- ios -->
     <platform name="ios">    
-        <config-file target="config.xml" parent="plugins">
+        <config-file target="config.xml" parent="/*">
 	        <plugin name="Notification" value="CDVNotification" /> 
         </config-file>
         <header-file src="src/ios/CDVNotification.h" />
