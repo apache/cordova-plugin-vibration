@@ -20,7 +20,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioServices.h>
-#import "CDVPlugin.h"
+#import <Cordova/CDVPlugin.h>
 
 @interface CDVNotification : CDVPlugin <UIAlertViewDelegate>{}
 
