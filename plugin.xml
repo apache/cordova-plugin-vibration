@@ -17,7 +17,7 @@ id="org.apache.cordova.core.Notification"
             <plugin name="Notification" value="org.apache.cordova.core.Notification"/>
         </config-file>
 
-        <source-file src="src/android/Notification.java" target-dir="org/apache/cordova/core" />
+        <source-file src="src/android/Notification.java" target-dir="src/org/apache/cordova/core" />
 
         <!-- android specific notification apis -->
         <js-module src="www/android/notification.js" name="notification">
