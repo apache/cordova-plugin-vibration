@@ -54,6 +54,8 @@ id="org.apache.cordova.core.Notification"
         </config-file>
 
         <source-file src="src/wp7/Notification.cs" />
+        <source-file src="src/wp7/NotificationBox.xaml.cs" />
+        <source-file src="src/wp7/NotificationBox.xaml" />
     </platform>
     
 </plugin>
