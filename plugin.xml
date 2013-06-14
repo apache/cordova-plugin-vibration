@@ -53,6 +53,10 @@ id="org.apache.cordova.core.Notification"
             </feature>
         </config-file>
 
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_PUSH_NOTIFICATION"/>
+        </config-file>
+
         <source-file src="src/wp7/Notification.cs" />
         <source-file src="src/wp7/NotificationBox.xaml.cs" />
         <source-file src="src/wp7/NotificationBox.xaml" />
