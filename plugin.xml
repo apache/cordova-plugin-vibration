@@ -13,7 +13,9 @@ id="org.apache.cordova.core.Notification" version="0.1.0">
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <plugin name="Notification" value="org.apache.cordova.core.Notification"/>
+            <feature name="Notification">
+                <param name="android-package" value="org.apache.cordova.core.Notification"/>
+            </feature>
         </config-file>
         
         <config-file target="AndroidManifest.xml" parent="/*">
@@ -23,7 +25,7 @@ id="org.apache.cordova.core.Notification" version="0.1.0">
         <source-file src="src/android/Notification.java" target-dir="src/org/apache/cordova/core" />
 
         <!-- android specific notification apis -->
-        <js-module src="www/android/notification.js" name="notification2">
+        <js-module src="www/android/notification.js" name="notification_android">
             <merges target="navigator.notification" />
         </js-module>
         
@@ -32,13 +34,15 @@ id="org.apache.cordova.core.Notification" version="0.1.0">
     <!-- ios -->
     <platform name="ios">    
         <config-file target="config.xml" parent="/*">
-	        <plugin name="Notification" value="CDVNotification" /> 
+            <feature name="Notification">
+                <param name="ios-package" value="CDVNotification"/>
+            </feature>
         </config-file>
         <header-file src="src/ios/CDVNotification.h" />
 	    <source-file src="src/ios/CDVNotification.m" />
 	    
 	    <!-- ios specific notification apis -->
-        <js-module src="www/ios/notification.js" name="notification1">
+        <js-module src="www/ios/notification.js" name="notification_ios">
             <merges target="navigator.notification" />
         </js-module>
         
@@ -52,7 +56,13 @@ id="org.apache.cordova.core.Notification" version="0.1.0">
             </feature>
         </config-file>
 
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_PUSH_NOTIFICATION"/>
+        </config-file>
+
         <source-file src="src/wp7/Notification.cs" />
+        <source-file src="src/wp7/NotificationBox.xaml.cs" />
+        <source-file src="src/wp7/NotificationBox.xaml" />
     </platform>
     
 </plugin>
