@@ -64,5 +64,22 @@ id="org.apache.cordova.core.Notification" version="0.1.0">
         <source-file src="src/wp7/NotificationBox.xaml.cs" />
         <source-file src="src/wp7/NotificationBox.xaml" />
     </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Notification">
+                <param name="wp-package" value="Notification"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_PUSH_NOTIFICATION"/>
+        </config-file>
+
+        <source-file src="src/wp8/Notification.cs" />
+        <source-file src="src/wp8/NotificationBox.xaml.cs" />
+        <source-file src="src/wp8/NotificationBox.xaml" />
+    </platform>
     
 </plugin>
