@@ -40,12 +40,8 @@ id="org.apache.cordova.core.Notification" version="0.1.0">
         </config-file>
         <header-file src="src/ios/CDVNotification.h" />
 	    <source-file src="src/ios/CDVNotification.m" />
-	    
-	    <!-- ios specific notification apis -->
-        <js-module src="www/ios/notification.js" name="notification_ios">
-            <merges target="navigator.notification" />
-        </js-module>
-        
+	    <resource-file src="src/ios/CDVNotification.bundle" />
+	            
     </platform>
 
     <!-- wp7 -->

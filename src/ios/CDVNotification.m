@@ -121,6 +121,15 @@
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
+- (void)beep:(CDVInvokedUrlCommand*)command
+{
+    SystemSoundID completeSound;
+    NSURL *audioPath = [[NSBundle mainBundle] URLForResource:@"CDVNotification.bundle/beep" withExtension:@"wav"];
+    AudioServicesCreateSystemSoundID((CFURLRef)audioPath, &completeSound);
+    AudioServicesPlaySystemSound (completeSound);
+}
+
+
 @end
 
 @implementation CDVAlertView
