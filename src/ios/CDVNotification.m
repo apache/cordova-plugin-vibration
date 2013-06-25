@@ -19,6 +19,7 @@
 
 #import "CDVNotification.h"
 #import <Cordova/NSDictionary+Extensions.h>
+#import <Cordova/NSArray+Comparisons.h>
 
 #define DIALOG_TYPE_ALERT @"alert"
 #define DIALOG_TYPE_PROMPT @"prompt"
@@ -121,12 +122,27 @@
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
+static void playBeep(int count) {
+    SystemSoundID completeSound;
+    NSURL* audioPath = [[NSBundle mainBundle] URLForResource:@"CDVNotification.bundle/beep" withExtension:@"wav"];
+    AudioServicesCreateSystemSoundID((CFURLRef)audioPath, &completeSound);
+    AudioServicesAddSystemSoundCompletion(completeSound, NULL, NULL, soundCompletionCallback, (void*)(count-1));
+    AudioServicesPlaySystemSound(completeSound);
+}
+
+static void soundCompletionCallback(SystemSoundID  ssid, void* data) {
+    int count = (int)data;
+    AudioServicesRemoveSystemSoundCompletion (ssid);
+    AudioServicesDisposeSystemSoundID(ssid);
+    if (count > 0) {
+        playBeep(count);
+    }
+}
+
 - (void)beep:(CDVInvokedUrlCommand*)command
 {
-    SystemSoundID completeSound;
-    NSURL *audioPath = [[NSBundle mainBundle] URLForResource:@"CDVNotification.bundle/beep" withExtension:@"wav"];
-    AudioServicesCreateSystemSoundID((CFURLRef)audioPath, &completeSound);
-    AudioServicesPlaySystemSound (completeSound);
+    NSNumber* count = [command.arguments objectAtIndex:0 withDefault:[NSNumber numberWithInt:1]];
+    playBeep([count intValue]);
 }
 
 
