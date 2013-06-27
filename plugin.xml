@@ -13,8 +13,8 @@ id="org.apache.cordova.core.Notification" version="0.1.0">
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Notification">
-                <param name="android-package" value="org.apache.cordova.core.Notification"/>
+            <feature name="Vibration">
+                <param name="android-package" value="org.apache.cordova.core.Vibration"/>
             </feature>
         </config-file>
         
@@ -22,10 +22,10 @@ id="org.apache.cordova.core.Notification" version="0.1.0">
             <uses-permission android:name="android.permission.VIBRATE" />
         </config-file>
         
-        <source-file src="src/android/Notification.java" target-dir="src/org/apache/cordova/core" />
+        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/core" />
 
         <!-- android specific notification apis -->
-        <js-module src="www/android/notification.js" name="notification_android">
+        <js-module src="www/android/vibration.js" name="vibration_android">
             <merges target="navigator.notification" />
         </js-module>
         

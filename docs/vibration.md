@@ -17,18 +17,14 @@ license: Licensed to the Apache Software Foundation (ASF) under one
          under the License.
 ---
 
-Notification
+Vibration
 ============
 
-> Visual, audible, and tactile device notifications.
+> Tactile device notifications.
 
 Methods
 -------
 
-- notification.alert
-- notification.confirm
-- notification.prompt
-- notification.beep
 - notification.vibrate
 
 Permissions
@@ -38,7 +34,7 @@ Permissions
 
 #### app/res/xml/config.xml
 
-    <plugin name="Notification" value="org.apache.cordova.Notification"/>
+    <plugin name="Notification" value="org.apache.cordova.Vibration"/>
 
 #### app/AndroidManifest.xml
 
@@ -56,7 +52,7 @@ Permissions
 
 #### www/plugins.xml
 
-    <plugin name="Notification" value="org.apache.cordova.notification.Notification" />
+    <plugin name="Vibration" value="org.apache.cordova.vibration.Vibration" />
 
 #### www/config.xml
 
@@ -66,7 +62,7 @@ Permissions
 
 #### config.xml
 
-    <plugin name="Notification" value="CDVNotification" />
+    <plugin name="Vibration" value="CDVVibration" />
 
 ### webOS
 
