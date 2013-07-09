@@ -32,6 +32,17 @@
         <source-file src="src/wp/Vibration.cs" />
     </platform>
 
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Vibration">
+                <param name="android-package" value="org.apache.cordova.core.Vibration"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/core" />
+    </platform>
+
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
