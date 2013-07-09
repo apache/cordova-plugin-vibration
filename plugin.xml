@@ -6,6 +6,10 @@
 
     <name>vibration</name>
 
+    <js-module src="www/vibration.js" name="notification">
+        <merges target="navigator.notification" />
+    </js-module>
+
     <!-- wp7 -->
     <platform name="wp7">
         <config-file target="config.xml" parent="/*">
@@ -27,4 +31,17 @@
 
         <source-file src="src/wp/Vibration.cs" />
     </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Vibration">
+                <param name="ios-package" value="CDVVibration"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CDVVibration.h" />
+	    <source-file src="src/ios/CDVVibration.m" />
+
+    </platform>
+
 </plugin>

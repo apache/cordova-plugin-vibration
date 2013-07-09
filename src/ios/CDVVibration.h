@@ -22,17 +22,8 @@
 #import <AudioToolbox/AudioServices.h>
 #import <Cordova/CDVPlugin.h>
 
-@interface CDVNotification : CDVPlugin <UIAlertViewDelegate>{}
+@interface CDVVibration : CDVPlugin {}
 
-- (void)alert:(CDVInvokedUrlCommand*)command;
-- (void)confirm:(CDVInvokedUrlCommand*)command;
-- (void)prompt:(CDVInvokedUrlCommand*)command;
 - (void)vibrate:(CDVInvokedUrlCommand*)command;
-- (void)beep:(CDVInvokedUrlCommand*)command;
-
-@end
-
-@interface CDVAlertView : UIAlertView {}
-@property (nonatomic, copy) NSString* callbackId;
 
 @end
