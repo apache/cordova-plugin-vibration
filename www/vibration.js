@@ -33,6 +33,6 @@ module.exports = {
      * @param {Integer} mills       The number of milliseconds to vibrate for.
      */
     vibrate: function(mills) {
-        exec(null, null, "Notification", "vibrate", [mills]);
+        exec(null, null, "Vibration", "vibrate", [mills]);
     },
 };
