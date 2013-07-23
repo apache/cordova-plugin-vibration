@@ -52,7 +52,8 @@
         </config-file>
         <header-file src="src/ios/CDVVibration.h" />
 	    <source-file src="src/ios/CDVVibration.m" />
-
+		
+		<framework src="AudioToolbox.framework" weak="true" />
     </platform>
 
 </plugin>
