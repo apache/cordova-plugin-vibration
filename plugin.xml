@@ -4,7 +4,10 @@
            id="org.apache.cordova.core.vibration"
       version="0.1.0">
 
-    <name>vibration</name>
+    <name>Vibration</name>
+    <description>Cordova Vibration Plugin</description>
+    <license>Apache</license>
+    <keywords>cordova,vibration</keywords>
 
     <js-module src="www/vibration.js" name="notification">
         <merges target="navigator.notification" />
