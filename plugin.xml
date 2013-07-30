@@ -9,6 +9,18 @@
     <js-module src="www/vibration.js" name="notification">
         <merges target="navigator.notification" />
     </js-module>
+        
+    <!-- firefoxos -->
+    <platform name="firefoxos">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Vibration">
+                <param name="firefoxos-package" value="Vibraton" />
+            </feature>
+        </config-file>                                         
+        
+        <source-file src="src/firefoxos/vibration.js" />
+        
+    </platform>
 
     <!-- wp7 -->
     <platform name="wp7">
