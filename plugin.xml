@@ -51,11 +51,11 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Vibration">
-                <param name="android-package" value="org.apache.cordova.core.Vibration"/>
+                <param name="android-package" value="org.apache.cordova.vibration.Vibration"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/core" />
+        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
     </platform>
 
     <!-- ios -->
