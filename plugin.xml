@@ -6,7 +6,7 @@
 
     <name>Vibration</name>
     <description>Cordova Vibration Plugin</description>
-    <license>Apache</license>
+    <license>Apache 2.0</license>
     <keywords>cordova,vibration</keywords>
 
     <js-module src="www/vibration.js" name="notification">
