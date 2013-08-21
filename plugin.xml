@@ -17,7 +17,7 @@
     <platform name="firefoxos">
         <config-file target="config.xml" parent="/*">
             <feature name="Vibration">
-                <param name="firefoxos-package" value="Vibraton" />
+                <param name="firefoxos-package" value="Vibration" />
             </feature>
         </config-file>                                         
         
