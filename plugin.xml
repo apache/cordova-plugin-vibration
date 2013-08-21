@@ -12,7 +12,7 @@
     <js-module src="www/vibration.js" name="notification">
         <merges target="navigator.notification" />
     </js-module>
-        
+
     <!-- firefoxos -->
     <platform name="firefoxos">
         <config-file target="config.xml" parent="/*">
@@ -20,9 +20,7 @@
                 <param name="firefoxos-package" value="Vibration" />
             </feature>
         </config-file>                                         
-        
         <source-file src="src/firefoxos/vibration.js" target-dir="Vibration" />
-        
     </platform>
 
     <!-- wp7 -->
@@ -71,8 +69,18 @@
         </config-file>
         <header-file src="src/ios/CDVVibration.h" />
 	    <source-file src="src/ios/CDVVibration.m" />
-		
+
 		<framework src="AudioToolbox.framework" weak="true" />
     </platform>
 
+    <!-- blackberry10 -->
+    <platform name="blackberry10">
+        <config-file target="www/config.xml" parent="/widget">
+            <feature name="Vibration" value="Vibration" />
+        </config-file>
+
+        <js-module src="www/blackberry10/vibrate.js" name="vibrate">
+            <clobbers target="window.navigator.notification.vibrate" />
+        </js-module>
+    </platform>
 </plugin>
