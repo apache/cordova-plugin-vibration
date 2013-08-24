@@ -21,7 +21,7 @@
             </feature>
         </config-file>                                         
         
-        <source-file src="src/firefoxos/vibration.js" />
+        <source-file src="src/firefoxos/vibration.js" target-dir="Vibration" />
         
     </platform>
 
