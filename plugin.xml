@@ -56,6 +56,10 @@
         </config-file>
 
         <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.VIBRATE"/>
+        </config-file>
     </platform>
 
     <!-- ios -->
