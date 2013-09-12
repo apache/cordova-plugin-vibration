@@ -19,16 +19,17 @@
  *
 */
 
-module.exports = {
+var firefoxos = require('cordova/platform');
 
-    vibrate: function(milliseconds) {
-        console.log ("milliseconds" , milliseconds);
+var Vibration = {
 
-        if (navigator.vibrate) {
+    vibrate: function(success, fail, milliseconds) {
+        if (navigator.notification.vibrate) {
             navigator.vibrate(milliseconds);
         } else {
             console.log ("cordova/plugin/firefoxos/vibration, vibrate API does not exist");
         }
     }
-
 };
+
+firefoxos.registerPlugin('Vibration', Vibration);
