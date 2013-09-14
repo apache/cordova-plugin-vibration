@@ -19,9 +19,9 @@
  *
 */
 
-var firefoxos = require('cordova/platform');
+var cordova = require('cordova');
 
-var Vibration = {
+module.exports = {
 
     vibrate: function(success, fail, milliseconds) {
         if (navigator.notification.vibrate) {
@@ -32,4 +32,4 @@ var Vibration = {
     }
 };
 
-firefoxos.registerPlugin('Vibration', Vibration);
+require("cordova/firefoxos/commandProxy").add("Vibration", module.exports);
