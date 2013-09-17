@@ -77,15 +77,14 @@
 
 		<framework src="AudioToolbox.framework" weak="true" />
     </platform>
-
+	
     <!-- blackberry10 -->
     <platform name="blackberry10">
+        <source-file src="src/blackberry10/index.js" target-dir="Vibration"/>
+        <lib-file src="src/blackberry10/native/device/libVibration.so" arch="device" />
+        <lib-file src="src/blackberry10/native/simulator/libVibration.so" arch="simulator" />
         <config-file target="www/config.xml" parent="/widget">
             <feature name="Vibration" value="Vibration" />
         </config-file>
-
-        <js-module src="www/blackberry10/vibrate.js" name="vibrate">
-            <clobbers target="window.navigator.notification.vibrate" />
-        </js-module>
     </platform>
 </plugin>
