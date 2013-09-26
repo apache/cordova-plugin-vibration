@@ -19,16 +19,17 @@
  *
 */
 
+var cordova = require('cordova');
+
 module.exports = {
 
-    vibrate: function(milliseconds) {
-        console.log ("milliseconds" , milliseconds);
-
-        if (navigator.vibrate) {
+    vibrate: function(success, fail, milliseconds) {
+        if (navigator.notification.vibrate) {
             navigator.vibrate(milliseconds);
         } else {
             console.log ("cordova/plugin/firefoxos/vibration, vibrate API does not exist");
         }
     }
-
 };
+
+require("cordova/firefoxos/commandProxy").add("Vibration", module.exports);

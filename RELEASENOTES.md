@@ -23,3 +23,13 @@
 ### 0.3.0 (Sept 5, 2013)
 * Initial FirefoxOS support
 * [CB-4661] VIBRATE permission for Android
+
+### 0.3.2 (Sept 25, 2013)
+* CB-4889 bumping&resetting version
+* CB-4889 renaming org.apache.cordova.core.vibration to org.apache.cordova.vibration
+* Rename CHANGELOG.md -> RELEASENOTES.md
+* updated to work with ffos commandProxy
+* fixed plugin.xml for vibration
+* [CB-4593] [Blackberry10] Added vibration support for bb10
+* updated plugin to work with ffos
+* [CB-4752] Incremented plugin version on dev branch.
