@@ -33,3 +33,7 @@
 * [CB-4593] [Blackberry10] Added vibration support for bb10
 * updated plugin to work with ffos
 * [CB-4752] Incremented plugin version on dev branch.
+
+### 0.3.3 (Oct 9, 2013)
+* add missing android namespace
+* [CB-4915] Incremented plugin version on dev branch.
