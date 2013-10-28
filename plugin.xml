@@ -3,12 +3,14 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="org.apache.cordova.vibration"
-    version="0.3.3">
+    version="0.3.4">
 
     <name>Vibration</name>
     <description>Cordova Vibration Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,vibration</keywords>
+    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-vibration.git</repo>
+    <issue>https://issues.apache.org/jira/browse/CB/component/12320639</issue>
 
     <js-module src="www/vibration.js" name="notification">
         <merges target="navigator.notification" />
@@ -16,7 +18,7 @@
 
     <!-- firefoxos -->
     <platform name="firefoxos">
-        <config-file target="config.xml" parent="/*">
+        <config-file target="www/config.xml" parent="/*">
             <feature name="Vibration">
                 <param name="firefoxos-package" value="Vibration" />
             </feature>
