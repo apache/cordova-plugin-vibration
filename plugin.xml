@@ -65,6 +65,21 @@
         </config-file>
     </platform>
 
+    <!-- amazon-fireos -->
+    <platform name="amazon-fireos">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Vibration">
+                <param name="android-package" value="org.apache.cordova.vibration.Vibration"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.VIBRATE"/>
+        </config-file>
+    </platform>
+    
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
