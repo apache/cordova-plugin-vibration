@@ -88,4 +88,11 @@
             <clobbers target="window.navigator.notification.vibrate" />
         </js-module>
     </platform>
+
+    <!-- tizen -->
+    <platform name="tizen">
+        <js-module src="src/tizen/VibrationProxy.js" name="VibrationProxy">
+            <runs />
+        </js-module>
+    </platform>
 </plugin>
