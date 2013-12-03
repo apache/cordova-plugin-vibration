@@ -80,6 +80,12 @@
         </config-file>
     </platform>
     
+    <!-- ubuntu -->
+    <platform name="ubuntu">
+        <header-file src="src/ubuntu/vibration.h" />
+        <source-file src="src/ubuntu/vibration.cpp" />
+    </platform>
+
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
