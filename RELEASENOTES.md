@@ -42,3 +42,8 @@
 * add repo + issue tag to plugin.xml for vibration plugin
 * corrected plugin.xml to write properly to config.xml for ffos
 * [CB-5010] Incremented plugin version on dev branch.
+
+### 0.3.5 (Dec 4, 2013)
+* add ubuntu platform
+* Added amazon-fireos platform. Change to include amazon-fireos as a platform if the user agent string contains 'cordova-amazon-fireos'
+* CB-4747 Fixed Blackberry background vibrate
