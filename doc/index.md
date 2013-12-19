@@ -19,4 +19,38 @@
 
 # org.apache.cordova.vibration
 
-Plugin documentation: [doc/index.md](doc/index.md)
+This plugin provides a way to vibrate the device.
+
+## Installation
+
+    cordova plugin add org.apache.cordova.vibration
+
+## Supported Platforms
+
+- Amazon Fire OS
+- Android
+- BlackBerry 10
+- iOS
+- Windows Phone 7 and 8
+
+## notification.vibrate
+
+Vibrates the device for the specified amount of time.
+
+    navigator.notification.vibrate(time)
+
+- __time__: Milliseconds to vibrate the device. _(Number)_
+
+
+## Example
+
+    // Vibrate for 2.5 seconds
+    navigator.notification.vibrate(2500);
+
+
+## iOS Quirks
+
+- __time__: Ignores the specified time and vibrates for a pre-set amount of time.
+
+        navigator.notification.vibrate();
+        navigator.notification.vibrate(2500);   // 2500 is ignored
