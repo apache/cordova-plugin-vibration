@@ -47,3 +47,6 @@
 * add ubuntu platform
 * Added amazon-fireos platform. Change to include amazon-fireos as a platform if the user agent string contains 'cordova-amazon-fireos'
 * CB-4747 Fixed Blackberry background vibrate
+
+### 0.3.6 (Jan 02, 2014)
+* CB-5658 Add doc/index.md for Vibration plugin
