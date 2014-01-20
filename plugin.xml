@@ -108,4 +108,11 @@
             <feature name="Vibration" value="Vibration" />
         </config-file>
     </platform>
+
+    <!-- tizen -->
+    <platform name="tizen">
+        <js-module src="src/tizen/VibrationProxy.js" name="VibrationProxy">
+            <runs />
+        </js-module>
+    </platform>
 </plugin>
