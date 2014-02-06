@@ -50,3 +50,7 @@
 
 ### 0.3.6 (Jan 02, 2014)
 * CB-5658 Add doc/index.md for Vibration plugin
+
+### 0.3.7 (Feb 05, 2014)
+* Add support for Tizen.
+* CB-3206 - Supported platforms updated
