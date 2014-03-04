@@ -27,31 +27,52 @@ This plugin provides a way to vibrate the device.
 
 ## Supported Platforms
 
+navigator.notification.vibrate
 - Amazon Fire OS
-- Android
 - BlackBerry 10
 - Firefox OS
 - iOS
 - Windows Phone 7 and 8
 
+navigator.notification.vibrate and navigator.notification.vibrateWithPattern
+- Android
+
 ## notification.vibrate
 
-Vibrates the device for the specified amount of time.
+Vibrates the device for a given amount of time.
 
     navigator.notification.vibrate(time)
 
 - __time__: Milliseconds to vibrate the device. _(Number)_
 
-
-## Example
+### Example
 
     // Vibrate for 2.5 seconds
     navigator.notification.vibrate(2500);
 
-
-## iOS Quirks
+### iOS Quirks
 
 - __time__: Ignores the specified time and vibrates for a pre-set amount of time.
 
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
+
+## notification.vibrateWithPattern
+
+Vibrates the device with a given pattern.
+
+    navigator.notification.vibrateWithPattern(pattern)
+
+- __pattern__: Sequence of durations (in milliseconds) for which to turn on or off the vibrator. _(Array of Numbers)_
+
+### Example
+
+    // Immediately start vibrating
+    // vibrate for 200ms,
+    // wait for 100ms,
+    // vibrate for 200ms,
+    // wait for 100ms,
+    // vibrate for 400ms,
+    // wait for 100ms,
+    // vibrate for 800ms
+    navigator.notification.vibrateWithPattern([0, 200, 100, 200, 100, 400, 100, 800]);

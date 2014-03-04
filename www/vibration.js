@@ -28,11 +28,33 @@ var exec = require('cordova/exec');
 module.exports = {
 
     /**
-     * Causes the device to vibrate.
+     * Vibrates the device for a given amount of time.
      *
-     * @param {Integer} mills       The number of milliseconds to vibrate for.
+     * @param {Integer} mills       The number of milliseconds to vibrate.
      */
     vibrate: function(mills) {
         exec(null, null, "Vibration", "vibrate", [mills]);
+    },
+
+    /**
+     * Vibrates the device with a given pattern.
+     *
+     * @param {Array of Integer} pattern    Pattern with which to vibrate the device.
+     *                                      Pass in an array of integers that
+     *                                      are the durations for which to
+     *                                      turn on or off the vibrator in
+     *                                      milliseconds. The first value
+     *                                      indicates the number of milliseconds
+     *                                      to wait before turning the vibrator
+     *                                      on. The next value indicates the
+     *                                      number of milliseconds for which
+     *                                      to keep the vibrator on before
+     *                                      turning it off. Subsequent values
+     *                                      alternate between durations in
+     *                                      milliseconds to turn the vibrator
+     *                                      off or to turn the vibrator on.
+     */
+    vibrateWithPattern: function(pattern) {
+        exec(null, null, "Vibration", "vibrateWithPattern", pattern);
     },
 };
