@@ -48,6 +48,14 @@ public class Vibration extends CordovaPlugin {
         if (action.equals("vibrate")) {
             this.vibrate(args.getLong(0));
         }
+        else if (action.equals("vibrateWithPattern")) {
+            JSONArray pattern = args;
+            long[] patternArray = new long[pattern.length()];
+            for (int i = 0; i < pattern.length(); i++) {
+                patternArray[i] = pattern.getLong(i);
+            }
+            this.vibrateWithPattern(patternArray);
+        }
         else {
             return false;
         }
@@ -62,7 +70,7 @@ public class Vibration extends CordovaPlugin {
     //--------------------------------------------------------------------------
 
     /**
-     * Vibrates the device for the specified amount of time.
+     * Vibrates the device for a given amount of time.
      *
      * @param time      Time to vibrate in ms.
      */
@@ -73,5 +81,28 @@ public class Vibration extends CordovaPlugin {
         }
         Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(time);
+    }
+
+    /**
+     * Vibrates the device with a given pattern.
+     *
+     * @param pattern     Pattern with which to vibrate the device.
+     *                    Pass in an array of longs that
+     *                    are the durations for which to
+     *                    turn on or off the vibrator in
+     *                    milliseconds. The first value
+     *                    indicates the number of milliseconds
+     *                    to wait before turning the vibrator
+     *                    on. The next value indicates the
+     *                    number of milliseconds for which
+     *                    to keep the vibrator on before
+     *                    turning it off. Subsequent values
+     *                    alternate between durations in
+     *                    milliseconds to turn the vibrator
+     *                    off or to turn the vibrator on.
+     */
+    public void vibrateWithPattern(long[] pattern) {
+        Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(pattern, -1);
     }
 }
