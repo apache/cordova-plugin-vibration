@@ -49,12 +49,16 @@ public class Vibration extends CordovaPlugin {
             this.vibrate(args.getLong(0));
         }
         else if (action.equals("vibrateWithPattern")) {
-            JSONArray pattern = args;
+            JSONArray pattern = args.getJSONArray(0);
+            int repeat = args.getInt(1);
             long[] patternArray = new long[pattern.length()];
             for (int i = 0; i < pattern.length(); i++) {
                 patternArray[i] = pattern.getLong(i);
             }
-            this.vibrateWithPattern(patternArray);
+            this.vibrateWithPattern(patternArray, repeat);
+        }
+        else if (action.equals("cancelVibration")) {
+            this.cancelVibration();
         }
         else {
             return false;
@@ -62,6 +66,7 @@ public class Vibration extends CordovaPlugin {
 
         // Only alert and confirm are async.
         callbackContext.success();
+
         return true;
     }
 
@@ -100,9 +105,20 @@ public class Vibration extends CordovaPlugin {
      *                    alternate between durations in
      *                    milliseconds to turn the vibrator
      *                    off or to turn the vibrator on.
+     *
+     * @param repeat      Optional index into the pattern array at which
+     *                    to start repeating, or -1 for no repetition (default).
      */
-    public void vibrateWithPattern(long[] pattern) {
+    public void vibrateWithPattern(long[] pattern, int repeat) {
         Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(pattern, -1);
+        vibrator.vibrate(pattern, repeat);
+    }
+
+    /**
+     * Immediately cancels any currently running vibration.
+     */
+    public void cancelVibration() {
+        Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.cancel();
     }
 }
