@@ -53,8 +53,20 @@ module.exports = {
      *                                      alternate between durations in
      *                                      milliseconds to turn the vibrator
      *                                      off or to turn the vibrator on.
+     *
+     * @param {Integer} repeat              Optional index into the pattern array at which
+     *                                      to start repeating (will repeat until canceled),
+     *                                      or -1 for no repetition (default).
      */
-    vibrateWithPattern: function(pattern) {
-        exec(null, null, "Vibration", "vibrateWithPattern", pattern);
+    vibrateWithPattern: function(pattern, repeat) {
+        repeat = (typeof repeat !== "undefined") ? repeat : -1;
+        exec(null, null, "Vibration", "vibrateWithPattern", [pattern, repeat]);
+    },
+
+    /**
+     * Immediately cancels any currently running vibration.
+     */
+    cancelVibration: function() {
+        exec(null, null, "Vibration", "cancelVibration", []);
     },
 };
