@@ -19,30 +19,30 @@
 
 # org.apache.cordova.vibration
 
-這個外掛程式提供了一種方法，振動設備。
+这个插件提供了一种方法，振动设备。
 
-## 安裝
+## 安装
 
     cordova plugin add org.apache.cordova.vibration
     
 
-## 支援的平臺
+## 支持的平台
 
-*   亞馬遜火 OS
-*   Android 系統
+*   亚马逊火 OS
+*   Android 系统
 *   黑莓 10
-*   火狐瀏覽器作業系統
+*   火狐浏览器操作系统
 *   iOS
 *   Windows Phone 7 和 8
 
 ## notification.vibrate
 
-為指定的時間量振動設備。
+为指定的时间量振动设备。
 
     navigator.notification.vibrate(time)
     
 
-*   **時間**： 毫秒振動設備。*（人數）*
+*   **时间**： 毫秒振动设备。*（人数）*
 
 ## 示例
 
@@ -52,7 +52,7 @@
 
 ## iOS 的怪癖
 
-*   **時間**： 忽略指定的時間和震動的預設置的時間量。
+*   **时间**： 忽略指定的时间和震动的预设置的时间量。
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
