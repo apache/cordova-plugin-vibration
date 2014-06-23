@@ -19,40 +19,69 @@
 
 # org.apache.cordova.vibration
 
-这个插件提供了一种方法，振动设备。
+這個外掛程式提供了一種方法，振動設備。
 
-## 安装
+## 安裝
 
     cordova plugin add org.apache.cordova.vibration
     
 
-## 支持的平台
+## 支援的平臺
 
-*   亚马逊火 OS
-*   Android 系统
-*   黑莓 10
-*   火狐浏览器操作系统
-*   iOS
-*   Windows Phone 7 和 8
+navigator.notification.vibrate-亞馬遜火 OS-Android-黑莓 10-火狐瀏覽器作業系統 — — iOS-Windows Phone 7 和 8
+
+navigator.notification.vibrateWithPattern，  
+navigator.notification.cancelVibration-安卓系統
 
 ## notification.vibrate
 
-为指定的时间量振动设备。
+為給定時間振動設備。
 
     navigator.notification.vibrate(time)
     
 
-*   **时间**： 毫秒振动设备。*（人数）*
+*   **時間**： 毫秒以振動裝置。*（人數）*
 
-## 示例
+### 示例
 
     // Vibrate for 2.5 seconds
     navigator.notification.vibrate(2500);
     
 
-## iOS 的怪癖
+### iOS 的怪癖
 
-*   **时间**： 忽略指定的时间和震动的预设置的时间量。
+*   **時間**： 忽略指定的時間和震動的一個預先設定的時間。
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
+        
+
+## notification.vibrateWithPattern
+
+振動具有給定模式的設備。
+
+    navigator.notification.vibrateWithPattern(pattern, repeat)
+    
+
+*   **模式**： 序列的持續時間 （以毫秒為單位） 為其打開或關閉振動器。*（數位陣列）*
+*   **重複**： 在其開始重複 （會重複，直到被取消），或-1 為不重複 （預設值） 模式陣列中的可選索引。*（人數）*
+
+### 示例
+
+    // Immediately start vibrating
+    // vibrate for 100ms,
+    // wait for 100ms,
+    // vibrate for 200ms,
+    // wait for 100ms,
+    // vibrate for 400ms,
+    // wait for 100ms,
+    // vibrate for 800ms,
+    // (do not repeat)
+    navigator.notification.vibrateWithPattern([0, 100, 100, 200, 100, 400, 100, 800]);
+    
+
+## notification.cancelVibration
+
+立即取消任何當前正在運行的振動。
+
+    navigator.notification.cancelVibration()

@@ -19,38 +19,38 @@
 
 # org.apache.cordova.vibration
 
-このプラグインは、デバイスを振動させる方法を提供します。
+Этот плагин позволяет вибрировать устройство.
 
-## インストール
+## Установка
 
     cordova plugin add org.apache.cordova.vibration
     
 
-## サポートされているプラットフォーム
+## Поддерживаемые платформы
 
-navigator.notification.vibrate - アマゾン火 OS - アンドロイド - ブラックベリー 10 - Firefox OS - iOS - Windows Phone 7 と 8
+Navigator.Notification.Vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 и 8
 
-navigator.notification.vibrateWithPattern、  
-navigator.notification.cancelVibration - アンドロイド
+navigator.notification.vibrateWithPattern,  
+navigator.notification.cancelVibration - Android
 
-## notification.vibrate
+## Notification.Vibrate
 
-一定の時間のため、デバイスが振動します。
+Устройство вибрирует за определенное количество времени.
 
     navigator.notification.vibrate(time)
     
 
-*   **時刻**: ミリ秒、デバイスを振動させる。*(数)*
+*   **время**: миллисекунд вибрировать устройство. *(Число)*
 
-### 例
+### Пример
 
     // Vibrate for 2.5 seconds
     navigator.notification.vibrate(2500);
     
 
-### iOS の癖
+### iOS причуды
 
-*   **時間**: 指定された時間を無視し、時間の事前に設定された量のために振動します。
+*   **время**: игнорирует указанное время и вибрирует для предварительно установленного времени.
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
@@ -58,15 +58,15 @@ navigator.notification.cancelVibration - アンドロイド
 
 ## notification.vibrateWithPattern
 
-特定のパターンを持つデバイスが振動します。
+Вибрирует на устройства с заданным шаблоном.
 
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **パターン**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
-*   **繰り返します**: 省略可能な配列のインデックスのパターン （でしょう） を繰り返す取り消されるまで、繰り返しを開始するまたは反復なし (既定値) の場合は-1。*(数)*
+*   **шаблон**: последовательность длительностей (в миллисекундах), для которого требуется включить или выключить вибростол. *(Массив из чисел)*
+*   **повторяю**: дополнительный индекс в массиве шаблон для начала повторять (будет повторять пока не отменен), или -1 для не повторения (по умолчанию). *(Число)*
 
-### 例
+### Пример
 
     // Immediately start vibrating
     // vibrate for 100ms,
@@ -82,6 +82,6 @@ navigator.notification.cancelVibration - アンドロイド
 
 ## notification.cancelVibration
 
-すぐに、現在実行中の振動をキャンセルします。
+Немедленно отменяет любые выполняющиеся вибрации.
 
     navigator.notification.cancelVibration()

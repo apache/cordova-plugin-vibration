@@ -28,31 +28,60 @@ Dieses Plugin bietet eine Möglichkeit, das Gerät zu vibrieren.
 
 ## Unterstützte Plattformen
 
-*   Amazon Fire OS
-*   Android
-*   BlackBerry 10
-*   Firefox OS
-*   iOS
-*   Windows Phone 7 und 8
+Navigator.Notification.Vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 und 8
+
+navigator.notification.vibrateWithPattern,  
+navigator.notification.cancelVibration - Android
 
 ## Notification.Vibrate
 
-Vibriert das Gerät für den angegebenen Zeitraum.
+Vibriert das Gerät für einen bestimmten Zeitraum.
 
     navigator.notification.vibrate(time)
     
 
 *   **Zeit**: Millisekunden das Gerät vibriert. *(Anzahl)*
 
-## Beispiel
+### Beispiel
 
     // Vibrate for 2.5 seconds
     navigator.notification.vibrate(2500);
     
 
-## iOS Macken
+### iOS Macken
 
 *   **Zeit**: ignoriert die angegebene Zeit und für eine voreingestellte Zeit vibriert.
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
+        
+
+## notification.vibrateWithPattern
+
+Vibriert das Gerät mit einem vorgegebenen Muster.
+
+    navigator.notification.vibrateWithPattern(pattern, repeat)
+    
+
+*   **Muster**: Folge von Dauer (in Millisekunden) für den ein-oder Ausschalten der Vibrator. *(Array von Zahlen)*
+*   **Wiederholen**: optionale Index in das Array Muster an der wiederholte (wird wiederholt, bis abgebrochen) zu starten, oder-1 für Wiederholung (Standard). *(Anzahl)*
+
+### Beispiel
+
+    // Immediately start vibrating
+    // vibrate for 100ms,
+    // wait for 100ms,
+    // vibrate for 200ms,
+    // wait for 100ms,
+    // vibrate for 400ms,
+    // wait for 100ms,
+    // vibrate for 800ms,
+    // (do not repeat)
+    navigator.notification.vibrateWithPattern([0, 100, 100, 200, 100, 400, 100, 800]);
+    
+
+## notification.cancelVibration
+
+Sofort bricht alle derzeit ausgeführten Schwingungen.
+
+    navigator.notification.cancelVibration()
