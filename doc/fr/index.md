@@ -28,31 +28,60 @@ Ce plugin permet de faire vibrer l'appareil.
 
 ## Plates-formes prises en charge
 
-*   Amazon Fire OS
-*   Android
-*   BlackBerry 10
-*   Firefox OS
-*   iOS
-*   Windows Phone 7 et 8
+Navigator.notification.VIBRATE - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 et 8
+
+navigator.notification.vibrateWithPattern,  
+navigator.notification.cancelVibration - Android
 
 ## notification.vibrate
 
-Fait vibrer l'appareil pendant la durée spécifiée.
+Vibre l'appareil pendant un certain temps.
 
     navigator.notification.vibrate(time)
     
 
-*   **time**: Durée de vibration de l'appareil en millisecondes. *(Number)*
+*   **temps**: millisecondes à vibrer l'appareil. *(Nombre)*
 
-## Exemple
+### Exemple
 
     // Vibrate for 2.5 seconds
     navigator.notification.vibrate(2500);
     
 
-## iOS Quirks
+### iOS Quirks
 
 *   **temps**: ne tient pas compte de la durée spécifiée et vibre pendant un temps prédéterminé.
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
+        
+
+## notification.vibrateWithPattern
+
+Vibre l'appareil avec un modèle donné.
+
+    navigator.notification.vibrateWithPattern(pattern, repeat)
+    
+
+*   **modèle**: séquence de la durée (en millisecondes) pour lequel activer ou désactiver le vibreur. *(Tableau de nombres)*
+*   **répéter**: optionnel index dans le tableau de configuration à laquelle commencer à répéter (répétera jusqu'à annulation), ou -1 pour aucune répétition (par défaut). *(Nombre)*
+
+### Exemple
+
+    // Immediately start vibrating
+    // vibrate for 100ms,
+    // wait for 100ms,
+    // vibrate for 200ms,
+    // wait for 100ms,
+    // vibrate for 400ms,
+    // wait for 100ms,
+    // vibrate for 800ms,
+    // (do not repeat)
+    navigator.notification.vibrateWithPattern([0, 100, 100, 200, 100, 400, 100, 800]);
+    
+
+## notification.cancelVibration
+
+Immédiatement annule des vibrations en cours d'exécution.
+
+    navigator.notification.cancelVibration()
