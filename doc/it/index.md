@@ -28,7 +28,6 @@ Questo plugin consente di vibrare il dispositivo.
 
 ## Piattaforme supportate
 
-<<<<<<< HEAD
 Navigator.Notification.vibrate - Amazon fuoco OS - OS di Firefox - 10 BlackBerry - Android - iOS - Windows Phone 7 e 8
 
 navigator.notification.vibrateWithPattern,  
@@ -37,44 +36,23 @@ navigator.notification.cancelVibration - Android
 ## Notification.vibrate
 
 Vibra il dispositivo per un determinato periodo di tempo.
-=======
-*   Amazon fuoco OS
-*   Android
-*   BlackBerry 10
-*   Firefox OS
-*   iOS
-*   Windows Phone 7 e 8
-
-## Notification.vibrate
-
-Vibra il dispositivo per il periodo di tempo specificato.
->>>>>>> 74bc4572943378e7e17deff8f09889de0c8fea85
 
     navigator.notification.vibrate(time)
     
 
 *   **tempo**: millisecondi a vibrare il dispositivo. *(Numero)*
 
-<<<<<<< HEAD
 ### Esempio
-=======
-## Esempio
->>>>>>> 74bc4572943378e7e17deff8f09889de0c8fea85
 
     // Vibrate for 2.5 seconds
     navigator.notification.vibrate(2500);
     
 
-<<<<<<< HEAD
 ### iOS stranezze
-=======
-## iOS stranezze
->>>>>>> 74bc4572943378e7e17deff8f09889de0c8fea85
 
 *   **tempo**: ignora il tempo specificato e vibra per un tempo pre-impostato.
     
         navigator.notification.vibrate();
-<<<<<<< HEAD
         navigator.notification.vibrate(2500);   // 2500 is ignored
         
 
@@ -107,6 +85,3 @@ Vibra il dispositivo con un determinato modello.
 Annulla immediatamente qualsiasi vibrazione attualmente in esecuzione.
 
     navigator.notification.cancelVibration()
-=======
-        navigator.notification.vibrate(2500);   // 2500 is ignored
->>>>>>> 74bc4572943378e7e17deff8f09889de0c8fea85
