@@ -81,31 +81,31 @@ var longVibrate = function() {
 
     //standard vibrate with new call param long
     createActionButton('Vibrate_New with long', function() {
-        _vibrate1();
         console.log("navigator.vibrate(3000): should vibrate once for 3 seconds");
+        _vibrate1();
     });
 
     //standard vibrate with new call param array
     createActionButton('Vibrate_New with array', function() {
-        _vibrate2();
         console.log("navigator.vibrate([3000]): should vibrate once for 3 seconds");
+        _vibrate2();
     });
 
     //vibrate with a pattern
-    createActionButton('Vibrate with a pattern', function() {
-        vibrateWithPattern();
+    createActionButton('Vibrate with a pattern (Android only)', function() {
         console.log("navigator.vibrate([100, 200, 300]): should vibrate for 100ms, pause for 200ms, then vibrate for 300ms");
+        vibrateWithPattern();
     });
 
     //cancel any existing vibrations with param 0
-    createActionButton('Cancel vibration with 0', function() {
+    createActionButton('Cancel vibration with 0 (Android only)', function() {
         console.log("navigator.vibrate(0): should try to vibrate for 60 seconds but will be canceled after 5");
         longVibrate();
         setTimeout(cancelWithZero(), 5000);
     });
 
     //cancel any existing vibrations with param []
-    createActionButton('Cancel vibration with []', function() {
+    createActionButton('Cancel vibration with [] (Android only)', function() {
         console.log("navigator.vibrate([]): should should try to vibrate for 60 seconds but will be canceled after 5");
         longVibrate();
         setTimeout(cancelWithEmpty(), 5000);
