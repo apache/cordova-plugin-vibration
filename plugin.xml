@@ -32,6 +32,7 @@
 
     <js-module src="www/vibration.js" name="notification">
         <merges target="navigator.notification" />
+        <merges target="navigator" />
     </js-module>
 
     <!-- firefoxos -->

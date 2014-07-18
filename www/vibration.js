@@ -28,12 +28,45 @@ var exec = require('cordova/exec');
 module.exports = {
 
     /**
-     * Vibrates the device for a given amount of time.
+     * Vibrates the device for a given amount of time or for a given pattern or immediately cancels any ongoing vibrations (depending on the parameter).
      *
-     * @param {Integer} mills       The number of milliseconds to vibrate.
+     * @param {Integer} param       The number of milliseconds to vibrate (if 0, cancels vibration)
+     *
+     *
+     * @param {Array of Integer} param    Pattern with which to vibrate the device.
+     *                                      Pass in an array of integers that
+     *                                      are the durations for which to
+     *                                      turn on or off the vibrator in
+     *                                      milliseconds. The first value
+     *                                      indicates the number of milliseconds
+     *                                      to wait before turning the vibrator
+     *                                      on. The next value indicates the
+     *                                      number of milliseconds for which
+     *                                      to keep the vibrator on before
+     *                                      turning it off. Subsequent values
+     *                                      alternate between durations in
+     *                                      milliseconds to turn the vibrator
+     *                                      off or to turn the vibrator on.
+     *                                      (if empty, cancels vibration)
      */
-    vibrate: function(mills) {
-        exec(null, null, "Vibration", "vibrate", [mills]);
+    vibrate: function(param) {
+
+        /* Aligning with w3c spec */
+        
+        //vibrate
+        if ((typeof param == 'number') && param != 0)
+            exec(null, null, "Vibration", "vibrate", [param]);
+
+        //vibrate with a pattern
+        else if ((typeof param == 'object') && param.length != 0)
+        {
+            var repeat = -1; //no repeat
+            exec(null, null, "Vibration", "vibrateWithPattern", [param, repeat]);
+        }
+
+        //cancel vibration (param = 0 or [])
+        else
+            exec(null, null, "Vibration", "cancelVibration", []);
     },
 
     /**
