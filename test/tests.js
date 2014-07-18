@@ -39,17 +39,27 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 //-------------------------------------------------------------------------
 
 //old vibrate call
-var vibrate = function(){
+var vibrateOld = function(){
   navigator.notification.vibrate(2500);
 };
 
+//old vibrate with pattern call
+var vibrateWithPatternOld = function(){
+  navigator.notification.vibrateWithPattern([100, 200, 300]);
+};
+
+//old cancel vibrate call
+var cancelOld = function(){
+    navigator.notification.cancelVibration();
+};
+
 //new standard vibrate call that aligns to w3c spec with param long
-var _vibrate1 = function() {
+var vibrateWithInt = function() {
     navigator.vibrate(3000);
 };
 
 //new standard vibrate call that aligns to w3c spec with param array
-var _vibrate2 = function() {
+var vibrateWithArray = function() {
     navigator.vibrate([3000]);
 };
 
@@ -73,22 +83,38 @@ var longVibrate = function() {
     navigator.vibrate(60000);
 };
 
+//check whether there is an ongoing vibration
+var vibrateOn = false;
+
     //standard vibrate with old call
-    createActionButton('Vibrate_Old', function () {
-        vibrate();
+    createActionButton('Vibrate (Old)', function () {
+        vibrateOld();
         console.log("navigator.notification.vibrate(2500)");
     });
 
-    //standard vibrate with new call param long
-    createActionButton('Vibrate_New with long', function() {
+    //vibrate with pattern with old call
+    createActionButton('Vibrate with a pattern (Old - Android only)', function () {
+        vibrateWithPatternOld();
+        console.log("navigator.notification.vibrate([100, 200, 300]): should vibrate for 100ms, pause for 200ms, then vibrate for 300ms");
+    });
+
+    //cancel vibrate with old call
+    createActionButton('Cancel vibration (Old - Android only)', function() {
+        console.log("navigator.notification.cancelVibration(): should should try to vibrate for 60 seconds but will be canceled after 5");
+        longVibrate();
+        setTimeout(cancelOld(), 5000);
+    });
+
+    //standard vibrate with new call param int
+    createActionButton('Vibrate with int', function() {
         console.log("navigator.vibrate(3000): should vibrate once for 3 seconds");
-        _vibrate1();
+        vibrateWithInt();
     });
 
     //standard vibrate with new call param array
-    createActionButton('Vibrate_New with array', function() {
+    createActionButton('Vibrate with array', function() {
         console.log("navigator.vibrate([3000]): should vibrate once for 3 seconds");
-        _vibrate2();
+        vibrateWithArray();
     });
 
     //vibrate with a pattern
