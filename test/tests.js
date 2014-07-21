@@ -63,8 +63,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     //old vibrate with pattern call
     var vibrateWithPatternOld = function(){
         clearLog();
-        navigator.notification.vibrateWithPattern([100, 200, 300]);
-        logMessage("navigator.notification.vibrateWithPattern([100, 200, 300])", "green");
+        navigator.notification.vibrateWithPattern([1000, 2000, 3000]);
+        logMessage("navigator.notification.vibrateWithPattern([1000, 2000, 3000])", "green");
     };
 
     //old cancel vibrate call
@@ -91,8 +91,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     //vibrate with a pattern using w3c spec
     var vibrateWithPattern = function() {
         clearLog();
-        navigator.vibrate([100, 200, 300]);
-        logMessage("navigator.vibrate([100, 200, 300])", "green");
+        navigator.vibrate([1000, 2000, 3000]);
+        logMessage("navigator.vibrate([1000, 2000, 3000])", "green");
     };
 
     //cancel existing vibration using w3c spec navigator.vibrate(0)
@@ -116,9 +116,29 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     var longVibrate = function() {
         clearLog();
         navigator.vibrate(60000);
+        vibrateOn = true;
         logMessage("navigator.vibrate(60000)", "green");
         timeout = setTimeout(resetVibrateOn, 60000); //if user doesn't cancel vibrate, reset vibrateOn var after 60 seconds
     };
+
+    //special long vibrate with pattern used to test cancel
+    var longVibrateWithPattern = function() {
+        clearLog();
+        navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000]);
+        vibrateOn = true;
+        logMessage("navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000]);", "green");
+        timeout = setTimeout(resetVibrateOn, 45000); //if user doesn't cancel vibrate, reset vibrateOn var after 45 seconds
+    };
+
+    //initiate two vibrations to test cancel
+    var multipleVibrations = function() {
+        clearLog();
+        navigator.vibrate(20000);
+        navigator.vibrate(45000);
+        vibrateOn = true;
+        logMessage("navigator.vibrate(15000)\nnavigator.vibrate(45000)", "green");
+        timeout = setTimeout(resetVibrateOn, 45000); //if user doesn't cancel vibrate, reset vibrateOn var after 45 seconds
+    }
 
     function resetVibrateOn() {
         vibrateOn = false;
@@ -136,19 +156,27 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         '<div id="vibrate_old"></div>' +
         'Expected result: Vibrate once for 2.5 seconds.' +
         '<p/> <div id="vibrateWithPattern_old"></div>' +
-        'Expected result: Vibrate for 100ms, pause for 200ms, then vibrate for 300ms.' +
+        'Expected result: Vibrate for 1s, pause for 2s, then vibrate for 3s.' +
         '<p/> <div id="cancelVibrate_old"></div>' +
         'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
+        '<p/> <div id="cancelVibrateWithPattern_old"></div>' +
+        'Expected result: Press once to initiate vibrate with pattern for 45s. Press again to cancel vibrate immediately.' +
         '<p/> <div id="vibrate_int"></div>' +
         'Expected result: Vibrate once for 3 seconds.' +
         '<p/> <div id="vibrate_array"></div>' +
         'Expected result: Vibrate once for 3 seconds.' +
         '<p/> <div id="vibrate_with_pattern"></div>' +
-        'Expected result: Vibrate for 100ms, pause for 200ms, then vibrate for 300ms.' +
+        'Expected result: Vibrate for 1s, pause for 2s, then vibrate for 3s.' +
         '<p/> <div id="cancel_zero"></div>' +
         'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
         '<p/><div id="cancel_array"></div>' +
-        'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.';
+        'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
+        '<p/> <div id="cancelWithPattern_zero"></div>' +
+        'Expected result: Press once to initiate vibrate with pattern for 45s. Press again to cancel vibrate immediately.' +
+        '<p/> <div id="cancelWithPattern_array"></div>' +
+        'Expected result: Press once to initiate vibrate with pattern for 45s. Press again to cancel vibrate immediately.' +
+        '<p/> <div id="cancelMultipleVibrations"></div>' +
+        'Expected result: Press once to initiate two vibrations simultaneously (one for 20s the other for 45s so total of 45s). Press again to cancel both vibrations immediately.';
 
 
     contentEl.innerHTML = '<div id="info"></div>' + vibrate_tests;
@@ -169,7 +197,6 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         if (!vibrateOn)
         {
             longVibrate();
-            vibrateOn = true;
         }
         else
         {
@@ -178,6 +205,21 @@ exports.defineManualTests = function (contentEl, createActionButton) {
             clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
         }
     }, 'cancelVibrate_old');
+
+    //cancel vibrate with pattern with old call
+    createActionButton('* Cancel vibration with pattern (Old)', function() {
+
+        if (!vibrateOn)
+        {
+            longVibrateWithPattern();
+        }
+        else
+        {
+            cancelOld();
+            resetVibrateOn();
+            clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
+        }
+    }, 'cancelVibrateWithPattern_old');
 
     //standard vibrate with new call param int
     createActionButton('Vibrate with int', function() {
@@ -200,7 +242,6 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         if (!vibrateOn)
         {
             longVibrate();
-            vibrateOn = true;
         }
         else
         {
@@ -216,7 +257,6 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         if (!vibrateOn)
         {
             longVibrate();
-            vibrateOn = true;
         }
         else
         {
@@ -225,4 +265,49 @@ exports.defineManualTests = function (contentEl, createActionButton) {
             clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
         }
     }, 'cancel_array');
+
+    //cancel vibration with pattern with param 0
+    createActionButton('* Cancel vibration with pattern with 0', function() {
+
+        if (!vibrateOn)
+        {
+            longVibrateWithPattern();
+        }
+        else
+        {
+            cancelWithZero();
+            resetVibrateOn();
+            clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
+        }
+    }, 'cancelWithPattern_zero');
+
+    //cancel vibration with pattern with param []
+    createActionButton('* Cancel vibration with pattern with []', function() {
+
+        if (!vibrateOn)
+        {
+            longVibrateWithPattern();
+        }
+        else
+        {
+            cancelWithEmpty();
+            resetVibrateOn();
+            clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
+        }
+    }, 'cancelWithPattern_array');
+
+    //cancel multiple vibrations
+    createActionButton('* Cancel multiple vibrations', function() {
+
+        if (!vibrateOn)
+        {
+            multipleVibrations();
+        }
+        else
+        {
+            cancelWithZero();
+            resetVibrateOn();
+            clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
+        }
+    }, 'cancelMultipleVibrations');
 };
