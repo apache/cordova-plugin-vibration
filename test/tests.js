@@ -63,8 +63,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     //old vibrate with pattern call
     var vibrateWithPatternOld = function(){
         clearLog();
-        navigator.notification.vibrateWithPattern([1000, 2000, 3000]);
-        logMessage("navigator.notification.vibrateWithPattern([1000, 2000, 3000])", "green");
+        navigator.notification.vibrateWithPattern([1000, 3000, 2000, 5000]);
+        logMessage("navigator.notification.vibrateWithPattern([1000, 3000, 2000, 5000])", "green");
     };
 
     //old cancel vibrate call
@@ -91,8 +91,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     //vibrate with a pattern using w3c spec
     var vibrateWithPattern = function() {
         clearLog();
-        navigator.vibrate([1000, 2000, 3000]);
-        logMessage("navigator.vibrate([1000, 2000, 3000])", "green");
+        navigator.vibrate([1000, 2000, 3000, 2000, 5000]);
+        logMessage("navigator.vibrate([1000, 2000, 3000, 2000, 5000])", "green");
     };
 
     //cancel existing vibration using w3c spec navigator.vibrate(0)
@@ -126,7 +126,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         clearLog();
         navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000]);
         vibrateOn = true;
-        logMessage("navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000]);", "green");
+        logMessage("navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000])", "green");
         timeout = setTimeout(resetVibrateOn, 45000); //if user doesn't cancel vibrate, reset vibrateOn var after 45 seconds
     };
 
@@ -156,7 +156,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         '<div id="vibrate_old"></div>' +
         'Expected result: Vibrate once for 2.5 seconds.' +
         '<p/> <div id="vibrateWithPattern_old"></div>' +
-        'Expected result: Vibrate for 1s, pause for 2s, then vibrate for 3s.' +
+        'Expected result: Pause for 1s, vibrate for 3s, pause for 2s, vibrate for 5s.' +
         '<p/> <div id="cancelVibrate_old"></div>' +
         'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
         '<p/> <div id="cancelVibrateWithPattern_old"></div>' +
@@ -166,7 +166,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         '<p/> <div id="vibrate_array"></div>' +
         'Expected result: Vibrate once for 3 seconds.' +
         '<p/> <div id="vibrate_with_pattern"></div>' +
-        'Expected result: Vibrate for 1s, pause for 2s, then vibrate for 3s.' +
+        'Expected result: Vibrate for 1s, pause for 2s, vibrate for 3s, pause for 2s, vibrate for 5s.' +
         '<p/> <div id="cancel_zero"></div>' +
         'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
         '<p/><div id="cancel_array"></div>' +
