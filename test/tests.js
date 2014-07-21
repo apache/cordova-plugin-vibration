@@ -114,6 +114,9 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         clearLog();
         navigator.vibrate(60000);
         logMessage("navigator.vibrate(60000)", "green");
+        setTimeout(function() {
+            vibrateOn = false;
+        }, 60000);
     };
 
     //check whether there is an ongoing vibration
@@ -124,12 +127,13 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
     var vibrate_tests = '<h1>Vibrate Tests</h1>' +
         '<h3>Starred tests only work for Android. </h3>' +
+        '<h3>iOS ignores the time given for a vibrate </h3>' +
         '<div id="vibrate_old"></div>' +
         'Expected result: Vibrate once for 2.5 seconds.' +
         '<p/> <div id="vibrateWithPattern_old"></div>' +
         'Expected result: Vibrate for 100ms, pause for 200ms, then vibrate for 300ms.' +
         '<p/> <div id="cancelVibrate_old"></div>' +
-        'Expected result: First press will begin vibration for 60 seconds. Pressing again will cancel immediately.' +
+        'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
         '<p/> <div id="vibrate_int"></div>' +
         'Expected result: Vibrate once for 3 seconds.' +
         '<p/> <div id="vibrate_array"></div>' +
@@ -137,9 +141,9 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         '<p/> <div id="vibrate_with_pattern"></div>' +
         'Expected result: Vibrate for 100ms, pause for 200ms, then vibrate for 300ms.' +
         '<p/> <div id="cancel_zero"></div>' +
-        'Expected result: First press will begin vibration for 60 seconds. Pressing again will cancel immediately.' +
+        'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
         '<p/><div id="cancel_array"></div>' +
-        'Expected result: First press will begin vibration for 60 seconds. Pressing again will cancel immediately.';
+        'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.';
 
 
     contentEl.innerHTML = '<div id="info"></div>' + vibrate_tests;
