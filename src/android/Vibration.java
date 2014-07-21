@@ -111,7 +111,13 @@ public class Vibration extends CordovaPlugin {
      */
     public void vibrateWithPattern(long[] pattern, int repeat) {
         Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(pattern, repeat);
+        
+        //add 0 at beginning of pattern to align with w3c spec
+        long[] newPattern = new long[pattern.length+1];
+        newPattern[0] = 0;
+        System.arraycopy(pattern, 0, newPattern, 1, pattern.length);
+        
+        vibrator.vibrate(newPattern, repeat);
     }
 
     /**

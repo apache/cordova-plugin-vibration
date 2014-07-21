@@ -37,13 +37,14 @@ module.exports = {
      *                                      Pass in an array of integers that
      *                                      are the durations for which to
      *                                      turn on or off the vibrator in
-     *                                      milliseconds. The first value
-     *                                      indicates the number of milliseconds
-     *                                      to wait before turning the vibrator
-     *                                      on. The next value indicates the
+     *                                      milliseconds. The FIRST value
+     *                                      indicates the
      *                                      number of milliseconds for which
-     *                                      to keep the vibrator on before
-     *                                      turning it off. Subsequent values
+     *                                      to keep the vibrator ON before
+     *                                      turning it off. The NEXT value indicates the
+     *                                      number of milliseconds for which
+     *                                      to keep the vibrator OFF before
+     *                                      turning it on. Subsequent values
      *                                      alternate between durations in
      *                                      milliseconds to turn the vibrator
      *                                      off or to turn the vibrator on.
@@ -93,6 +94,7 @@ module.exports = {
      */
     vibrateWithPattern: function(pattern, repeat) {
         repeat = (typeof repeat !== "undefined") ? repeat : -1;
+        pattern.unshift(0); //add a 0 at beginning for backwards compatibility from w3c spec
         exec(null, null, "Vibration", "vibrateWithPattern", [pattern, repeat]);
     },
 
