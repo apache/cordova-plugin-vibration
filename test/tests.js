@@ -109,15 +109,20 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         logMessage("navigator.vibrate([])", "green");
     };
 
+    //reference to the timeout variable
+    var timeout;
+
     //special long vibrate used to test cancel
     var longVibrate = function() {
         clearLog();
         navigator.vibrate(60000);
         logMessage("navigator.vibrate(60000)", "green");
-        setTimeout(function() {
-            vibrateOn = false;
-        }, 60000);
+        timeout = setTimeout(resetVibrateOn, 60000); //if user doesn't cancel vibrate, reset vibrateOn var after 60 seconds
     };
+
+    function resetVibrateOn() {
+        vibrateOn = false;
+    }
 
     //check whether there is an ongoing vibration
     var vibrateOn = false;
@@ -169,7 +174,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         else
         {
             cancelOld();
-            vibrateOn = false;
+            resetVibrateOn();
+            clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
         }
     }, 'cancelVibrate_old');
 
@@ -199,7 +205,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         else
         {
             cancelWithZero();
-            vibrateOn = false;
+            resetVibrateOn();
+            clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
         }
     }, 'cancel_zero');
 
@@ -214,7 +221,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         else
         {
             cancelWithEmpty();
-            vibrateOn = false;
+            resetVibrateOn();
+            clearTimeout(timeout); //clear the timeout since user has canceled the vibrate
         }
     }, 'cancel_array');
 };
