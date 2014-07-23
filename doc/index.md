@@ -60,13 +60,13 @@ Vibrates the device for a given amount of time.
 
 - __time__: Ignores the specified time and vibrates for a pre-set amount of time.
 
-    navigator.vibrate(3000);   // 3000 is ignored
+    navigator.vibrate(3000); // 3000 is ignored
 
 ####Windows and Blackberry Quirks
 
 - __time__: Max time is 5000ms (5s)
 
-    navigator.vibrate(8000);  // will be truncated to 5000
+    navigator.vibrate(8000); // will be truncated to 5000
 
 ###Vibrate with a pattern (Android only)
 
