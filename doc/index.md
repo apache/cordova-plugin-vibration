@@ -49,12 +49,19 @@ Vibrates the device for a given amount of time.
 
     navigator.vibrate(time)
 
+or
+
+    navigator.vibrate([time])
+
 -__time__: Milliseconds to vibrate the device. _(Number)_
 
 ####Example
 
     // Vibrate for 3 seconds
     navigator.vibrate(3000);
+
+    // Vibrate for 3 seconds
+    navigator.vibrate([3000]);
 
 ####iOS Quirks
 
@@ -84,9 +91,6 @@ Vibrates the device with a given pattern.
     // Wait for 1 second
     // Vibrate for 5 seconds
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
-
-    // Vibrate for 5 seconds
-    navigator.vibrate([5000]);
 
 ###Cancel vibration (not supported in iOS)
 
