@@ -58,8 +58,20 @@ module.exports = {
         if ((typeof param == 'number') && param != 0)
             exec(null, null, "Vibration", "vibrate", [param]);
 
+        //vibrate with array ( i.e. vibrate([3000]) )
+        else if ((typeof param == 'object') && param.length == 1)
+        {
+            //cancel if vibrate([0])
+            if (param[0] == 0)
+                exec(null, null, "Vibration", "cancelVibration", []);
+
+            //else vibrate
+            else
+                exec(null, null, "Vibration", "vibrate", [param[0]]);
+        }
+
         //vibrate with a pattern
-        else if ((typeof param == 'object') && param.length != 0)
+        else if ((typeof param == 'object') && param.length > 1)
         {
             var repeat = -1; //no repeat
             exec(null, null, "Vibration", "vibrateWithPattern", [param, repeat]);
