@@ -85,6 +85,9 @@ Vibrates the device with a given pattern.
     // Vibrate for 5 seconds
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
 
+    // Vibrate for 5 seconds
+    navigator.vibrate([5000]);
+
 ###Cancel vibration (not supported in iOS)
 
 Immediately cancels any currently running vibration.
