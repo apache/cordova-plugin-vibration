@@ -45,6 +45,10 @@ namespace WPCordovaClassLib.Cordova.Commands
                 {
                     msecs = 1;
                 }
+                else if (msecs > 5000)
+                {
+                    msecs = 5000;
+                }
             }
             catch (FormatException)
             {
@@ -68,6 +72,7 @@ namespace WPCordovaClassLib.Cordova.Commands
                 long msecs = pattern[i];
                 if (i % 2 == 0)
                 {
+                    msecs = (msecs > 5000) ? 5000 : msecs;
                     VibrateController.Default.Start(TimeSpan.FromMilliseconds(msecs));
                 }
                 await Task.Delay(TimeSpan.FromMilliseconds(msecs));
