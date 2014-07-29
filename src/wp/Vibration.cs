@@ -21,12 +21,15 @@ using System.Threading;
 using System.Windows.Resources;
 using Microsoft.Phone.Controls;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 
 namespace WPCordovaClassLib.Cordova.Commands
 {
     public class Vibration : BaseCommand
     {
+        // bool used by vibrateWithPattern to stop when Cancel is pressed
+        private bool cancelPattern = false;
 
         public void vibrate(string vibrateDuration)
         {
@@ -54,9 +57,29 @@ namespace WPCordovaClassLib.Cordova.Commands
             DispatchCommandResult();
         }
 
+        public async Task vibrateWithPattern(string options)
+        {
+            // get options
+            string[] args = JSON.JsonHelper.Deserialize<string[]>(options);
+            long[] pattern = JSON.JsonHelper.Deserialize<long[]>(args[0]);
+
+            for (int i = 0; i < pattern.Length && !cancelPattern; i++)
+            {
+                long msecs = pattern[i];
+                if (i % 2 == 0)
+                {
+                    VibrateController.Default.Start(TimeSpan.FromMilliseconds(msecs));
+                }
+                await Task.Delay(TimeSpan.FromMilliseconds(msecs));
+            }
+            cancelPattern = false;
+            DispatchCommandResult();
+        }
+
         public void cancelVibration(string options)
         {
             VibrateController.Default.Stop();
+            cancelPattern = true;
             DispatchCommandResult();
         }
     }
