@@ -53,5 +53,11 @@ namespace WPCordovaClassLib.Cordova.Commands
             // TODO: may need to add listener to trigger DispatchCommandResult when the vibration ends...
             DispatchCommandResult();
         }
+
+        public void cancelVibration(string options)
+        {
+            VibrateController.Default.Stop();
+            DispatchCommandResult();
+        }
     }
 }
