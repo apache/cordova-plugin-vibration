@@ -102,7 +102,11 @@ or
 
     navigator.vibrate([])
 
-Passing in a parameter of 0 or an empty array will cancel any vibrations.
+or
+
+    navigator.vibrate([0])
+
+Passing in a parameter of 0, an empty array, or an array with one element of value 0 will cancel any vibrations.
 
 ## *notification.vibrate (deprecated)
 
