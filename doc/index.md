@@ -55,6 +55,7 @@ or
 
     navigator.vibrate([time])
 
+
 -__time__: Milliseconds to vibrate the device. _(Number)_
 
 ####Example
@@ -78,6 +79,16 @@ or
     navigator.vibrate(8000); // will be truncated to 5000
 
 ###Vibrate with a pattern (Android and Windows only)
+
+    navigator.vibrate(3000);   // 3000 is ignored
+
+####Windows and Blackberry Quirks
+
+- __time__: Max time is 5000ms (5s)
+
+    navigator.vibrate(8000);  // will be truncated to 5000
+
+###Vibrate with a pattern (Android only)
 
 Vibrates the device with a given pattern.
 
@@ -109,6 +120,8 @@ or
     navigator.vibrate([0])
 
 Passing in a parameter of 0, an empty array, or an array with one element of value 0 will cancel any vibrations.
+
+Passing in a parameter of 0 or an empty array will cancel any vibrations.
 
 ## *notification.vibrate (deprecated)
 

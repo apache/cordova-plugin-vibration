@@ -72,6 +72,9 @@ module.exports = {
 
         //vibrate with a pattern
         else if ((typeof param == 'object') && param.length > 1)
+
+        //vibrate with a pattern
+        else if ((typeof param == 'object') && param.length != 0)
         {
             var repeat = -1; //no repeat
             exec(null, null, "Vibration", "vibrateWithPattern", [param, repeat]);
