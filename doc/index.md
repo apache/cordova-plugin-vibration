@@ -79,20 +79,9 @@ or
     navigator.vibrate(8000); // will be truncated to 5000
 
 ###Vibrate with a pattern (Android and Windows only)
+Vibrates the device with a given pattern
 
-    navigator.vibrate(3000);   // 3000 is ignored
-
-####Windows and Blackberry Quirks
-
-- __time__: Max time is 5000ms (5s)
-
-    navigator.vibrate(8000);  // will be truncated to 5000
-
-###Vibrate with a pattern (Android only)
-
-Vibrates the device with a given pattern.
-
-    navigator.vibrate(pattern)
+    navigator.vibrate(pattern);   // 3000 is ignored
 
 - __pattern__: Sequence of durations (in milliseconds) for which to turn on or off the vibrator. _(Array of Numbers)_
 
