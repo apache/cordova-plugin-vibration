@@ -77,7 +77,7 @@ or
 
     navigator.vibrate(8000); // will be truncated to 5000
 
-###Vibrate with a pattern (Android only)
+###Vibrate with a pattern (Android and Windows only)
 
 Vibrates the device with a given pattern.
 
