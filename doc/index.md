@@ -19,6 +19,8 @@
 
 # org.apache.cordova.vibration
 
+This plugin aligns with the W3C vibration specification http://www.w3.org/TR/vibration/
+
 This plugin provides a way to vibrate the device.
 
 ## Installation
@@ -71,7 +73,7 @@ or
 
 ####Windows and Blackberry Quirks
 
-- __time__: Max time is 5000ms (5s)
+- __time__: Max time is 5000ms (5s) and min time is 1ms
 
     navigator.vibrate(8000); // will be truncated to 5000
 
