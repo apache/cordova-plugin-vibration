@@ -81,7 +81,7 @@ or
 ###Vibrate with a pattern (Android and Windows only)
 Vibrates the device with a given pattern
 
-    navigator.vibrate(pattern);   // 3000 is ignored
+    navigator.vibrate(pattern);   
 
 - __pattern__: Sequence of durations (in milliseconds) for which to turn on or off the vibrator. _(Array of Numbers)_
 
@@ -109,8 +109,6 @@ or
     navigator.vibrate([0])
 
 Passing in a parameter of 0, an empty array, or an array with one element of value 0 will cancel any vibrations.
-
-Passing in a parameter of 0 or an empty array will cancel any vibrations.
 
 ## *notification.vibrate (deprecated)
 
