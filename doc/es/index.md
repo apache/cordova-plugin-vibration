@@ -73,7 +73,7 @@ o
 
 *   **tiempo**: tiempo máximo es 5000ms (5s) y min tiempo 1ms
     
-    Navigator.Vibrate(8000); se truncará a 5000
+    navigator.vibrate(8000); // will be truncated to 5000
 
 ### Vibrar con un patrón (Android y Windows solamente)
 
