@@ -28,8 +28,8 @@ namespace WPCordovaClassLib.Cordova.Commands
 {
     public class Vibration : BaseCommand
     {
-        // bool used by vibrateWithPattern to stop when Cancel is pressed
-        private bool cancelPattern = false;
+        // bool used to determine if cancel was called during vibrateWithPattern
+        private bool cancelWasCalled = false;
 
         public void vibrate(string vibrateDuration)
         {
@@ -63,13 +63,19 @@ namespace WPCordovaClassLib.Cordova.Commands
 
         public async Task vibrateWithPattern(string options)
         {
+            // clear the cancelWasCalled flag
+            cancelWasCalled = false;
             // get options
             string[] args = JSON.JsonHelper.Deserialize<string[]>(options);
-            long[] pattern = JSON.JsonHelper.Deserialize<long[]>(args[0]);
+            int[] pattern = JSON.JsonHelper.Deserialize<int[]>(args[0]);
 
-            for (int i = 0; i < pattern.Length && !cancelPattern; i++)
+            for (int i = 0; i < pattern.Length && !cancelWasCalled; i++)
             {
-                long msecs = pattern[i];
+                int msecs = pattern[i];
+                if (msecs < 1)
+                {
+                    msecs = 1;
+                }
                 if (i % 2 == 0)
                 {
                     msecs = (msecs > 5000) ? 5000 : msecs;
@@ -77,14 +83,13 @@ namespace WPCordovaClassLib.Cordova.Commands
                 }
                 await Task.Delay(TimeSpan.FromMilliseconds(msecs));
             }
-            cancelPattern = false;
             DispatchCommandResult();
         }
 
         public void cancelVibration(string options)
         {
             VibrateController.Default.Stop();
-            cancelPattern = true;
+            cancelWasCalled = true;
             DispatchCommandResult();
         }
     }
