@@ -23,7 +23,7 @@ Ten plugin wyrównuje z http://www.w3.org/TR/vibration/ specyfikacji W3C wibracj
 
 Ten plugin umożliwia wibracje urządzenia.
 
-## Instalacji
+## Instalacja
 
     cordova plugin add org.apache.cordova.vibration
     
@@ -63,7 +63,7 @@ lub
     navigator.vibrate([3000]);
     
 
-#### iOS dziwactwa
+#### Dziwactwa iOS
 
 *   **czas**: ignoruje określony czas i wibruje na wstępnie określoną ilość czasu.
     
@@ -128,7 +128,7 @@ Wibruje urządzenie na określoną ilość czasu.
     navigator.notification.vibrate(2500);
     
 
-### iOS dziwactwa
+### Dziwactwa iOS
 
 *   **czas**: ignoruje określony czas i wibruje na wstępnie określoną ilość czasu.
     
