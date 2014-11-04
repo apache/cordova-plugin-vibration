@@ -67,13 +67,13 @@ navigator.notification.cancelVibration - Android
 
 *   **time**: игнорирует указанное время и вибрирует предопределенный отрезок времени.
     
-    Navigator.Vibrate(3000); 3000 игнорируется
+    navigator.vibrate(3000); // 3000 is ignored
 
 #### Окна и Blackberry причуды
 
 *   **время**: время Макс 5000ms (5с) и минимальное время 1 мс
     
-    Navigator.Vibrate(8000); будет усечено до 5000
+    navigator.vibrate(8000); // will be truncated to 5000
 
 ### Вибрировать с узором (Android и Windows только)
 

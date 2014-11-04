@@ -67,13 +67,13 @@ navigator.notification.cancelVibration-안 드 로이드
 
 *   **시간**: 지정 된 시간을 무시 하 고 미리 설정 된 시간 동안 진동.
     
-    navigator.vibrate(3000); 3000 무시
+    navigator.vibrate(3000); // 3000 is ignored
 
 #### 윈도 즈와 블랙베리 단점
 
 *   **시간**: 최대 시간은 2000ms (5s) 이며 최소 시간 1ms
     
-    navigator.vibrate(8000); 5000 잘립니다.
+    navigator.vibrate(8000); // will be truncated to 5000
 
 ### (안 드 로이드와 Windows에만 해당) 패턴으로 진동
 

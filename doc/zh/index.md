@@ -67,13 +67,13 @@ navigator.notification.cancelVibration-安卓系統
 
 *   **時間**： 忽略指定的時間和震動的一個預先設定的時間。
     
-    navigator.vibrate(3000) ；3000 將被忽略
+    navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows 和黑莓的怪癖
 
 *   **時間**： 最長時間是 5000ms (5s) 和最小時間為 1ms
     
-    navigator.vibrate(8000) ；將被截斷為 5000
+    navigator.vibrate(8000); // will be truncated to 5000
 
 ### 以一種模式 （安卓系統和僅限 Windows） 振動
 

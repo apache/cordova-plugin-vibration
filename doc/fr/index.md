@@ -67,13 +67,13 @@ ou
 
 *   **temps**: ne tient pas compte de la durée spécifiée et vibre pendant un temps prédéterminé.
     
-    Navigator.VIBRATE(3000) ; 3000 est ignoré
+    navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows et les bizarreries de Blackberry
 
 *   **temps**: temps Max est 5000ms (5 s) et heure min est de 1 ms
     
-    Navigator.VIBRATE(8000) ; sera tronquée à 5000
+    navigator.vibrate(8000); // will be truncated to 5000
 
 ### Vibrer avec un motif (Android et Windows uniquement)
 
