@@ -23,6 +23,15 @@ This plugin aligns with the W3C vibration specification http://www.w3.org/TR/vib
 
 This plugin provides a way to vibrate the device.
 
+This plugin defines global objects including `navigator.vibrate`.
+
+Although in the global scope, they are not available until after the `deviceready` event.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.vibrate);
+    }
+
 ## Installation
 
     cordova plugin add org.apache.cordova.vibration
