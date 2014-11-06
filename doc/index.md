@@ -29,7 +29,7 @@ This plugin provides a way to vibrate the device.
 
 ## Supported Platforms
 
-navigator.vibrate<br />
+navigator.vibrate,<br />
 navigator.notification.vibrate
 - Amazon Fire OS
 - Android
