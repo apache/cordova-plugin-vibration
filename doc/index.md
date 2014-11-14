@@ -49,6 +49,7 @@ navigator.notification.vibrate
 
 navigator.notification.vibrateWithPattern,<br />navigator.notification.cancelVibration
 - Android
+- Windows Phone 8
 
 ## vibrate (recommended)
 
@@ -102,6 +103,10 @@ Vibrates the device with a given pattern
     // Wait for 1 second
     // Vibrate for 5 seconds
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
+
+####Windows Phone 8 Quirks
+
+- vibrate(pattern) falls back on vibrate with default duration
 
 ###Cancel vibration (not supported in iOS)
 
