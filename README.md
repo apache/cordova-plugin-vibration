@@ -48,10 +48,13 @@ navigator.notification.vibrate
 - Firefox OS
 - iOS
 - Windows Phone 7 and 8
+- Windows (Windows Phone 8.1 devices only)
 
-navigator.notification.vibrateWithPattern,<br />navigator.notification.cancelVibration
+navigator.notification.vibrateWithPattern<br />
+navigator.notification.cancelVibration
 - Android
 - Windows Phone 8
+- Windows (Windows Phone 8.1 devices only)
 
 ## vibrate (recommended)
 
@@ -107,6 +110,10 @@ Vibrates the device with a given pattern
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
 
 ####Windows Phone 8 Quirks
+
+- vibrate(pattern) falls back on vibrate with default duration
+
+####Windows Quirks
 
 - vibrate(pattern) falls back on vibrate with default duration
 

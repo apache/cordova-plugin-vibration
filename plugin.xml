@@ -69,6 +69,15 @@
         <source-file src="src/wp/Vibration.cs" />
     </platform>
 
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/VibrationProxy.js" name="VibrationProxy">
+            <runs />
+        </js-module>
+
+        <framework src="src/windows/Vibration.winmd" custom="true"/>
+    </platform>
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
