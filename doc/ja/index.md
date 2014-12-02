@@ -67,13 +67,13 @@ navigator.notification.cancelVibration - アンドロイド
 
 *   **時間**: 指定された時間を無視し、時間の事前に設定された量のために振動します。
     
-    navigator.vibrate(3000);3000 は無視されます。
+    navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows とブラックベリー癖
 
 *   **時間**: 5000 (5 秒) は、最大時間と最小時間は 1 ms
     
-    navigator.vibrate(8000);5000 に切り詰められます
+    navigator.vibrate(8000); // will be truncated to 5000
 
 ### （人造人間と Windows のみ) パターンで振動します。
 

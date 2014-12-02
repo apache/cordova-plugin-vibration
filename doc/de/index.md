@@ -67,13 +67,13 @@ oder
 
 *   **Zeit**: ignoriert die angegebene Zeit und für eine voreingestellte Zeit vibriert.
     
-    Navigator.Vibrate(3000); 3000 wird ignoriert
+    navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows und Blackberry-Kniffe
 
 *   **Zeit**: Max. Zeit 5000ms (5 s) und min Zeit ist 1ms
     
-    Navigator.Vibrate(8000); wird auf 5000 abgeschnitten
+    navigator.vibrate(8000); // will be truncated to 5000
 
 ### Vibrieren Sie mit einem Muster (Android und Windows nur)
 
