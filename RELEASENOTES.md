@@ -102,3 +102,9 @@
 * changes to how 0 is getting added to array in order to align with w3c spec
 * changes to vibration.java to align with w3c, changes to vibration.js for backwards compatibility
 * changes made to align with w3c spec
+
+### 0.3.12 (Dec 02, 2014)
+* CB-8018 Add `vibrate(pattern)` fallback on vibrate for **Windows Phone 8**
+* CB-7977 Mention `deviceready` in plugin docs
+* CB-7700 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
+* CB-7571 Bump version of nested plugin to match parent plugin
