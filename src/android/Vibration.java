@@ -92,7 +92,7 @@ public class Vibration extends CordovaPlugin {
         if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {        
             Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
             vibrator.vibrate(time);
-       }
+        }
     }
 
     /**
@@ -121,7 +121,7 @@ public class Vibration extends CordovaPlugin {
         if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
             Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
             vibrator.vibrate(pattern, repeat);
-       }
+        }
     }
 
     /**
