@@ -88,10 +88,10 @@ public class Vibration extends CordovaPlugin {
             time = 500;
         }
         
-       AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE); 
-       if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {        
-              Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-              vibrator.vibrate(time);
+        AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE); 
+        if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {        
+            Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(time);
        }
     }
 
@@ -117,10 +117,10 @@ public class Vibration extends CordovaPlugin {
      *                    to start repeating, or -1 for no repetition (default).
      */
     public void vibrateWithPattern(long[] pattern, int repeat) {
-       AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE); 
-       if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
-              Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-              vibrator.vibrate(pattern, repeat);
+        AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE); 
+        if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+            Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(pattern, repeat);
        }
     }
 
