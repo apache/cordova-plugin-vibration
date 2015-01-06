@@ -19,9 +19,9 @@
 
 # org.apache.cordova.vibration
 
-このプラグインに準拠 W3C 振動仕様 http://www.w3.org/TR/vibration/
+このプラグインは W3C 振動仕様 http://www.w3.org/TR/vibration/ に準拠しています。
 
-このプラグインは、デバイスを振動させる方法を提供します。
+このプラグインは、デバイスを振動させる手段を提供します。
 
 ## インストール
 
@@ -31,18 +31,26 @@
 ## サポートされているプラットフォーム
 
 navigator.vibrate  
-navigator.notification.vibrate - アマゾン火 OS - アンドロイド - ブラックベリー 10 - Firefox OS - iOS - Windows Phone 7 と 8
+navigator.notification.vibrate 
+- Amazon Fire OS
+- Android
+- BlackBerry 10
+- Firefox OS
+- iOS
+- Windows Phone 7 及び 8
 
 navigator.notification.vibrateWithPattern、  
-navigator.notification.cancelVibration - アンドロイド
+navigator.notification.cancelVibration 
+- Android
+- Windows Phone 8
 
 ## 振動 (推奨)
 
-この関数は、渡されたパラメーターに基づいて 3 つのさまざまな機能。
+この関数は、渡されたパラメーターに基づいた 3 つの異なる機能を持ちます。
 
-### 標準を振動します。
+### 標準的な振動
 
-一定の時間のため、デバイスが振動します。
+一定時間デバイスが振動します。
 
     navigator.vibrate(time)
     
@@ -52,7 +60,7 @@ navigator.notification.cancelVibration - アンドロイド
     navigator.vibrate([time])
     
 
--**時刻**: ミリ秒、デバイスを振動させる。*(数)*
+-**time**: ミリ秒、デバイスを振動させる。*(数値)*
 
 #### 例
 
@@ -65,24 +73,24 @@ navigator.notification.cancelVibration - アンドロイド
 
 #### iOS の癖
 
-*   **時間**: 指定された時間を無視し、時間の事前に設定された量のために振動します。
+*   **time**: 指定された時間を無視しプリセットされた時間だけ振動します。
     
-    navigator.vibrate(3000); // 3000 is ignored
+    navigator.vibrate(3000); // 3000 は無視される
 
-#### Windows とブラックベリー癖
+#### Windows とブラックベリーの癖
 
-*   **時間**: 5000 (5 秒) は、最大時間と最小時間は 1 ms
+*   **time**: 振動時間は最大5000ms (5秒)、最小 1ms
     
-    navigator.vibrate(8000); // will be truncated to 5000
+    navigator.vibrate(8000); // 5000msに丸められる
 
-### （人造人間と Windows のみ) パターンで振動します。
+### パターンで振動(Android と Windows のみ)
 
-特定のパターンを持つデバイスが振動します。
+与えられたパターンでデバイスが振動します。
 
     navigator.vibrate(pattern);   
     
 
-*   **パターン**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
+*   **pattern**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数値の配列)*
 
 #### 例
 
@@ -94,9 +102,9 @@ navigator.notification.cancelVibration - アンドロイド
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
     
 
-### [キャンセル] 振動 (iOS ではサポートされていません)
+### 振動のキャンセル (iOS ではサポートされていません)
 
-すぐに、現在実行中の振動をキャンセルします。
+現在実行中の振動を直ちにキャンセルします。
 
     navigator.vibrate(0)
     
@@ -111,16 +119,16 @@ navigator.notification.cancelVibration - アンドロイド
     navigator.vibrate([0])
     
 
-0 のパラメーターを渡して、空の配列、または 0 の値の 1 つの要素を持つ配列は任意振動がキャンセルされます。
+パラメータとして0、空の配列、または 0 の値の要素を 1 つ持つ配列を与えると全ての振動がキャンセルされます。
 
 ## *notification.vibrate (非推奨)
 
-一定の時間のため、デバイスが振動します。
+一定時間デバイスが振動します。
 
     navigator.notification.vibrate(time)
     
 
-*   **時刻**: ミリ秒、デバイスを振動させる。*(数)*
+*   **time**: ミリ秒、デバイスを振動させる。*(数値)*
 
 ### 例
 
@@ -130,21 +138,21 @@ navigator.notification.cancelVibration - アンドロイド
 
 ### iOS の癖
 
-*   **時間**: 指定された時間を無視し、時間の事前に設定された量のために振動します。
+*   **time**: 指定された時間を無視しプリセットされた時間だけ振動します。
     
         navigator.notification.vibrate();
-        navigator.notification.vibrate(2500);   // 2500 is ignored
+        navigator.notification.vibrate(2500);   // 2500 は無視される
         
 
 ## *notification.vibrateWithPattern (非推奨)
 
-特定のパターンを持つデバイスが振動します。
+与えられたパターンでデバイスが振動します。
 
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **パターン**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
-*   **繰り返します**: 省略可能な配列のインデックスのパターン （でしょう） を繰り返す取り消されるまで、繰り返しを開始するまたは反復なし (既定値) の場合は-1。*(数)*
+*   **pattern**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数値の配列)*
+*   **repeat**: 省略可能な配列のインデックスのパターン （でしょう） を繰り返す取り消されるまで、繰り返しを開始するまたは反復なし (既定値) の場合は-1。*(数値)*
 
 ### 例
 
@@ -162,9 +170,9 @@ navigator.notification.cancelVibration - アンドロイド
 
 ## *notification.cancelVibration (非推奨)
 
-すぐに、現在実行中の振動をキャンセルします。
+現在実行中の振動を直ちにキャンセルします。
 
     navigator.notification.cancelVibration()
     
 
-* 注 - w3c の仕様を配置、ため主演メソッドがフェーズ アウトされます。
+* 注 - w3c の仕様に合わせるため、"*"のついたメソッドはそのうちなくなります。
