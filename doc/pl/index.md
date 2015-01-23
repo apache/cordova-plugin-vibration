@@ -67,7 +67,7 @@ lub
 
 *   **czas**: ignoruje określony czas i wibruje na wstępnie określoną ilość czasu.
     
-    Navigator.vibrate(3000); 3000 jest ignorowany
+    navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows i Blackberry dziwactwa
 
