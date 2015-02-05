@@ -108,3 +108,6 @@
 * CB-7977 Mention `deviceready` in plugin docs
 * CB-7700 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
 * CB-7571 Bump version of nested plugin to match parent plugin
+
+### 0.3.13 (Feb 04, 2015)
+* CB-8243 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
