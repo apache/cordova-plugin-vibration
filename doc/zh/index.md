@@ -23,6 +23,16 @@
 
 這個外掛程式提供了方法振動設備。
 
+這個外掛程式定義全域物件包括 `navigator.vibrate`.
+
+雖然在全球範圍內，他們不可用直到 `deviceready` 事件之後。
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.vibrate);
+    }
+    
+
 ## 安裝
 
     cordova plugin add org.apache.cordova.vibration
@@ -30,15 +40,15 @@
 
 ## 支援的平臺
 
-navigator.vibrate  
-navigator.notification.vibrate-亞馬遜火 OS-Android-黑莓 10-火狐瀏覽器作業系統 — — iOS-Windows Phone 7 和 8
+navigator.vibrate,  
+navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8
 
-navigator.notification.vibrateWithPattern，  
-navigator.notification.cancelVibration-安卓系統
+navigator.notification.vibrateWithPattern,  
+navigator.notification.cancelVibration - Android - Windows Phone 8
 
 ## 震動 (推薦)
 
-此函數具有三個不同的功能，基於參數傳遞給它。
+此函數具有三個不同的功能，基於傳遞給它的參數。
 
 ### 標準振動
 
@@ -52,7 +62,7 @@ navigator.notification.cancelVibration-安卓系統
     navigator.vibrate([time])
     
 
--**時間**： 毫秒以振動裝置。*（人數）*
+-**time**： 毫秒振動裝置。*（數）*
 
 #### 示例
 
@@ -65,13 +75,13 @@ navigator.notification.cancelVibration-安卓系統
 
 #### iOS 的怪癖
 
-*   **時間**： 忽略指定的時間和震動的一個預先設定的時間。
+*   **time**： 忽略指定的時間和震動的一個預先設定的時間。
     
     navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows 和黑莓的怪癖
 
-*   **時間**： 最長時間是 5000ms (5s) 和最小時間為 1ms
+*   **time**： 最長時間是 5000ms (5s) 和最小時間為 1ms
     
     navigator.vibrate(8000); // will be truncated to 5000
 
@@ -82,7 +92,7 @@ navigator.notification.cancelVibration-安卓系統
     navigator.vibrate(pattern);   
     
 
-*   **模式**： 序列的持續時間 （以毫秒為單位） 為其打開或關閉振動器。*（數位陣列）*
+*   **pattern**： 序列的持續時間 （以毫秒為單位） 為其打開或關閉振動器。*（數位陣列）*
 
 #### 示例
 
@@ -93,6 +103,10 @@ navigator.notification.cancelVibration-安卓系統
     // Vibrate for 5 seconds
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
     
+
+#### Windows Phone 8 怪癖
+
+*   vibrate(pattern) 瀑布回來上振動與預設持續時間
 
 ### 取消振動 （iOS 中不支援）
 
@@ -120,7 +134,7 @@ navigator.notification.cancelVibration-安卓系統
     navigator.notification.vibrate(time)
     
 
-*   **時間**： 毫秒以振動裝置。*（人數）*
+*   **time**： 毫秒振動裝置。*（數）*
 
 ### 示例
 
@@ -130,7 +144,7 @@ navigator.notification.cancelVibration-安卓系統
 
 ### iOS 的怪癖
 
-*   **時間**： 忽略指定的時間和震動的一個預先設定的時間。
+*   **time**： 忽略指定的時間和震動的一個預先設定的時間。
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
@@ -143,8 +157,8 @@ navigator.notification.cancelVibration-安卓系統
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **模式**： 序列的持續時間 （以毫秒為單位） 為其打開或關閉振動器。*（數位陣列）*
-*   **重複**： 在其開始重複 （會重複，直到被取消），或-1 為不重複 （預設值） 模式陣列中的可選索引。*（人數）*
+*   **pattern**： 序列的持續時間 （以毫秒為單位） 為其打開或關閉振動器。*（數位陣列）*
+*   **repeat**： 在從中開始重複 （會重複，直到取消)，或-1 （預設值） 沒有重複模式陣列中的可選索引。*（數）*
 
 ### 示例
 
@@ -167,4 +181,4 @@ navigator.notification.cancelVibration-安卓系統
     navigator.notification.cancelVibration()
     
 
-* 請注意--對齊方式與 w3c 規範，因出演的方法將被淘汰
+* 請注意--由於符合 w3c 規範，出演的方法將被淘汰

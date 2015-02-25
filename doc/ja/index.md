@@ -23,6 +23,16 @@
 
 このプラグインは、デバイスを振動させる方法を提供します。
 
+このプラグインは `navigator.vibrate` などのグローバル オブジェクトを定義します.
+
+グローバル スコープでは使用できませんまで `deviceready` イベントの後です。
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.vibrate);
+    }
+    
+
 ## インストール
 
     cordova plugin add org.apache.cordova.vibration
@@ -30,11 +40,11 @@
 
 ## サポートされているプラットフォーム
 
-navigator.vibrate  
-navigator.notification.vibrate - アマゾン火 OS - アンドロイド - ブラックベリー 10 - Firefox OS - iOS - Windows Phone 7 と 8
+navigator.vibrate,  
+navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8
 
-navigator.notification.vibrateWithPattern、  
-navigator.notification.cancelVibration - アンドロイド
+navigator.notification.vibrateWithPattern,  
+navigator.notification.cancelVibration - Android - Windows Phone 8
 
 ## 振動 (推奨)
 
@@ -52,7 +62,7 @@ navigator.notification.cancelVibration - アンドロイド
     navigator.vibrate([time])
     
 
--**時刻**: ミリ秒、デバイスを振動させる。*(数)*
+-**time**: ミリ秒、デバイスを振動させる。*(数)*
 
 #### 例
 
@@ -94,6 +104,10 @@ navigator.notification.cancelVibration - アンドロイド
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
     
 
+#### Windows Phone 8 癖
+
+*   既定の期間の振動で戻る vibrate(pattern) の滝
+
 ### [キャンセル] 振動 (iOS ではサポートされていません)
 
 すぐに、現在実行中の振動をキャンセルします。
@@ -120,7 +134,7 @@ navigator.notification.cancelVibration - アンドロイド
     navigator.notification.vibrate(time)
     
 
-*   **時刻**: ミリ秒、デバイスを振動させる。*(数)*
+*   **time**: ミリ秒、デバイスを振動させる。*(数)*
 
 ### 例
 
@@ -143,8 +157,8 @@ navigator.notification.cancelVibration - アンドロイド
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **パターン**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
-*   **繰り返します**: 省略可能な配列のインデックスのパターン （でしょう） を繰り返す取り消されるまで、繰り返しを開始するまたは反復なし (既定値) の場合は-1。*(数)*
+*   **pattern**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
+*   **repeat**: 省略可能な配列のインデックスのパターン （でしょう） を繰り返す取り消されるまで、繰り返しを開始するまたは反復なし (既定値) の場合は-1。*(数)*
 
 ### 例
 

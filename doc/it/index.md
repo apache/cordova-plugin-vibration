@@ -23,6 +23,16 @@ Questo plugin si allinea con il W3C vibrazione specifica http://www.w3.org/TR/vi
 
 Questo plugin consente di vibrare il dispositivo.
 
+Questo plugin definisce gli oggetti globali, tra cui `navigator.vibrate`.
+
+Anche se in ambito globale, non sono disponibili fino a dopo l'evento `deviceready`.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.vibrate);
+    }
+    
+
 ## Installazione
 
     cordova plugin add org.apache.cordova.vibration
@@ -30,11 +40,11 @@ Questo plugin consente di vibrare il dispositivo.
 
 ## Piattaforme supportate
 
-Navigator.vibrate  
-Navigator.Notification.vibrate - Amazon fuoco OS - OS di Firefox - 10 BlackBerry - Android - iOS - Windows Phone 7 e 8
+navigator.vibrate,  
+navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8
 
 navigator.notification.vibrateWithPattern,  
-navigator.notification.cancelVibration - Android
+navigator.notification.cancelVibration - Android - Windows Phone 8
 
 ## vibrare (consigliato)
 
@@ -52,7 +62,7 @@ o
     navigator.vibrate([time])
     
 
--**tempo**: millisecondi a vibrare il dispositivo. *(Numero)*
+-**time**: millisecondi a vibrare il dispositivo. *(Numero)*
 
 #### Esempio
 
@@ -65,13 +75,13 @@ o
 
 #### iOS stranezze
 
-*   **tempo**: ignora il tempo specificato e vibra per un tempo pre-impostato.
+*   **time**: ignora il tempo specificato e vibra per un tempo pre-impostato.
     
     navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows e stranezze di Blackberry
 
-*   **tempo**: tempo Max 5000ms (5s) edè min tempo di 1ms
+*   **time**: tempo Max 5000ms (5s) edè min tempo di 1ms
     
     navigator.vibrate(8000); // will be truncated to 5000
 
@@ -94,6 +104,10 @@ Vibra il dispositivo con un determinato modello
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
     
 
+#### Windows Phone 8 stranezze
+
+*   vibrate(pattern) cade indietro a vibrano con durata predefinita
+
 ### Annullare le vibrazioni (non supportata in iOS)
 
 Annulla immediatamente qualsiasi vibrazione attualmente in esecuzione.
@@ -113,14 +127,14 @@ o
 
 Passa un parametro 0, matrice vuota o una matrice con un elemento di valore 0 annullerà eventuali vibrazioni.
 
-## *Notification.vibrate (obsoleto)
+## *notification.vibrate (deprecated)
 
 Vibra il dispositivo per un determinato periodo di tempo.
 
     navigator.notification.vibrate(time)
     
 
-*   **tempo**: millisecondi a vibrare il dispositivo. *(Numero)*
+*   **time**: millisecondi a vibrare il dispositivo. *(Numero)*
 
 ### Esempio
 
@@ -130,7 +144,7 @@ Vibra il dispositivo per un determinato periodo di tempo.
 
 ### iOS stranezze
 
-*   **tempo**: ignora il tempo specificato e vibra per un tempo pre-impostato.
+*   **time**: ignora il tempo specificato e vibra per un tempo pre-impostato.
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
@@ -144,7 +158,7 @@ Vibra il dispositivo con un determinato modello.
     
 
 *   **modello**: sequenza di durate (in millisecondi) per il quale attivare o disattivare il vibratore. *(Matrice di numeri)*
-*   **ripetere**: opzionale indice nell'array modello presso cui iniziare ripetendo (ripeterà finché non annullato), o -1 per nessuna ripetizione (impostazione predefinita). *(Numero)*
+*   **repeat**: opzionale indice nell'array modello presso cui iniziare ripetendo (ripeterà finché non annullato), o -1 per nessuna ripetizione (impostazione predefinita). *(Numero)*
 
 ### Esempio
 

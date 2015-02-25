@@ -23,6 +23,16 @@ Ten plugin wyrównuje z http://www.w3.org/TR/vibration/ specyfikacji W3C wibracj
 
 Ten plugin umożliwia wibracje urządzenia.
 
+Ten plugin definiuje obiekty globalne, w tym `navigator.vibrate`.
+
+Chociaż w globalnym zasięgu, są nie dostępne dopiero po `deviceready` imprezie.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.vibrate);
+    }
+    
+
 ## Instalacja
 
     cordova plugin add org.apache.cordova.vibration
@@ -30,11 +40,11 @@ Ten plugin umożliwia wibracje urządzenia.
 
 ## Obsługiwane platformy
 
-Navigator.vibrate  
-Navigator.Notification.vibrate - Amazon ogień OS - OS Android - BlackBerry 10 - Firefox - iOS - Windows Phone 7 i 8
+navigator.vibrate,  
+navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8
 
 navigator.notification.vibrateWithPattern,  
-navigator.notification.cancelVibration - Android
+navigator.notification.cancelVibration - Android - Windows Phone 8
 
 ## wibracje (zalecane)
 
@@ -52,7 +62,7 @@ lub
     navigator.vibrate([time])
     
 
--**czas**: milisekund wibracje urządzenia. *(Liczba)*
+-**time**: milisekund wibracje urządzenia. *(Liczba)*
 
 #### Przykład
 
@@ -94,6 +104,10 @@ Wibruje urządzenie z danego wzoru
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
     
 
+#### Windows Phone 8 dziwactwa
+
+*   vibrate(Pattern) spada z powrotem na wibracje z domyślny czas trwania
+
 ### Anuluj wibracji (nieobsługiwane w iOS)
 
 Niezwłocznie anuluje aktualnie uruchomione wibracje.
@@ -120,7 +134,7 @@ Wibruje urządzenie na określoną ilość czasu.
     navigator.notification.vibrate(time)
     
 
-*   **czas**: milisekund wibracje urządzenia. *(Liczba)*
+*   **time**: milisekund wibracje urządzenia. *(Liczba)*
 
 ### Przykład
 
@@ -143,8 +157,8 @@ Wibruje urządzenie z danego wzoru.
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **wzór**: sekwencja czas trwania (w milisekundach), dla której chcesz włączyć lub wyłączyć wibrator. *(Tablica liczb)*
-*   **Powtórz**: opcjonalny indeks do tablicy wzór który zacząć powtarzać (będzie powtarzać do momentu anulowane), lub -1 nie powtarzania (domyślnie). *(Liczba)*
+*   **pattern**: sekwencja czas trwania (w milisekundach), dla której chcesz włączyć lub wyłączyć wibrator. *(Tablica liczb)*
+*   **repeat**: opcjonalny indeks do tablicy wzór który zacząć powtarzać (będzie powtarzać do momentu anulowane), lub -1 nie powtarzania (domyślnie). *(Liczba)*
 
 ### Przykład
 
