@@ -23,6 +23,16 @@
 
 이 플러그인에는 장치를 진동 하는 방법을 제공 합니다.
 
+이 플러그인 `navigator.vibrate`를 포함 하는 전역 개체를 정의 합니다..
+
+전역 범위에서 그들은 제공 되지 않습니다 때까지 `deviceready` 이벤트 후.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.vibrate);
+    }
+    
+
 ## 설치
 
     cordova plugin add org.apache.cordova.vibration
@@ -30,13 +40,13 @@
 
 ## 지원 되는 플랫폼
 
-navigator.vibrate  
-navigator.notification.vibrate-아마존 화재 OS-안 드 로이드-블랙베리 10-파이어 폭스 OS-iOS-Windows Phone 7과 8
+navigator.vibrate,  
+navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8
 
 navigator.notification.vibrateWithPattern,  
-navigator.notification.cancelVibration-안 드 로이드
+navigator.notification.cancelVibration - Android - Windows Phone 8
 
-## 진동 (권장)
+## vibrate (recommended)
 
 이 함수는 전달 된 매개 변수에 따라 세 가지 다른 기능.
 
@@ -52,7 +62,7 @@ navigator.notification.cancelVibration-안 드 로이드
     navigator.vibrate([time])
     
 
--**시간**: 진동 장치 (밀리초)입니다. *(수)*
+-**time**: 진동 장치 (밀리초)입니다. *(수)*
 
 #### 예를 들어
 
@@ -94,6 +104,10 @@ navigator.notification.cancelVibration-안 드 로이드
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
     
 
+#### Windows Phone 8 단점
+
+*   vibrate(pattern) 폭포 다시에 기본 기간 진동
+
 ### 진동 (iOS에서 지원 되지 않음) 취소
 
 즉시 모든 현재 실행 중인 진동을 취소합니다.
@@ -120,7 +134,7 @@ navigator.notification.cancelVibration-안 드 로이드
     navigator.notification.vibrate(time)
     
 
-*   **시간**: 진동 장치 (밀리초)입니다. *(수)*
+*   **time**: 진동 장치 (밀리초)입니다. *(수)*
 
 ### 예를 들어
 
@@ -143,8 +157,8 @@ navigator.notification.cancelVibration-안 드 로이드
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **패턴**:의 기간 (밀리초)에서 진동을 켜거나 끌 수 있는 순서. *(숫자의 배열)*
-*   **반복**: 반복 (취소 될 때까지 반복 됩니다), 시작 하는 또는-1 (기본값) 없는 반복에 대 한 패턴 배열에 선택적 인덱스. *(수)*
+*   **pattern**:의 기간 (밀리초)에서 진동을 켜거나 끌 수 있는 순서. *(숫자의 배열)*
+*   **repeat**: 반복 (취소 될 때까지 반복 됩니다), 시작 하는 또는-1 (기본값) 없는 반복에 대 한 패턴 배열에 선택적 인덱스. *(수)*
 
 ### 예를 들어
 

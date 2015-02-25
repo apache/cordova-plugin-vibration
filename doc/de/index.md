@@ -23,6 +23,16 @@ Dieses Plugin richtet mit dem W3C Vibration Spezifikation http://www.w3.org/TR/v
 
 Dieses Plugin bietet eine Möglichkeit, das Gerät zu vibrieren.
 
+Dieses Plugin definiert globale Objekte einschließlich `navigator.vibrate`.
+
+Obwohl im globalen Gültigkeitsbereich, sind sie nicht bis nach dem `deviceready`-Ereignis.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.vibrate);
+    }
+    
+
 ## Installation
 
     cordova plugin add org.apache.cordova.vibration
@@ -30,11 +40,11 @@ Dieses Plugin bietet eine Möglichkeit, das Gerät zu vibrieren.
 
 ## Unterstützte Plattformen
 
-Navigator.Vibrate  
-Navigator.Notification.Vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 und 8
+navigator.vibrate,  
+navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8
 
 navigator.notification.vibrateWithPattern,  
-navigator.notification.cancelVibration - Android
+navigator.notification.cancelVibration - Android - Windows Phone 8
 
 ## vibrieren (empfohlen)
 
@@ -52,7 +62,7 @@ oder
     navigator.vibrate([time])
     
 
--**Zeit**: Millisekunden das Gerät vibriert. *(Anzahl)*
+-**time**: Millisekunden das Gerät vibriert. *(Anzahl)*
 
 #### Beispiel
 
@@ -94,6 +104,10 @@ Vibriert das Gerät mit einem vorgegebenen Muster
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
     
 
+#### Windows Phone 8 Macken
+
+*   vibrate(Pattern) fällt zurück vibrieren auf mit Standarddauer
+
 ### "Abbrechen" Vibration (nicht in iOS unterstützt)
 
 Sofort bricht alle derzeit ausgeführten Schwingungen.
@@ -120,7 +134,7 @@ Vibriert das Gerät für einen bestimmten Zeitraum.
     navigator.notification.vibrate(time)
     
 
-*   **Zeit**: Millisekunden das Gerät vibriert. *(Anzahl)*
+*   **time**: Millisekunden das Gerät vibriert. *(Anzahl)*
 
 ### Beispiel
 
@@ -143,8 +157,8 @@ Vibriert das Gerät mit einem vorgegebenen Muster.
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **Muster**: Folge von Dauer (in Millisekunden) für den ein-oder Ausschalten der Vibrator. *(Array von Zahlen)*
-*   **Wiederholen**: optionale Index in das Array Muster an der wiederholte (wird wiederholt, bis abgebrochen) zu starten, oder-1 für Wiederholung (Standard). *(Anzahl)*
+*   **pattern**: Folge von Dauer (in Millisekunden) für den ein-oder Ausschalten der Vibrator. *(Array von Zahlen)*
+*   **repeat**: optionale Index in das Array Muster an der wiederholte (wird wiederholt, bis abgebrochen) zu starten, oder-1 für Wiederholung (Standard). *(Anzahl)*
 
 ### Beispiel
 
