@@ -23,18 +23,26 @@ Ce plugin s'aligne avec le W3C vibration spécification http://www.w3.org/TR/vib
 
 Ce plugin permet de vibrer l'appareil.
 
+Ce plugin définit notamment des objets globaux`navigator.vibrate`.
+
+Bien que dans la portée globale, ils ne sont pas disponibles jusqu'après la `deviceready` événement.
+
+    document.addEventListener (« deviceready », onDeviceReady, false) ;
+    function onDeviceReady() {console.log(navigator.vibrate);}
+    
+
 ## Installation
 
-    cordova plugin add org.apache.cordova.vibration
+    Cordova plugin ajouter org.apache.cordova.vibration
     
 
 ## Plates-formes prises en charge
 
-Navigator.VIBRATE  
+Navigator.VIBRATE,  
 Navigator.notification.VIBRATE - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 et 8
 
 navigator.notification.vibrateWithPattern,  
-navigator.notification.cancelVibration - Android
+navigator.notification.cancelVibration - Android - Windows Phone 8
 
 ## vibrer (recommandée)
 
@@ -44,23 +52,21 @@ Cette fonction a trois différentes fonctionnalités basées sur les paramètres
 
 Vibre l'appareil pendant un certain temps.
 
-    navigator.vibrate(time)
+    Navigator.VIBRATE(Time)
     
 
 ou
 
-    navigator.vibrate([time])
+    Navigator.VIBRATE([time])
     
 
 -**temps**: millisecondes à vibrer l'appareil. *(Nombre)*
 
 #### Exemple
 
-    // Vibrate for 3 seconds
-    navigator.vibrate(3000);
+    Vibrer pour 3 secondes navigator.vibrate(3000) ;
     
-    // Vibrate for 3 seconds
-    navigator.vibrate([3000]);
+    Vibrer pour 3 secondes navigator.vibrate([3000]) ;
     
 
 #### iOS Quirks
@@ -79,36 +85,35 @@ ou
 
 Vibre l'appareil avec un motif donné
 
-    navigator.vibrate(pattern);   
+    Navigator.VIBRATE(Pattern) ;   
     
 
 *   **modèle**: séquence de la durée (en millisecondes) pour lequel activer ou désactiver le vibreur. *(Tableau de nombres)*
 
 #### Exemple
 
-    // Vibrate for 1 second
-    // Wait for 1 second
-    // Vibrate for 3 seconds
-    // Wait for 1 second
-    // Vibrate for 5 seconds
-    navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
+    Vibreur pendant 1 seconde / / attendre 1 seconde / / vibrer pendant 3 secondes / / attendre 1 seconde / / vibrer pour 5 secondes navigator.vibrate ([1000, 1000, 3000, 1000, 5000]) ;
     
+
+#### Windows Phone 8 Quirks
+
+*   chutes de VIBRATE(Pattern) retour à vibrent avec durée par défaut
 
 ### Annuler les vibrations (ne pas de prise en charge d'iOS)
 
 Immédiatement annule des vibrations en cours d'exécution.
 
-    navigator.vibrate(0)
+    Navigator.VIBRATE(0)
     
 
 ou
 
-    navigator.vibrate([])
+    Navigator.VIBRATE([])
     
 
 ou
 
-    navigator.vibrate([0])
+    Navigator.VIBRATE([0])
     
 
 En passant un paramètre de 0, un tableau vide, ou un tableau contenant un seul élément de valeur 0 annulera toute vibration.
@@ -117,30 +122,29 @@ En passant un paramètre de 0, un tableau vide, ou un tableau contenant un seul 
 
 Vibre l'appareil pendant un certain temps.
 
-    navigator.notification.vibrate(time)
+    Navigator.notification.VIBRATE(Time)
     
 
 *   **temps**: millisecondes à vibrer l'appareil. *(Nombre)*
 
 ### Exemple
 
-    // Vibrate for 2.5 seconds
-    navigator.notification.vibrate(2500);
+    Vibrer pour 2,5 secondes navigator.notification.vibrate(2500) ;
     
 
 ### iOS Quirks
 
 *   **temps**: ne tient pas compte de la durée spécifiée et vibre pendant un temps prédéterminé.
     
-        navigator.notification.vibrate();
-        navigator.notification.vibrate(2500);   // 2500 is ignored
+        Navigator.notification.VIBRATE() ;
+        Navigator.notification.VIBRATE(2500) ;   2500 est ignoré
         
 
 ## *notification.vibrateWithPattern (obsolète)
 
 Vibre l'appareil avec un modèle donné.
 
-    navigator.notification.vibrateWithPattern(pattern, repeat)
+    navigator.notification.vibrateWithPattern (motif)
     
 
 *   **modèle**: séquence de la durée (en millisecondes) pour lequel activer ou désactiver le vibreur. *(Tableau de nombres)*
@@ -148,16 +152,7 @@ Vibre l'appareil avec un modèle donné.
 
 ### Exemple
 
-    // Immediately start vibrating
-    // vibrate for 100ms,
-    // wait for 100ms,
-    // vibrate for 200ms,
-    // wait for 100ms,
-    // vibrate for 400ms,
-    // wait for 100ms,
-    // vibrate for 800ms,
-    // (do not repeat)
-    navigator.notification.vibrateWithPattern([0, 100, 100, 200, 100, 400, 100, 800]);
+    Commencent immédiatement à vibrer / / vibrer de 100ms, / / attendre 100ms, / / vibrer pour 200ms, / / attendre 100ms, / / vibrer pour 400ms, / / attendre 100ms, / / vibrer pour 800ms, / / (ne pas répéter) navigator.notification.vibrateWithPattern ([0, 100, 100, 200, 100, 400, 100, 800]) ;
     
 
 ## *notification.cancelVibration (obsolète)
