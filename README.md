@@ -19,5 +19,7 @@
 
 # org.apache.cordova.vibration
 
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-vibration.svg)](https://travis-ci.org/apache/cordova-plugin-vibration)
+
 Plugin documentation: [doc/index.md](doc/index.md)
 
