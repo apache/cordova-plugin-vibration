@@ -75,7 +75,8 @@
             <runs />
         </js-module>
 
-        <framework src="src/windows/Vibration.winmd" custom="true"/>
+        <framework src="src/windows/Vibration/Vibration.csproj" target="phone"
+            type="projectReference" custom="true" />
     </platform>
 
     <!-- android -->
