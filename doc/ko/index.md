@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.vibration
+# cordova-plugin-vibration
 
 이 플러그인에 W3C 진동 사양 http://www.w3.org/TR/vibration/ 정렬
 
@@ -35,7 +35,7 @@
 
 ## 설치
 
-    cordova plugin add org.apache.cordova.vibration
+    cordova plugin add cordova-plugin-vibration
     
 
 ## 지원 되는 플랫폼

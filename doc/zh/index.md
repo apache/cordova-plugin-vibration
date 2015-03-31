@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.vibration
+# cordova-plugin-vibration
 
 這個外掛程式將對齊與 W3C 振動規範 HTTP://www.w3.org/TR/vibration/
 
@@ -35,7 +35,7 @@
 
 ## 安裝
 
-    cordova plugin add org.apache.cordova.vibration
+    cordova plugin add cordova-plugin-vibration
     
 
 ## 支援的平臺

@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.vibration
+# cordova-plugin-vibration
 
 このプラグインに準拠 W3C 振動仕様 http://www.w3.org/TR/vibration/
 
@@ -35,7 +35,7 @@
 
 ## インストール
 
-    cordova plugin add org.apache.cordova.vibration
+    cordova plugin add cordova-plugin-vibration
     
 
 ## サポートされているプラットフォーム

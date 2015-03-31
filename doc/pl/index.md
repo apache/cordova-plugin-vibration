@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.vibration
+# cordova-plugin-vibration
 
 Ten plugin wyrównuje z http://www.w3.org/TR/vibration/ specyfikacji W3C wibracji
 
@@ -35,7 +35,7 @@ Chociaż w globalnym zasięgu, są nie dostępne dopiero po `deviceready` imprez
 
 ## Instalacja
 
-    cordova plugin add org.apache.cordova.vibration
+    cordova plugin add cordova-plugin-vibration
     
 
 ## Obsługiwane platformy

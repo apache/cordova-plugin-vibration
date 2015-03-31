@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.vibration
+# cordova-plugin-vibration
 
 Этот плагин соотвествует спецификации W3C http://www.w3.org/TR/vibration/ о вибрации
 
@@ -25,7 +25,7 @@
 
 ## Установка
 
-    cordova plugin add org.apache.cordova.vibration
+    cordova plugin add cordova-plugin-vibration
     
 
 ## Поддерживаемые платформы
