@@ -3,7 +3,7 @@
   "version": "0.3.14-dev",
   "description": "Cordova Vibration Plugin",
   "cordova": {
-    "id": "cordova-plugin-vibration",
+    "id": "org.apache.cordova.vibration",
     "platforms": [
       "firefoxos",
       "wp7",
