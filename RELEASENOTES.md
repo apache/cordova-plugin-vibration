@@ -111,3 +111,16 @@
 
 ### 0.3.13 (Feb 04, 2015)
 * CB-8243 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
+
+### 1.0.0 (Apr 15, 2015)
+* CB-8746 gave plugin major version bump
+* CB-8683 changed plugin-id to pacakge-name
+* CB-8653 properly updated translated docs to use new id
+* CB-8653 updated translated docs to use new id
+* CB-7970 Reference proxy project instead of compiled winmd
+* CB-7970 Add cordova-plugin-vibration support for Windows Phone 8.1
+* Use TRAVIS_BUILD_DIR, install paramedic by npm
+* CB-8653 Updated Readme
+* CB-8576 Integrate TravisCI
+* CB-8438 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
+* CB-8538 Added package.json file
