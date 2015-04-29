@@ -76,7 +76,7 @@
         </js-module>
 
         <framework src="src/windows/Vibration/Vibration.csproj" target="phone"
-            type="projectReference" custom="true" />
+            type="projectReference" custom="true" versions="<10.0.0" />
     </platform>
 
     <!-- android -->

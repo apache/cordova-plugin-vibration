@@ -20,7 +20,7 @@
  */
 
 function checkReqs(actionName, fail) {
-    if (WinJS.Utilities.isPhone !== true) {       
+    if (!(Windows.Phone && Windows.Phone.Devices && Windows.Phone.Devices.Notification && Windows.Phone.Devices.Notification.VibrationDevice) && WinJS.Utilities.isPhone !== true) {       
         fail(actionName + ' is unsupported by this platform.');
         return false;
     }
@@ -43,18 +43,66 @@ function tryDoAction(actionName, success, fail, args, action) {
 
 var DEFAULT_DURATION = 200;
 
-module.exports = {
-    vibrate: function (success, fail, args) {
-        tryDoAction("vibrate", success, fail, args, Vibration.Vibration.vibrate);
-    },
+var VibrationDevice = (Windows.Phone && Windows.Phone.Devices && Windows.Phone.Devices.Notification && Windows.Phone.Devices.Notification.VibrationDevice && Windows.Phone.Devices.Notification.VibrationDevice);
+if (VibrationDevice) {
+    // Windows Phone 10 code paths
+    module.exports = {
+        vibrate: function(success, fail, args) {
+            try {
+                var duration = parseInt(args[0]);
+                if (isNaN(duration)) {
+                    duration = DEFAULT_DURATION;
+                }
+                VibrationDevice.getDefault().vibrate(duration);
+                success();
+            }
+            catch (e) {
+                fail(e);
+            }
+        }, 
+        vibrateWithPattern: function(success, fail, args) {
+            // TODO: Implement with setTimeout.
+            fail('"vibrateWithPattern" is unsupported by this platform.');
+        },
+        cancelVibration: function(success, fail, args) {
+            try {
+                VibrationDevice.getDefault().cancel();
+                success();
+            }
+            catch (e) {
+                fail(e);
+            }
+        }
+    };
+} else if (typeof Vibration !== 'undefined' && Vibration.Vibration) { 
+    // Windows Phone 8.1 code paths
+    module.exports = {
+        vibrate: function (success, fail, args) {
+            tryDoAction("vibrate", success, fail, args, Vibration.Vibration.vibrate);
+        },
 
-    vibrateWithPattern: function (success, fail, args) {
-        tryDoAction("vibrate", success, fail, [DEFAULT_DURATION], Vibration.Vibration.vibrate);
-    },
+        vibrateWithPattern: function (success, fail, args) {
+            tryDoAction("vibrate", success, fail, [DEFAULT_DURATION], Vibration.Vibration.vibrate);
+        },
 
-    cancelVibration: function(success, fail, args) {
-        tryDoAction("cancelVibration", success, fail, args, Vibration.Vibration.cancelVibration);
+        cancelVibration: function(success, fail, args) {
+            tryDoAction("cancelVibration", success, fail, args, Vibration.Vibration.cancelVibration);
+        }
+    };
+} else {
+    // code paths where no vibration mechanism is present
+    module.exports = {
+        vibrate: function (a, fail) {
+            fail('"vibrate" is unsupported by this device.');
+        },
+        vibrateWithPattern: function (success, fail, args) {
+            fail('"vibrateWithPattern" is unsupported by this device.');
+        },
+
+        cancelVibration: function(success, fail, args) {
+            success();
+        }
     }
-};
+}
 
 require("cordova/exec/proxy").add("Vibration", module.exports);
