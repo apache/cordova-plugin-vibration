@@ -124,3 +124,6 @@
 * CB-8576 Integrate TravisCI
 * CB-8438 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
 * CB-8538 Added package.json file
+
+### 1.1.0 (May 06, 2015)
+* CB-8930: Vibration on **Windows** fails without a helpful error message when vibration functionality is missing from the platform.  This detects such a case and instead fails gracefully that the feature isn't available.  Also supports the **Windows 10** vibration mechanism.
