@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-vibration",
-  "version": "1.1.1-dev",
+  "version": "1.1.0",
   "description": "Cordova Vibration Plugin",
   "cordova": {
     "id": "cordova-plugin-vibration",
