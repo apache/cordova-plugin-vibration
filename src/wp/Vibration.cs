@@ -30,6 +30,9 @@ namespace WPCordovaClassLib.Cordova.Commands
     {
 
         private static readonly int DEFAULT_DURATION = 200;
+        private static readonly int MAX_DURATION = 5000;
+        private static readonly int MIN_DURATION = 5;
+
         // bool used to determine if cancel was called during vibrateWithPattern
         private bool cancelWasCalled = false;
 
@@ -42,13 +45,13 @@ namespace WPCordovaClassLib.Cordova.Commands
                 string[] args = JSON.JsonHelper.Deserialize<string[]>(vibrateDuration);
 
                 msecs = int.Parse(args[0]);
-                if (msecs < 1)
+                if (msecs < MIN_DURATION)
                 {
-                    msecs = 1;
+                    msecs = MIN_DURATION;
                 }
-                else if (msecs > 5000)
+                else if (msecs > MAX_DURATION)
                 {
-                    msecs = 5000;
+                    msecs = MAX_DURATION;
                 }
             }
             catch (FormatException)
