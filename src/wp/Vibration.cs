@@ -21,13 +21,17 @@ using System.Threading;
 using System.Windows.Resources;
 using Microsoft.Phone.Controls;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 
 namespace WPCordovaClassLib.Cordova.Commands
 {
     public class Vibration : BaseCommand
     {
+
         private static readonly int DEFAULT_DURATION = 200;
+        // bool used to determine if cancel was called during vibrateWithPattern
+        private bool cancelWasCalled = false;
 
         public void vibrate(string vibrateDuration)
         {
@@ -41,6 +45,10 @@ namespace WPCordovaClassLib.Cordova.Commands
                 if (msecs < 1)
                 {
                     msecs = 1;
+                }
+                else if (msecs > 5000)
+                {
+                    msecs = 5000;
                 }
             }
             catch (FormatException)
@@ -59,18 +67,35 @@ namespace WPCordovaClassLib.Cordova.Commands
             VibrateController.Default.Start(TimeSpan.FromMilliseconds(msecs));
         }
 
-        public void vibrateWithPattern(string options)
+        public async Task vibrateWithPattern(string options)
         {
-            // falling back to vibrate
-            vibrateMs(DEFAULT_DURATION);
+            // clear the cancelWasCalled flag
+            cancelWasCalled = false;
+            // get options
+            string[] args = JSON.JsonHelper.Deserialize<string[]>(options);
+            int[] pattern = JSON.JsonHelper.Deserialize<int[]>(args[0]);
 
-            // TODO: may need to add listener to trigger DispatchCommandResult when the vibration ends...
+            for (int i = 0; i < pattern.Length && !cancelWasCalled; i++)
+            {
+                int msecs = pattern[i];
+                if (msecs < 1)
+                {
+                    msecs = 1;
+                }
+                if (i % 2 == 0)
+                {
+                    msecs = (msecs > 5000) ? 5000 : msecs;
+                    VibrateController.Default.Start(TimeSpan.FromMilliseconds(msecs));
+                }
+                await Task.Delay(TimeSpan.FromMilliseconds(msecs));
+            }
             DispatchCommandResult();
         }
 
         public void cancelVibration(string options)
         {
             VibrateController.Default.Stop();
+            cancelWasCalled = true;
             DispatchCommandResult();
         }
     }
