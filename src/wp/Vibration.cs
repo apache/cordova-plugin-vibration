@@ -39,12 +39,14 @@ namespace WPCordovaClassLib.Cordova.Commands
         public void vibrate(string vibrateDuration)
         {
             int msecs = DEFAULT_DURATION; // set default
+            string callbackId = CurrentCommandCallbackId;
 
             try
             {
                 string[] args = JSON.JsonHelper.Deserialize<string[]>(vibrateDuration);
-
                 msecs = int.Parse(args[0]);
+                callbackId = args[1];
+
                 if (msecs < MIN_DURATION)
                 {
                     msecs = MIN_DURATION;
@@ -56,13 +58,13 @@ namespace WPCordovaClassLib.Cordova.Commands
             }
             catch (FormatException)
             {
-
+                 DispatchCommandResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION), callbackId);
             }
 
             vibrateMs(msecs);
 
             // TODO: may need to add listener to trigger DispatchCommandResult when the vibration ends...
-            DispatchCommandResult();
+            DispatchCommandResult(new PluginResult(PluginResult.Status.OK),callbackId);
         }
 
         private static void vibrateMs(int msecs)
@@ -72,34 +74,44 @@ namespace WPCordovaClassLib.Cordova.Commands
 
         public async Task vibrateWithPattern(string options)
         {
+            string callbackId = CurrentCommandCallbackId;
             // clear the cancelWasCalled flag
             cancelWasCalled = false;
             // get options
-            string[] args = JSON.JsonHelper.Deserialize<string[]>(options);
-            int[] pattern = JSON.JsonHelper.Deserialize<int[]>(args[0]);
-
-            for (int i = 0; i < pattern.Length && !cancelWasCalled; i++)
+            try
             {
-                int msecs = pattern[i];
-                if (msecs < 1)
+                string[] args = JSON.JsonHelper.Deserialize<string[]>(options);
+                int[] pattern = JSON.JsonHelper.Deserialize<int[]>(args[0]);
+                callbackId = args[1];
+
+                for (int i = 0; i < pattern.Length && !cancelWasCalled; i++)
                 {
-                    msecs = 1;
+                    int msecs = pattern[i];
+                    if (msecs < MIN_DURATION)
+                    {
+                        msecs = MIN_DURATION;
+                    }
+                    if (i % 2 == 0)
+                    {
+                        msecs = (msecs > MAX_DURATION) ? MAX_DURATION : msecs;
+                        VibrateController.Default.Start(TimeSpan.FromMilliseconds(msecs));
+                    }
+                    await Task.Delay(TimeSpan.FromMilliseconds(msecs));
                 }
-                if (i % 2 == 0)
-                {
-                    msecs = (msecs > 5000) ? 5000 : msecs;
-                    VibrateController.Default.Start(TimeSpan.FromMilliseconds(msecs));
-                }
-                await Task.Delay(TimeSpan.FromMilliseconds(msecs));
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK), callbackId);
             }
-            DispatchCommandResult();
+            catch (FormatException)
+            {
+                DispatchCommandResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION), callbackId);
+            }
         }
 
         public void cancelVibration(string options)
         {
+            string callbackId = JSON.JsonHelper.Deserialize<string[]>(options)[0];
             VibrateController.Default.Stop();
             cancelWasCalled = true;
-            DispatchCommandResult();
+            DispatchCommandResult(new PluginResult(PluginResult.Status.OK), callbackId);
         }
     }
 }
