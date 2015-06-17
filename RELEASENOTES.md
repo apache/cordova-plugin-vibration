@@ -127,3 +127,15 @@
 
 ### 1.1.0 (May 06, 2015)
 * CB-8930: Vibration on **Windows** fails without a helpful error message when vibration functionality is missing from the platform.  This detects such a case and instead fails gracefully that the feature isn't available.  Also supports the **Windows 10** vibration mechanism.
+
+### 1.2.0 (Jun 17, 2015)
+* Adding .ratignore file.
+* CB-9128 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
+* fix npm md issue
+* used min/max statics in vibrate with pattern. Use callbackId in callbacks, catch json format exceptions
+* static-ized MIN_DURATION and MAX_DURATION
+* CB-7216 changed cancelWasCalled boolean
+* CB-7218 truncate vibration to 5 secs for WP8
+* CB-6916 added vibrateWithPattern for wp8
+* CB-6914 added cancelVibration for wp8
+* android: respect silent audio setting
