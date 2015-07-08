@@ -19,8 +19,6 @@
 
 # cordova-plugin-vibration
 
-[![Build Status](https://travis-ci.org/apache/cordova-plugin-vibration.svg)](https://travis-ci.org/apache/cordova-plugin-vibration)
-
 This plugin aligns with the W3C vibration specification http://www.w3.org/TR/vibration/
 
 This plugin provides a way to vibrate the device.
