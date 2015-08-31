@@ -80,6 +80,8 @@ module.exports = {
         //cancel vibration (param = 0 or [])
         else
             exec(null, null, "Vibration", "cancelVibration", []);
+
+        return true;
     },
 
     /**
