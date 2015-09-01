@@ -22,13 +22,13 @@
 exports.defineAutoTests = function () {
 
     describe('Vibration (navigator.notification.vibrate)', function () {
-        it("navigator.notification should exist", function () {
+        it("navigator.notification should exist with vibrate function", function () {
             expect(navigator.notification).toBeDefined();
-        });
-
-        it("should contain a vibrate function", function () {
             expect(typeof navigator.notification.vibrate).toBeDefined();
             expect(typeof navigator.notification.vibrate).toBe("function");
+
+            if (cordova.platformId == "browser")
+                expect(navigator.notification.vibrate(0)).toBe(false);
         });
     });
 };

@@ -141,7 +141,8 @@
     <!-- browser -->
     <platform name="browser">
         <js-module src="src/browser/Vibration.js" name="Vibration">
-            <clobbers target="navigator" />
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
         </js-module>
     </platform>
 
