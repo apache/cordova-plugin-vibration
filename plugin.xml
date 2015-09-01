@@ -140,7 +140,7 @@
 
     <!-- browser -->
     <platform name="browser">
-        <js-module src="src/browser/VibrationProxy.js" name="VibrationProxy">
+        <js-module src="src/browser/Vibration.js" name="Vibration">
             <clobbers target="navigator" />
         </js-module>
     </platform>

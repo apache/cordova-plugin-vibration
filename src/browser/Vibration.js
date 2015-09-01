@@ -27,5 +27,3 @@ module.exports = {
         return false;
     }
 };
-
-require('cordova/exec/proxy').add('Vibration', module.exports);
