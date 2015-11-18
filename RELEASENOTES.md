@@ -20,58 +20,42 @@
 -->
 # Release Notes
 
-### 0.3.0 (Sept 5, 2013)
-* Initial FirefoxOS support
-* [CB-4661] VIBRATE permission for Android
+### 1.2.0 (Jun 17, 2015)
+* Adding .ratignore file.
+* CB-9128 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
+* fix npm md issue
+* used min/max statics in vibrate with pattern. Use callbackId in callbacks, catch json format exceptions
+* static-ized MIN_DURATION and MAX_DURATION
+* CB-7216 changed cancelWasCalled boolean
+* CB-7218 truncate vibration to 5 secs for WP8
+* CB-6916 added vibrateWithPattern for wp8
+* CB-6914 added cancelVibration for wp8
+* android: respect silent audio setting
 
-### 0.3.2 (Sept 25, 2013)
-* CB-4889 bumping&resetting version
-* CB-4889 renaming org.apache.cordova.core.vibration to org.apache.cordova.vibration
-* Rename CHANGELOG.md -> RELEASENOTES.md
-* updated to work with ffos commandProxy
-* fixed plugin.xml for vibration
-* [CB-4593] [Blackberry10] Added vibration support for bb10
-* updated plugin to work with ffos
-* [CB-4752] Incremented plugin version on dev branch.
+### 1.1.0 (May 06, 2015)
+* CB-8930: Vibration on **Windows** fails without a helpful error message when vibration functionality is missing from the platform.  This detects such a case and instead fails gracefully that the feature isn't available.  Also supports the **Windows 10** vibration mechanism.
 
-### 0.3.3 (Oct 9, 2013)
-* add missing android namespace
-* [CB-4915] Incremented plugin version on dev branch.
+### 1.0.0 (Apr 15, 2015)
+* CB-8746 gave plugin major version bump
+* CB-8683 changed plugin-id to pacakge-name
+* CB-8653 properly updated translated docs to use new id
+* CB-8653 updated translated docs to use new id
+* CB-7970 Reference proxy project instead of compiled winmd
+* CB-7970 Add cordova-plugin-vibration support for Windows Phone 8.1
+* Use TRAVIS_BUILD_DIR, install paramedic by npm
+* CB-8653 Updated Readme
+* CB-8576 Integrate TravisCI
+* CB-8438 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
+* CB-8538 Added package.json file
 
-### 0.3.4 (Oct 28, 2013)
-* add repo + issue tag to plugin.xml for vibration plugin
-* corrected plugin.xml to write properly to config.xml for ffos
-* [CB-5010] Incremented plugin version on dev branch.
+### 0.3.13 (Feb 04, 2015)
+* CB-8243 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
 
-### 0.3.5 (Dec 4, 2013)
-* add ubuntu platform
-* Added amazon-fireos platform. Change to include amazon-fireos as a platform if the user agent string contains 'cordova-amazon-fireos'
-* CB-4747 Fixed Blackberry background vibrate
-
-### 0.3.6 (Jan 02, 2014)
-* CB-5658 Add doc/index.md for Vibration plugin
-
-### 0.3.7 (Feb 05, 2014)
-* Add support for Tizen.
-* CB-3206 - Supported platforms updated
-
-### 0.3.8 (Apr 17, 2014)
-* CB-6465: Add license headers to Tizen code
-* CB-6460: Update license headers
-* Add NOTICE file
-
-### 0.3.9 (Jun 05, 2014)
-* updated notice file
-* Github close #11
-* Extended vibrateWithPattern to allow for pattern repetition, implemented a complementary cancelVibration function and adapted documentation.
-* Implemented vibrateWithPattern (for android) and adapted documentation.
-* CB-6811 Add license to CONTRIBUTING.md
-* CB-6491 add CONTRIBUTING.md
-
-### 0.3.10 (Aug 06, 2014)
-* ubuntu: Implemented vibrateWithPattern/cancelVibration
-* **FFOS** update VibrationProxy.js
-* CB-6127 Updated translations for docs
+### 0.3.12 (Dec 02, 2014)
+* CB-8018 Add `vibrate(pattern)` fallback on vibrate for **Windows Phone 8**
+* CB-7977 Mention `deviceready` in plugin docs
+* CB-7700 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
+* CB-7571 Bump version of nested plugin to match parent plugin
 
 ### 0.3.11 (Sep 17, 2014)
 * CB-7249 cordova-plugin-vibration documentation translation
@@ -103,39 +87,55 @@
 * changes to vibration.java to align with w3c, changes to vibration.js for backwards compatibility
 * changes made to align with w3c spec
 
-### 0.3.12 (Dec 02, 2014)
-* CB-8018 Add `vibrate(pattern)` fallback on vibrate for **Windows Phone 8**
-* CB-7977 Mention `deviceready` in plugin docs
-* CB-7700 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
-* CB-7571 Bump version of nested plugin to match parent plugin
+### 0.3.10 (Aug 06, 2014)
+* ubuntu: Implemented vibrateWithPattern/cancelVibration
+* **FFOS** update VibrationProxy.js
+* CB-6127 Updated translations for docs
 
-### 0.3.13 (Feb 04, 2015)
-* CB-8243 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
+### 0.3.9 (Jun 05, 2014)
+* updated notice file
+* Github close #11
+* Extended vibrateWithPattern to allow for pattern repetition, implemented a complementary cancelVibration function and adapted documentation.
+* Implemented vibrateWithPattern (for android) and adapted documentation.
+* CB-6811 Add license to CONTRIBUTING.md
+* CB-6491 add CONTRIBUTING.md
 
-### 1.0.0 (Apr 15, 2015)
-* CB-8746 gave plugin major version bump
-* CB-8683 changed plugin-id to pacakge-name
-* CB-8653 properly updated translated docs to use new id
-* CB-8653 updated translated docs to use new id
-* CB-7970 Reference proxy project instead of compiled winmd
-* CB-7970 Add cordova-plugin-vibration support for Windows Phone 8.1
-* Use TRAVIS_BUILD_DIR, install paramedic by npm
-* CB-8653 Updated Readme
-* CB-8576 Integrate TravisCI
-* CB-8438 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
-* CB-8538 Added package.json file
+### 0.3.8 (Apr 17, 2014)
+* CB-6465: Add license headers to Tizen code
+* CB-6460: Update license headers
+* Add NOTICE file
 
-### 1.1.0 (May 06, 2015)
-* CB-8930: Vibration on **Windows** fails without a helpful error message when vibration functionality is missing from the platform.  This detects such a case and instead fails gracefully that the feature isn't available.  Also supports the **Windows 10** vibration mechanism.
+### 0.3.7 (Feb 05, 2014)
+* Add support for Tizen.
+* CB-3206 - Supported platforms updated
 
-### 1.2.0 (Jun 17, 2015)
-* Adding .ratignore file.
-* CB-9128 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
-* fix npm md issue
-* used min/max statics in vibrate with pattern. Use callbackId in callbacks, catch json format exceptions
-* static-ized MIN_DURATION and MAX_DURATION
-* CB-7216 changed cancelWasCalled boolean
-* CB-7218 truncate vibration to 5 secs for WP8
-* CB-6916 added vibrateWithPattern for wp8
-* CB-6914 added cancelVibration for wp8
-* android: respect silent audio setting
+### 0.3.6 (Jan 02, 2014)
+* CB-5658 Add doc/index.md for Vibration plugin
+
+### 0.3.5 (Dec 4, 2013)
+* add ubuntu platform
+* Added amazon-fireos platform. Change to include amazon-fireos as a platform if the user agent string contains 'cordova-amazon-fireos'
+* CB-4747 Fixed Blackberry background vibrate
+
+### 0.3.4 (Oct 28, 2013)
+* add repo + issue tag to plugin.xml for vibration plugin
+* corrected plugin.xml to write properly to config.xml for ffos
+* [CB-5010] Incremented plugin version on dev branch.
+
+### 0.3.3 (Oct 9, 2013)
+* add missing android namespace
+* [CB-4915] Incremented plugin version on dev branch.
+
+### 0.3.2 (Sept 25, 2013)
+* CB-4889 bumping&resetting version
+* CB-4889 renaming org.apache.cordova.core.vibration to org.apache.cordova.vibration
+* Rename CHANGELOG.md -> RELEASENOTES.md
+* updated to work with ffos commandProxy
+* fixed plugin.xml for vibration
+* [CB-4593] [Blackberry10] Added vibration support for bb10
+* updated plugin to work with ffos
+* [CB-4752] Incremented plugin version on dev branch.
+
+### 0.3.0 (Sept 5, 2013)
+* Initial FirefoxOS support
+* [CB-4661] VIBRATE permission for Android
