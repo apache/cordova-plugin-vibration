@@ -20,6 +20,14 @@
 -->
 # Release Notes
 
+### 2.0.0 (Nov 18, 2015)
+* CB-10035 Updated `RELEASENOTES` to be newest to oldest
+* Fixing contribute link.
+* Fixed **browser** platform to pass tests and combined tests
+* Removed call to add `proxy` and renamed **browser** file
+* [CB-7966] Add cordova-plugin-vibration support for **browser** platform
+* CB-9166: Changed `plugin.xml` framework reference condition to be valid XML.
+
 ### 1.2.0 (Jun 17, 2015)
 * Adding .ratignore file.
 * CB-9128 cordova-plugin-vibration documentation translation: cordova-plugin-vibration
