@@ -111,10 +111,6 @@ Vibrates the device with a given pattern
 
 - vibrate(pattern) falls back on vibrate with default duration
 
-####Windows Quirks
-
-- vibrate(pattern) falls back on vibrate with default duration
-
 ###Cancel vibration (not supported in iOS)
 
 Immediately cancels any currently running vibration.

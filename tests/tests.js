@@ -67,6 +67,13 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         logMessage("navigator.notification.vibrateWithPattern([1000, 3000, 2000, 5000])", "green");
     };
 
+    //old vibrate with pattern with repeat call
+    var vibrateWithPatternOldWithRepeat = function(){
+        clearLog();
+        navigator.notification.vibrateWithPattern([1000, 3000, 2000, 5000], 2);
+        logMessage("navigator.notification.vibrateWithPattern([1000, 3000, 2000, 5000], 2)", "green");
+    };
+
     //old cancel vibrate call
     var cancelOld = function(){
         clearLog();
@@ -157,6 +164,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         'Expected result: Vibrate once for 2.5 seconds.' +
         '<p/> <div id="vibrateWithPattern_old"></div>' +
         'Expected result: Pause for 1s, vibrate for 3s, pause for 2s, vibrate for 5s.' +
+        '<p/> <div id="vibrateWithPatternRepeat_old"></div>' +
+        'Expected result: Pause for 1s, vibrate for 3s, [pause for 2s, vibrate for 5s.], repeat [steps]' +
         '<p/> <div id="cancelVibrate_old"></div>' +
         'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
         '<p/> <div id="cancelVibrateWithPattern_old"></div>' +
@@ -190,6 +199,11 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     createActionButton('* Vibrate with a pattern (Old)', function () {
         vibrateWithPatternOld();
     }, 'vibrateWithPattern_old');
+
+    //vibrate with pattern with repeat with old call
+    createActionButton('* Vibrate with a pattern with repeat (Old)', function () {
+        vibrateWithPatternOldWithRepeat();
+    }, 'vibrateWithPatternRepeat_old');
 
     //cancel vibrate with old call
     createActionButton('* Cancel vibration (Old)', function() {
