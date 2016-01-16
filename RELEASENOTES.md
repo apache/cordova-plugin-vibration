@@ -20,6 +20,9 @@
 -->
 # Release Notes
 
+### 2.1.0 (Jan 15, 2016)
+* CB-9365 Add support for 'vibrateWithPattern' to **Windows Phone 8.1 / Windows 10**
+
 ### 2.0.0 (Nov 18, 2015)
 * [CB-10035](https://issues.apache.org/jira/browse/CB-10035) Updated `RELEASENOTES` to be newest to oldest
 * Fixing contribute link.
