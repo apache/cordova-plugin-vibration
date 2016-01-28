@@ -20,8 +20,8 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="org.apache.cordova.vibration"
-    version="0.3.10-dev">
+    id="cordova-plugin-vibration"
+    version="2.1.1-dev">
 
     <name>Vibration</name>
     <description>Cordova Vibration Plugin</description>
@@ -32,6 +32,7 @@
 
     <js-module src="www/vibration.js" name="notification">
         <merges target="navigator.notification" />
+        <merges target="navigator" />
     </js-module>
 
     <!-- firefoxos -->
@@ -66,6 +67,16 @@
         </config-file>
 
         <source-file src="src/wp/Vibration.cs" />
+    </platform>
+
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/VibrationProxy.js" name="VibrationProxy">
+            <runs />
+        </js-module>
+
+        <framework src="src/windows/Vibration/Vibration.csproj" target="phone"
+            type="projectReference" custom="true" versions="&lt;10.0.0" />
     </platform>
 
     <!-- android -->
@@ -125,6 +136,14 @@
         <config-file target="www/config.xml" parent="/widget">
             <feature name="Vibration" value="Vibration" />
         </config-file>
+    </platform>
+
+    <!-- browser -->
+    <platform name="browser">
+        <js-module src="src/browser/Vibration.js" name="Vibration">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
     </platform>
 
     <!-- tizen -->

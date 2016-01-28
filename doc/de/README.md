@@ -1,23 +1,25 @@
-<!---
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
+<!--
+# license: Licensed to the Apache Software Foundation (ASF) under one
+#         or more contributor license agreements.  See the NOTICE file
+#         distributed with this work for additional information
+#         regarding copyright ownership.  The ASF licenses this file
+#         to you under the Apache License, Version 2.0 (the
+#         "License"); you may not use this file except in compliance
+#         with the License.  You may obtain a copy of the License at
+#
+#           http://www.apache.org/licenses/LICENSE-2.0
+#
+#         Unless required by applicable law or agreed to in writing,
+#         software distributed under the License is distributed on an
+#         "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#         KIND, either express or implied.  See the License for the
+#         specific language governing permissions and limitations
+#         under the License.
 -->
 
 # cordova-plugin-vibration
+
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-vibration.svg)](https://travis-ci.org/apache/cordova-plugin-vibration)
 
 Dieses Plugin richtet mit dem W3C Vibration Spezifikation http://www.w3.org/TR/vibration/
 
@@ -41,10 +43,10 @@ Obwohl im globalen Gültigkeitsbereich, sind sie nicht bis nach dem `deviceready
 ## Unterstützte Plattformen
 
 navigator.vibrate,  
-navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8
+navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8 - Windows (Windows Phone 8.1 devices only)
 
-navigator.notification.vibrateWithPattern,  
-navigator.notification.cancelVibration - Android - Windows Phone 8
+navigator.notification.vibrateWithPattern  
+navigator.notification.cancelVibration - Android - Windows Phone 8 - Windows (Windows Phone 8.1 devices only)
 
 ## vibrieren (empfohlen)
 
@@ -75,13 +77,13 @@ oder
 
 #### iOS Macken
 
-*   **Zeit**: ignoriert die angegebene Zeit und für eine voreingestellte Zeit vibriert.
+  * **Zeit**: ignoriert die angegebene Zeit und für eine voreingestellte Zeit vibriert.
     
     navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows und Blackberry-Kniffe
 
-*   **Zeit**: Max. Zeit 5000ms (5 s) und min Zeit ist 1ms
+  * **Zeit**: Max. Zeit 5000ms (5 s) und min Zeit ist 1ms
     
     navigator.vibrate(8000); // will be truncated to 5000
 
@@ -92,7 +94,7 @@ Vibriert das Gerät mit einem vorgegebenen Muster
     navigator.vibrate(pattern);   
     
 
-*   **Muster**: Folge von Dauer (in Millisekunden) für den ein-oder Ausschalten der Vibrator. *(Array von Zahlen)*
+  * **Muster**: Folge von Dauer (in Millisekunden) für den ein-oder Ausschalten der Vibrator. *(Array von Zahlen)*
 
 #### Beispiel
 
@@ -106,7 +108,11 @@ Vibriert das Gerät mit einem vorgegebenen Muster
 
 #### Windows Phone 8 Macken
 
-*   vibrate(Pattern) fällt zurück vibrieren auf mit Standarddauer
+  * vibrate(Pattern) fällt zurück vibrieren auf mit Standarddauer
+
+#### Windows-Eigenheiten
+
+  * vibrate(Pattern) fällt zurück vibrieren auf mit Standarddauer
 
 ### "Abbrechen" Vibration (nicht in iOS unterstützt)
 
@@ -134,7 +140,7 @@ Vibriert das Gerät für einen bestimmten Zeitraum.
     navigator.notification.vibrate(time)
     
 
-*   **time**: Millisekunden das Gerät vibriert. *(Anzahl)*
+  * **time**: Millisekunden das Gerät vibriert. *(Anzahl)*
 
 ### Beispiel
 
@@ -144,7 +150,7 @@ Vibriert das Gerät für einen bestimmten Zeitraum.
 
 ### iOS Macken
 
-*   **Zeit**: ignoriert die angegebene Zeit und für eine voreingestellte Zeit vibriert.
+  * **Zeit**: ignoriert die angegebene Zeit und für eine voreingestellte Zeit vibriert.
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
@@ -157,8 +163,8 @@ Vibriert das Gerät mit einem vorgegebenen Muster.
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **pattern**: Folge von Dauer (in Millisekunden) für den ein-oder Ausschalten der Vibrator. *(Array von Zahlen)*
-*   **repeat**: optionale Index in das Array Muster an der wiederholte (wird wiederholt, bis abgebrochen) zu starten, oder-1 für Wiederholung (Standard). *(Anzahl)*
+  * **Muster**: Folge von Dauer (in Millisekunden) für den ein-oder Ausschalten der Vibrator. *(Array von Zahlen)*
+  * **repeat**: optionale Index in das Array Muster an der wiederholte (wird wiederholt, bis abgebrochen) zu starten, oder-1 für Wiederholung (Standard). *(Anzahl)*
 
 ### Beispiel
 

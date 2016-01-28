@@ -22,14 +22,8 @@
 var cordova = require('cordova');
 
 module.exports = {
-
     vibrate: function(success, fail, milliseconds) {
-        if (navigator.notification.vibrate) {
-            navigator.vibrate(milliseconds);
-        } else {
-            console.log ("cordova/plugin/firefoxos/vibration, vibrate API does not exist");
-        }
+        console.log('Vibration is not supported');
+        return false;
     }
 };
-
-require("cordova/exec/proxy").add("Vibration", module.exports);

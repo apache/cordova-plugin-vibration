@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import android.content.Context;
 import android.os.Vibrator;
+import android.media.AudioManager;
 
 /**
  * This class provides access to vibration on the device.
@@ -51,9 +52,11 @@ public class Vibration extends CordovaPlugin {
         else if (action.equals("vibrateWithPattern")) {
             JSONArray pattern = args.getJSONArray(0);
             int repeat = args.getInt(1);
-            long[] patternArray = new long[pattern.length()];
+            //add a 0 at the beginning of pattern to align with w3c
+            long[] patternArray = new long[pattern.length()+1];
+            patternArray[0] = 0;
             for (int i = 0; i < pattern.length(); i++) {
-                patternArray[i] = pattern.getLong(i);
+                patternArray[i+1] = pattern.getLong(i);
             }
             this.vibrateWithPattern(patternArray, repeat);
         }
@@ -84,8 +87,11 @@ public class Vibration extends CordovaPlugin {
         if (time == 0) {
             time = 500;
         }
-        Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(time);
+        AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
+        if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+            Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(time);
+        }
     }
 
     /**
@@ -110,8 +116,11 @@ public class Vibration extends CordovaPlugin {
      *                    to start repeating, or -1 for no repetition (default).
      */
     public void vibrateWithPattern(long[] pattern, int repeat) {
-        Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(pattern, repeat);
+        AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
+        if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+            Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(pattern, repeat);
+        }
     }
 
     /**

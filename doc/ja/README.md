@@ -1,23 +1,25 @@
-<!---
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
+<!--
+# license: Licensed to the Apache Software Foundation (ASF) under one
+#         or more contributor license agreements.  See the NOTICE file
+#         distributed with this work for additional information
+#         regarding copyright ownership.  The ASF licenses this file
+#         to you under the Apache License, Version 2.0 (the
+#         "License"); you may not use this file except in compliance
+#         with the License.  You may obtain a copy of the License at
+#
+#           http://www.apache.org/licenses/LICENSE-2.0
+#
+#         Unless required by applicable law or agreed to in writing,
+#         software distributed under the License is distributed on an
+#         "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#         KIND, either express or implied.  See the License for the
+#         specific language governing permissions and limitations
+#         under the License.
 -->
 
 # cordova-plugin-vibration
+
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-vibration.svg)](https://travis-ci.org/apache/cordova-plugin-vibration)
 
 このプラグインに準拠 W3C 振動仕様 http://www.w3.org/TR/vibration/
 
@@ -41,10 +43,10 @@
 ## サポートされているプラットフォーム
 
 navigator.vibrate,  
-navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8
+navigator.notification.vibrate - Amazon Fire OS - Android - BlackBerry 10 - Firefox OS - iOS - Windows Phone 7 and 8 - Windows (Windows Phone 8.1 devices only)
 
-navigator.notification.vibrateWithPattern,  
-navigator.notification.cancelVibration - Android - Windows Phone 8
+navigator.notification.vibrateWithPattern  
+navigator.notification.cancelVibration - Android - Windows Phone 8 - Windows (Windows Phone 8.1 devices only)
 
 ## 振動 (推奨)
 
@@ -75,13 +77,13 @@ navigator.notification.cancelVibration - Android - Windows Phone 8
 
 #### iOS の癖
 
-*   **時間**: 指定された時間を無視し、時間の事前に設定された量のために振動します。
+  * **時間**: 指定された時間を無視し、時間の事前に設定された量のために振動します。
     
     navigator.vibrate(3000); // 3000 is ignored
 
 #### Windows とブラックベリー癖
 
-*   **時間**: 5000 (5 秒) は、最大時間と最小時間は 1 ms
+  * **時間**: 5000 (5 秒) は、最大時間と最小時間は 1 ms
     
     navigator.vibrate(8000); // will be truncated to 5000
 
@@ -92,7 +94,7 @@ navigator.notification.cancelVibration - Android - Windows Phone 8
     navigator.vibrate(pattern);   
     
 
-*   **パターン**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
+  * **パターン**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
 
 #### 例
 
@@ -106,7 +108,11 @@ navigator.notification.cancelVibration - Android - Windows Phone 8
 
 #### Windows Phone 8 癖
 
-*   既定の期間の振動で戻る vibrate(pattern) の滝
+  * 既定の期間の振動で戻る vibrate(pattern) の滝
+
+#### Windows の癖
+
+  * 既定の期間の振動で戻る vibrate(pattern) の滝
 
 ### [キャンセル] 振動 (iOS ではサポートされていません)
 
@@ -134,7 +140,7 @@ navigator.notification.cancelVibration - Android - Windows Phone 8
     navigator.notification.vibrate(time)
     
 
-*   **time**: ミリ秒、デバイスを振動させる。*(数)*
+  * **time**: ミリ秒、デバイスを振動させる。*(数)*
 
 ### 例
 
@@ -144,7 +150,7 @@ navigator.notification.cancelVibration - Android - Windows Phone 8
 
 ### iOS の癖
 
-*   **時間**: 指定された時間を無視し、時間の事前に設定された量のために振動します。
+  * **時間**: 指定された時間を無視し、時間の事前に設定された量のために振動します。
     
         navigator.notification.vibrate();
         navigator.notification.vibrate(2500);   // 2500 is ignored
@@ -157,8 +163,8 @@ navigator.notification.cancelVibration - Android - Windows Phone 8
     navigator.notification.vibrateWithPattern(pattern, repeat)
     
 
-*   **pattern**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
-*   **repeat**: 省略可能な配列のインデックスのパターン （でしょう） を繰り返す取り消されるまで、繰り返しを開始するまたは反復なし (既定値) の場合は-1。*(数)*
+  * **パターン**: シーケンスの継続時間 (ミリ秒単位) をオンまたはオフ、バイブします。*(数字の配列)*
+  * **repeat**: 省略可能な配列のインデックスのパターン （でしょう） を繰り返す取り消されるまで、繰り返しを開始するまたは反復なし (既定値) の場合は-1。*(数)*
 
 ### 例
 
