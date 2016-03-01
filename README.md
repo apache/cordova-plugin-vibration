@@ -17,6 +17,8 @@
 #         under the License.
 -->
 
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-vibration.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-vibration)
+
 # cordova-plugin-vibration
 
 This plugin aligns with the W3C vibration specification http://www.w3.org/TR/vibration/
