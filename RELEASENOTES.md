@@ -20,6 +20,9 @@
 -->
 # Release Notes
 
+### 2.1.1 (Apr 15, 2016)
+* CB-10636 Add `JSHint` for plugins
+
 ### 2.1.0 (Jan 15, 2016)
 * CB-9365 Add support for 'vibrateWithPattern' to **Windows Phone 8.1 / Windows 10**
 
