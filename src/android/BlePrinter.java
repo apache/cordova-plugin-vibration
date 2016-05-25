@@ -16,25 +16,26 @@
        specific language governing permissions and limitations
        under the License.
 */
-package org.apache.cordova.vibration;
+package org.apache.cordova.bluetooth.BlePrinter;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.content.Context;
-import android.os.Vibrator;
-import android.media.AudioManager;
+import com.citizen.jpos.command.CPCLConst;
+import com.citizen.jpos.printer.CPCLPrinter;
+import com.citizen.jpos.command.ESCPOSConst;
 
 /**
  * This class provides access to vibration on the device.
  */
-public class Vibration extends CordovaPlugin {
+public class BlePrinter extends CordovaPlugin {
 
     /**
      * Constructor.
      */
-    public Vibration() {
+    public BlePrinter() {
     }
 
     /**
@@ -46,10 +47,10 @@ public class Vibration extends CordovaPlugin {
      * @return                  True when the action was valid, false otherwise.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("vibrate")) {
-            this.vibrate(args.getLong(0));
+        if (action.equals("isConnected")) {
+            this.isConnected();
         }
-        else if (action.equals("vibrateWithPattern")) {
+        else if (action.equals("printText")) {
             JSONArray pattern = args.getJSONArray(0);
             int repeat = args.getInt(1);
             //add a 0 at the beginning of pattern to align with w3c
@@ -58,10 +59,7 @@ public class Vibration extends CordovaPlugin {
             for (int i = 0; i < pattern.length(); i++) {
                 patternArray[i+1] = pattern.getLong(i);
             }
-            this.vibrateWithPattern(patternArray, repeat);
-        }
-        else if (action.equals("cancelVibration")) {
-            this.cancelVibration();
+            this.printText(patternArray);
         }
         else {
             return false;
@@ -77,57 +75,17 @@ public class Vibration extends CordovaPlugin {
     // LOCAL METHODS
     //--------------------------------------------------------------------------
 
-    /**
-     * Vibrates the device for a given amount of time.
-     *
-     * @param time      Time to vibrate in ms.
-     */
-    public void vibrate(long time) {
-        // Start the vibration, 0 defaults to half a second.
-        if (time == 0) {
-            time = 500;
-        }
-        AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
-        if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
-            Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-            vibrator.vibrate(time);
-        }
+
+    public void isConnected() {
+        // Manage connection checking here
+       callbackContext.success();
     }
 
-    /**
-     * Vibrates the device with a given pattern.
-     *
-     * @param pattern     Pattern with which to vibrate the device.
-     *                    Pass in an array of longs that
-     *                    are the durations for which to
-     *                    turn on or off the vibrator in
-     *                    milliseconds. The first value
-     *                    indicates the number of milliseconds
-     *                    to wait before turning the vibrator
-     *                    on. The next value indicates the
-     *                    number of milliseconds for which
-     *                    to keep the vibrator on before
-     *                    turning it off. Subsequent values
-     *                    alternate between durations in
-     *                    milliseconds to turn the vibrator
-     *                    off or to turn the vibrator on.
-     *
-     * @param repeat      Optional index into the pattern array at which
-     *                    to start repeating, or -1 for no repetition (default).
-     */
-    public void vibrateWithPattern(long[] pattern, int repeat) {
-        AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
-        if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
-            Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-            vibrator.vibrate(pattern, repeat);
-        }
+
+    public void printText(String deviceid, long[] pattern) {
+       // Manage printing here
+	   callbackContext.success();
     }
 
-    /**
-     * Immediately cancels any currently running vibration.
-     */
-    public void cancelVibration() {
-        Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.cancel();
-    }
+
 }
