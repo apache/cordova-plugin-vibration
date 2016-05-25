@@ -1,38 +1,25 @@
 {
-  "name": "cordova-plugin-vibration",
-  "version": "2.1.2-dev",
-  "description": "Cordova Vibration Plugin",
+  "name": "cordova-plugin-citizen-cmp20",
+  "version": "1.0.0",
+  "description": "Citizen Blutooth Printer",
   "cordova": {
-    "id": "cordova-plugin-vibration",
+    "id": "cordova-plugin-citizen-cmp20",
     "platforms": [
-      "firefoxos",
-      "wp7",
-      "wp8",
-      "android",
-      "amazon-fireos",
-      "ubuntu",
-      "ios",
-      "blackberry10",
-      "tizen"
+     
+      "android"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/apache/cordova-plugin-vibration"
+    "url": "https://github.com/Vishnuraj910/cordova-plugin-citizen-cmp20"
   },
   "keywords": [
     "cordova",
-    "vibration",
-    "ecosystem:cordova",
-    "cordova-firefoxos",
-    "cordova-wp7",
-    "cordova-wp8",
+   "bluetooth",
+   "printer",
+   "citizen",
     "cordova-android",
-    "cordova-amazon-fireos",
-    "cordova-ubuntu",
-    "cordova-ios",
-    "cordova-blackberry10",
-    "cordova-tizen"
+
   ],
   "scripts": {
     "test": "npm run jshint",
