@@ -20,136 +20,37 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="cordova-plugin-vibration"
-    version="2.1.2-dev">
+    id="cordova-plugin-citizen-cmp20"
+    version="1.0.0">
 
-    <name>Vibration</name>
-    <description>Cordova Vibration Plugin</description>
+    <name>Citizen Blutooth Printer</name>
+    <description>Cordova Citizen Blutooth Printer Plugin</description>
     <license>Apache 2.0</license>
-    <keywords>cordova,vibration</keywords>
+    <keywords>cordova,bluetooth,printer</keywords>
     <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-vibration.git</repo>
     <issue>https://issues.apache.org/jira/browse/CB/component/12320639</issue>
 
-    <js-module src="www/vibration.js" name="notification">
-        <merges target="navigator.notification" />
+    <js-module src="www/ble-printer.js" name="blePrinter">
+        <merges target="navigator.blePrinter" />
         <merges target="navigator" />
     </js-module>
 
-    <!-- firefoxos -->
-    <platform name="firefoxos">
-        <config-file target="www/config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="firefoxos-package" value="Vibration" />
-            </feature>
-        </config-file>                                         
-        <js-module src="src/firefoxos/VibrationProxy.js" name="VibrationProxy">
-            <runs />
-        </js-module>
-    </platform>
-
-    <!-- wp7 -->
-    <platform name="wp7">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="wp-package" value="Vibration"/>
-            </feature>
-        </config-file>
-
-        <source-file src="src/wp/Vibration.cs" />
-    </platform>
-
-    <!-- wp8 -->
-    <platform name="wp8">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="wp-package" value="Vibration"/>
-            </feature>
-        </config-file>
-
-        <source-file src="src/wp/Vibration.cs" />
-    </platform>
-
-    <!-- windows -->
-    <platform name="windows">
-        <js-module src="src/windows/VibrationProxy.js" name="VibrationProxy">
-            <runs />
-        </js-module>
-
-        <framework src="src/windows/Vibration/Vibration.csproj" target="phone"
-            type="projectReference" custom="true" versions="&lt;10.0.0" />
-    </platform>
+   
 
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="android-package" value="org.apache.cordova.vibration.Vibration"/>
+            <feature name="Citizen Blutooth Printer">
+                <param name="android-package" value="org.apache.cordova.bluetooth.BlePrinter"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
-
+        <source-file src="src/android/BlePrinter.java" target-dir="src/org/apache/cordova/bleprinter" />
+		<source-file src="src/android/Citizen_Android_1071.jar" target-dir="libs" />
         <config-file target="AndroidManifest.xml" parent="/manifest">
-            <uses-permission android:name="android.permission.VIBRATE"/>
+            <uses-permission android:name="android.permission.BLUETOOTH"/>
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
         </config-file>
     </platform>
 
-    <!-- amazon-fireos -->
-    <platform name="amazon-fireos">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="android-package" value="org.apache.cordova.vibration.Vibration"/>
-            </feature>
-        </config-file>
-
-        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
-
-        <config-file target="AndroidManifest.xml" parent="/manifest">
-            <uses-permission android:name="android.permission.VIBRATE"/>
-        </config-file>
-    </platform>
-    
-    <!-- ubuntu -->
-    <platform name="ubuntu">
-        <header-file src="src/ubuntu/vibration.h" />
-        <source-file src="src/ubuntu/vibration.cpp" />
-    </platform>
-
-    <!-- ios -->
-    <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="ios-package" value="CDVVibration"/>
-            </feature>
-        </config-file>
-        <header-file src="src/ios/CDVVibration.h" />
-	    <source-file src="src/ios/CDVVibration.m" />
-
-		<framework src="AudioToolbox.framework" weak="true" />
-    </platform>
-	
-    <!-- blackberry10 -->
-    <platform name="blackberry10">
-        <source-file src="src/blackberry10/index.js" target-dir="Vibration"/>
-        <lib-file src="src/blackberry10/native/device/libVibration.so" arch="device" />
-        <lib-file src="src/blackberry10/native/simulator/libVibration.so" arch="simulator" />
-        <config-file target="www/config.xml" parent="/widget">
-            <feature name="Vibration" value="Vibration" />
-        </config-file>
-    </platform>
-
-    <!-- browser -->
-    <platform name="browser">
-        <js-module src="src/browser/Vibration.js" name="Vibration">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
-    </platform>
-
-    <!-- tizen -->
-    <platform name="tizen">
-        <js-module src="src/tizen/VibrationProxy.js" name="VibrationProxy">
-            <runs />
-        </js-module>
-    </platform>
 </plugin>
