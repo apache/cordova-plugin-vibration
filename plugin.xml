@@ -21,7 +21,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-vibration"
-    version="2.1.2">
+    version="2.1.3-dev">
 
     <name>Vibration</name>
     <description>Cordova Vibration Plugin</description>
