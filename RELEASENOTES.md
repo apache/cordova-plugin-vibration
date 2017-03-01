@@ -20,6 +20,12 @@
 -->
 # Release Notes
 
+### 2.1.4 (Feb 28, 2017)
+* fix `vibrateWithPattern`, function doesn't update the pattern variable reference
+* [CB-12369](https://issues.apache.org/jira/browse/CB-12369) Add plugin typings from `DefinitelyTyped` 
+* [CB-12363](https://issues.apache.org/jira/browse/CB-12363) Added build badges for **iOS 9.3** and **iOS 10.0** 
+* [CB-12230](https://issues.apache.org/jira/browse/CB-12230) Removed **Windows 8.1** build badges
+
 ### 2.1.3 (Dec 07, 2016)
 * [CB-12224](https://issues.apache.org/jira/browse/CB-12224) Updated version and RELEASENOTES.md for release 2.1.3
 * [CB-11917](https://issues.apache.org/jira/browse/CB-11917) - Remove pull request template checklist item: "iCLA has been submitted…"
