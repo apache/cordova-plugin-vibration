@@ -108,7 +108,7 @@ module.exports = {
      */
     vibrateWithPattern: function(pattern, repeat) {
         repeat = (typeof repeat !== "undefined") ? repeat : -1;
-        var pattern = pattern.unshift(0); //add a 0 at beginning for backwards compatibility from w3c spec
+        pattern = pattern.unshift(0); //add a 0 at beginning for backwards compatibility from w3c spec
         exec(null, null, "Vibration", "vibrateWithPattern", [pattern, repeat]);
     },
 
