@@ -20,6 +20,10 @@
 -->
 # Release Notes
 
+### 2.1.5 (Apr 27, 2017)
+* [CB-12622](https://issues.apache.org/jira/browse/CB-12622) Added **Android 6.0** build badge to `README`
+* [CB-12685](https://issues.apache.org/jira/browse/CB-12685) added `package.json` to tests folder
+
 ### 2.1.4 (Feb 28, 2017)
 * fix `vibrateWithPattern`, function doesn't update the pattern variable reference
 * [CB-12369](https://issues.apache.org/jira/browse/CB-12369) Add plugin typings from `DefinitelyTyped` 
