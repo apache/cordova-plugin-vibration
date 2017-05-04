@@ -1,0 +1,75 @@
+/*
+       Licensed to the Apache Software Foundation (ASF) under one
+       or more contributor license agreements.  See the NOTICE file
+       distributed with this work for additional information
+       regarding copyright ownership.  The ASF licenses this file
+       to you under the Apache License, Version 2.0 (the
+       "License"); you may not use this file except in compliance
+       with the License.  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing,
+       software distributed under the License is distributed on an
+       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+       KIND, either express or implied.  See the License for the
+       specific language governing permissions and limitations
+       under the License.
+*/
+
+def getConfigPreference(name) {
+    name = name.toLowerCase()
+    def xml = file("res/xml/config.xml").getText()
+    // Disable namespace awareness since Cordova doesn't use them properly
+    def root = new XmlParser(false, false).parseText(xml)
+
+    def ret, defaultValue
+    root.preference.each { it ->
+        def attrName = it.attribute("name")
+        if (attrName && attrName.toLowerCase() == name) {
+            if (it.attribute('default') != null) {
+                defaultValue = it.attribute('default');
+            } else {
+                ret = it.attribute("value")
+            }
+        }
+    }
+    return ret ? ret : defaultValue
+}
+
+if (!project.hasProperty('androidThings')) {
+    ext.androidThings = getConfigPreference("androidThings").toBoolean();
+}
+println androidThings
+
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+if (true) {
+    // Apply values after project's build-extras.gradle
+    cdvPluginPostBuildExtras.add({
+        android {
+            compileSdkVersion 25
+            buildToolsVersion "25.0.0"
+
+            defaultConfig {
+                minSdkVersion 24
+                targetSdkVersion 25
+
+                jackOptions {
+                    enabled true
+                }
+
+            }
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+        }
+
+        dependencies {
+            compile 'com.google.android.things.contrib:driver-pwmspeaker:0.1'
+        }
+    })
+}

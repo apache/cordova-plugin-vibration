@@ -23,13 +23,30 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Vibrator;
 import android.media.AudioManager;
+import android.content.res.Resources;
+
+import com.google.android.things.contrib.driver.pwmspeaker.Speaker;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.util.Log;
+import java.io.IOException;
 
 /**
  * This class provides access to vibration on the device.
  */
 public class Vibration extends CordovaPlugin {
+    private static final String TAG = "Vibration";
+    private static final double REST = -1;
+    private static final double G4 = 391.995;
+    private static final double E4_FLAT = 311.127;
+
+    private Speaker mSpeaker;
+    private HandlerThread mHandlerThread;
+    private Handler mHandler;
+    long soundTime;
 
     /**
      * Constructor.
@@ -87,12 +104,54 @@ public class Vibration extends CordovaPlugin {
         if (time == 0) {
             time = 500;
         }
-        AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
-        if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
-            Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-            vibrator.vibrate(time);
+
+        soundTime = time;
+
+        if (true) {
+            try {
+                mSpeaker = new Speaker(BoardDefaults.getPwmPin());
+                mSpeaker.stop(); // in case the PWM pin was enabled already
+            } catch (IOException e) {
+                Log.e(TAG, "Error initializing speaker");
+                return; // don't initilize the handler
+            }
+
+            mHandlerThread = new HandlerThread("pwm-playback");
+            mHandlerThread.start();
+            mHandler = new Handler(mHandlerThread.getLooper());
+            mHandler.post(mPlaybackRunnable);
+        } else {
+            AudioManager manager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
+            if (manager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+                Vibrator vibrator = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(time);
+            }
         }
     }
+
+    private Runnable mPlaybackRunnable = new Runnable() {
+
+        private double note = G4;
+
+        @Override
+        public void run() {
+            if (mSpeaker == null) {
+                return;
+            }
+
+            try {
+                if (note > 0) {
+                    mSpeaker.play(G4);
+                    note = REST;
+                } else {
+                    mSpeaker.stop();
+                }
+                mHandler.postDelayed(this, soundTime);
+            } catch (IOException e) {
+                Log.e(TAG, "Error playing speaker", e);
+            }
+        }
+    };
 
     /**
      * Vibrates the device with a given pattern.
