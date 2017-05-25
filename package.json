@@ -21,6 +21,9 @@
     "type": "git",
     "url": "https://github.com/apache/cordova-plugin-vibration"
   },
+  "bugs": {
+    "url": "https://issues.apache.org/jira/browse/CB"
+  },
   "keywords": [
     "cordova",
     "vibration",
