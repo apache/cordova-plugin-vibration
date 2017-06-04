@@ -27,6 +27,8 @@ description: Vibrate the device.
 
 # cordova-plugin-vibration
 
+Dummy Entry
+
 This plugin aligns with the W3C vibration specification http://www.w3.org/TR/vibration/
 
 This plugin provides a way to vibrate the device.
