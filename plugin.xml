@@ -81,13 +81,19 @@
 
     <!-- android -->
     <platform name="android">
+        <preference name="ANDROID_THINGS" default="false"/>
         <config-file target="res/xml/config.xml" parent="/*">
+            <preference name="androidThings" value="$ANDROID_THINGS"/>
             <feature name="Vibration">
                 <param name="android-package" value="org.apache.cordova.vibration.Vibration"/>
             </feature>
         </config-file>
 
         <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
+        <source-file src="src/android/BoardDefaults.java" target-dir="src/org/apache/cordova/vibration" />
+
+        <!-- Maybe need add a new platform for preventing unp library to download by default-->
+        <framework src="src/android/androidThings.gradle" custom="true" type="gradleReference"/>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.VIBRATE"/>
