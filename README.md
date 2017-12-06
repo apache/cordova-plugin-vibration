@@ -59,11 +59,16 @@ navigator.notification.vibrate
 - Windows Phone 7 and 8
 - Windows (Windows Phone 8.1 devices only)
 
-navigator.notification.vibrateWithPattern<br />
-navigator.notification.cancelVibration
+navigator.notification.vibrateWithPattern
 - Android
 - Windows Phone 8
 - Windows (Windows Phone 8.1 devices only)
+
+navigator.notification.cancelVibration
+- Windows Phone 8
+- Windows (Windows Phone 8.1 devices only)
+
+The Android webview (API level 19 and up) supports the [W3C Vibration API](https://www.w3.org/TR/vibration/) natively and therefore, the Android specific implementation of this plugin has been dropped.
 
 ## vibrate (recommended)
 
