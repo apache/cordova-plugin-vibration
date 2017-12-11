@@ -77,5 +77,5 @@ module.exports = {
         } else { exec(null, null, 'Vibration', 'cancelVibration', []); }
 
         return true;
-    },  
+    }
 };
