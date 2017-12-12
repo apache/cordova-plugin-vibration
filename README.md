@@ -89,7 +89,7 @@ or
 
     navigator.vibrate(3000); // 3000 is ignored
 
-#### Windows and Blackberry Quirks
+#### Windows Quirks
 
 - __time__: Max time is 5000ms (5s) and min time is 1ms
 
