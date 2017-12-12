@@ -77,40 +77,5 @@ module.exports = {
         } else { exec(null, null, 'Vibration', 'cancelVibration', []); }
 
         return true;
-    },
-
-    /**
-     * Vibrates the device with a given pattern.
-     *
-     * @param {Array of Integer} pattern    Pattern with which to vibrate the device.
-     *                                      Pass in an array of integers that
-     *                                      are the durations for which to
-     *                                      turn on or off the vibrator in
-     *                                      milliseconds. The first value
-     *                                      indicates the number of milliseconds
-     *                                      to wait before turning the vibrator
-     *                                      on. The next value indicates the
-     *                                      number of milliseconds for which
-     *                                      to keep the vibrator on before
-     *                                      turning it off. Subsequent values
-     *                                      alternate between durations in
-     *                                      milliseconds to turn the vibrator
-     *                                      off or to turn the vibrator on.
-     *
-     * @param {Integer} repeat              Optional index into the pattern array at which
-     *                                      to start repeating (will repeat until canceled),
-     *                                      or -1 for no repetition (default).
-     */
-    vibrateWithPattern: function (pattern, repeat) {
-        repeat = (typeof repeat !== 'undefined') ? repeat : -1;
-        pattern = pattern.unshift(0); // add a 0 at beginning for backwards compatibility from w3c spec
-        exec(null, null, 'Vibration', 'vibrateWithPattern', [pattern, repeat]);
-    },
-
-    /**
-     * Immediately cancels any currently running vibration.
-     */
-    cancelVibration: function () {
-        exec(null, null, 'Vibration', 'cancelVibration', []);
     }
 };

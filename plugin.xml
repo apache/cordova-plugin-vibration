@@ -21,7 +21,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-vibration"
-    version="2.1.7-dev">
+    version="3.0.0-dev">
 
     <name>Vibration</name>
     <description>Cordova Vibration Plugin</description>
@@ -45,6 +45,10 @@
         <js-module src="src/firefoxos/VibrationProxy.js" name="VibrationProxy">
             <runs />
         </js-module>
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
     </platform>
 
     <!-- wp7 -->
@@ -54,6 +58,10 @@
                 <param name="wp-package" value="Vibration"/>
             </feature>
         </config-file>
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
 
         <source-file src="src/wp/Vibration.cs" />
     </platform>
@@ -65,6 +73,10 @@
                 <param name="wp-package" value="Vibration"/>
             </feature>
         </config-file>
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
 
         <source-file src="src/wp/Vibration.cs" />
     </platform>
@@ -74,6 +86,10 @@
         <js-module src="src/windows/VibrationProxy.js" name="VibrationProxy">
             <runs />
         </js-module>
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
 
         <framework src="src/windows/Vibration/Vibration.csproj" target="phone"
             type="projectReference" custom="true" versions="&lt;10.0.0" />
@@ -81,14 +97,6 @@
 
     <!-- android -->
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="android-package" value="org.apache.cordova.vibration.Vibration"/>
-            </feature>
-        </config-file>
-
-        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
-
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.VIBRATE"/>
         </config-file>
@@ -101,6 +109,10 @@
                 <param name="android-package" value="org.apache.cordova.vibration.Vibration"/>
             </feature>
         </config-file>
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
 
         <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
 
@@ -113,6 +125,10 @@
     <platform name="ubuntu">
         <header-file src="src/ubuntu/vibration.h" />
         <source-file src="src/ubuntu/vibration.cpp" />
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
     </platform>
 
     <!-- ios -->
@@ -124,6 +140,10 @@
         </config-file>
         <header-file src="src/ios/CDVVibration.h" />
 	    <source-file src="src/ios/CDVVibration.m" />
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
 
 		<framework src="AudioToolbox.framework" weak="true" />
     </platform>
@@ -136,11 +156,19 @@
         <config-file target="www/config.xml" parent="/widget">
             <feature name="Vibration" value="Vibration" />
         </config-file>
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
     </platform>
 
     <!-- browser -->
     <platform name="browser">
         <js-module src="src/browser/Vibration.js" name="Vibration">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
+        <js-module src="www/vibration.js" name="notification">
             <merges target="navigator.notification" />
             <merges target="navigator" />
         </js-module>
@@ -150,6 +178,10 @@
     <platform name="tizen">
         <js-module src="src/tizen/VibrationProxy.js" name="VibrationProxy">
             <runs />
+        </js-module>
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
         </js-module>
     </platform>
 </plugin>

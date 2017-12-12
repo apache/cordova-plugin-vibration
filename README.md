@@ -59,13 +59,10 @@ navigator.notification.vibrate
 - Windows Phone 7 and 8
 - Windows (Windows Phone 8.1 devices only)
 
-navigator.notification.vibrateWithPattern<br />
-navigator.notification.cancelVibration
-- Android
-- Windows Phone 8
-- Windows (Windows Phone 8.1 devices only)
 
-## vibrate (recommended)
+The Android webview (API level 19 and up) supports the [W3C Vibration API](https://www.w3.org/TR/vibration/) natively and therefore, the Android specific implementation of this plugin has been dropped.
+
+## vibrate
 
 This function has three different functionalities based on parameters passed to it.
 
@@ -138,52 +135,6 @@ or
 
 Passing in a parameter of 0, an empty array, or an array with one element of value 0 will cancel any vibrations.
 
-## *notification.vibrate (deprecated)
 
-Vibrates the device for a given amount of time.
 
-    navigator.notification.vibrate(time)
 
-- __time__: Milliseconds to vibrate the device. _(Number)_
-
-### Example
-
-    // Vibrate for 2.5 seconds
-    navigator.notification.vibrate(2500);
-
-### iOS Quirks
-
-- __time__: Ignores the specified time and vibrates for a pre-set amount of time.
-
-        navigator.notification.vibrate();
-        navigator.notification.vibrate(2500);   // 2500 is ignored
-
-## *notification.vibrateWithPattern (deprecated)
-
-Vibrates the device with a given pattern.
-
-    navigator.notification.vibrateWithPattern(pattern, repeat)
-
-- __pattern__: Sequence of durations (in milliseconds) for which to turn on or off the vibrator. _(Array of Numbers)_
-- __repeat__: Optional index into the pattern array at which to start repeating (will repeat until canceled), or -1 for no repetition (default). _(Number)_
-
-### Example
-
-    // Immediately start vibrating
-    // vibrate for 100ms,
-    // wait for 100ms,
-    // vibrate for 200ms,
-    // wait for 100ms,
-    // vibrate for 400ms,
-    // wait for 100ms,
-    // vibrate for 800ms,
-    // (do not repeat)
-    navigator.notification.vibrateWithPattern([0, 100, 100, 200, 100, 400, 100, 800]);
-
-## *notification.cancelVibration (deprecated)
-
-Immediately cancels any currently running vibration.
-
-    navigator.notification.cancelVibration()
-
-*Note - due to alignment with w3c spec, the starred methods will be phased out
