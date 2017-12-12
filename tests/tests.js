@@ -21,19 +21,6 @@
 
 /* eslint-env jasmine */
 
-exports.defineAutoTests = function () {
-
-    describe('Vibration (navigator.notification.vibrate)', function () {
-        it('navigator.notification should exist with vibrate function', function () {
-            expect(navigator.notification).toBeDefined();
-            expect(typeof navigator.notification.vibrate).toBeDefined();
-            expect(typeof navigator.notification.vibrate).toBe('function');
-
-            if (cordova.platformId === 'browser') { expect(navigator.notification.vibrate(0)).toBe(false); } // eslint-disable-line no-undef
-        });
-    });
-};
-
 exports.defineManualTests = function (contentEl, createActionButton) {
     var logMessage = function (message, color) {
         var log = document.getElementById('info');

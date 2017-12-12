@@ -54,6 +54,20 @@
 		<framework src="AudioToolbox.framework" weak="true" />
     </platform>
 
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/VibrationProxy.js" name="VibrationProxy">
+            <runs />
+        </js-module>
+        <js-module src="www/vibration.js" name="notification">
+            <merges target="navigator.notification" />
+            <merges target="navigator" />
+        </js-module>
+
+        <framework src="src/windows/Vibration/Vibration.csproj" target="phone"
+            type="projectReference" custom="true" versions="&lt;10.0.0" />
+    </platform>
+
     <!-- browser -->
     <platform name="browser">
         <js-module src="src/browser/Vibration.js" name="Vibration">

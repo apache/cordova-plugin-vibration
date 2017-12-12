@@ -53,6 +53,7 @@ navigator.vibrate
 
 - Android
 - iOS
+- Windows
 
 
 The Android webview (API level 19 and up) supports the [W3C Vibration API](https://www.w3.org/TR/vibration/) natively and therefore, the Android specific implementation of this plugin has been dropped.
@@ -88,7 +89,13 @@ or
 
     navigator.vibrate(3000); // 3000 is ignored
 
-### Vibrate with a pattern (Android only)
+#### Windows and Blackberry Quirks
+
+- __time__: Max time is 5000ms (5s) and min time is 1ms
+
+    navigator.vibrate(8000); // will be truncated to 5000
+
+### Vibrate with a pattern (Android and Windows only)
 Vibrates the device with a given pattern
 
     navigator.vibrate(pattern);
