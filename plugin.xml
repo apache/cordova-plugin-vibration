@@ -30,100 +30,11 @@
     <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-vibration.git</repo>
     <issue>https://issues.apache.org/jira/browse/CB/component/12320639</issue>
 
-    <!-- firefoxos -->
-    <platform name="firefoxos">
-        <config-file target="www/config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="firefoxos-package" value="Vibration" />
-            </feature>
-        </config-file>
-        <js-module src="src/firefoxos/VibrationProxy.js" name="VibrationProxy">
-            <runs />
-        </js-module>
-        <js-module src="www/vibration.js" name="notification">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
-    </platform>
-
-    <!-- wp7 -->
-    <platform name="wp7">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="wp-package" value="Vibration"/>
-            </feature>
-        </config-file>
-        <js-module src="www/vibration.js" name="notification">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
-
-        <source-file src="src/wp/Vibration.cs" />
-    </platform>
-
-    <!-- wp8 -->
-    <platform name="wp8">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="wp-package" value="Vibration"/>
-            </feature>
-        </config-file>
-        <js-module src="www/vibration.js" name="notification">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
-
-        <source-file src="src/wp/Vibration.cs" />
-    </platform>
-
-    <!-- windows -->
-    <platform name="windows">
-        <js-module src="src/windows/VibrationProxy.js" name="VibrationProxy">
-            <runs />
-        </js-module>
-        <js-module src="www/vibration.js" name="notification">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
-
-        <framework src="src/windows/Vibration/Vibration.csproj" target="phone"
-            type="projectReference" custom="true" versions="&lt;10.0.0" />
-    </platform>
-
     <!-- android -->
     <platform name="android">
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.VIBRATE"/>
         </config-file>
-    </platform>
-
-    <!-- amazon-fireos -->
-    <platform name="amazon-fireos">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Vibration">
-                <param name="android-package" value="org.apache.cordova.vibration.Vibration"/>
-            </feature>
-        </config-file>
-        <js-module src="www/vibration.js" name="notification">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
-
-        <source-file src="src/android/Vibration.java" target-dir="src/org/apache/cordova/vibration" />
-
-        <config-file target="AndroidManifest.xml" parent="/manifest">
-            <uses-permission android:name="android.permission.VIBRATE"/>
-        </config-file>
-    </platform>
-
-    <!-- ubuntu -->
-    <platform name="ubuntu">
-        <header-file src="src/ubuntu/vibration.h" />
-        <source-file src="src/ubuntu/vibration.cpp" />
-        <js-module src="www/vibration.js" name="notification">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
     </platform>
 
     <!-- ios -->
@@ -143,20 +54,6 @@
 		<framework src="AudioToolbox.framework" weak="true" />
     </platform>
 
-    <!-- blackberry10 -->
-    <platform name="blackberry10">
-        <source-file src="src/blackberry10/index.js" target-dir="Vibration"/>
-        <lib-file src="src/blackberry10/native/device/libVibration.so" arch="device" />
-        <lib-file src="src/blackberry10/native/simulator/libVibration.so" arch="simulator" />
-        <config-file target="www/config.xml" parent="/widget">
-            <feature name="Vibration" value="Vibration" />
-        </config-file>
-        <js-module src="www/vibration.js" name="notification">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
-    </platform>
-
     <!-- browser -->
     <platform name="browser">
         <js-module src="src/browser/Vibration.js" name="Vibration">
@@ -169,14 +66,4 @@
         </js-module>
     </platform>
 
-    <!-- tizen -->
-    <platform name="tizen">
-        <js-module src="src/tizen/VibrationProxy.js" name="VibrationProxy">
-            <runs />
-        </js-module>
-        <js-module src="www/vibration.js" name="notification">
-            <merges target="navigator.notification" />
-            <merges target="navigator" />
-        </js-module>
-    </platform>
 </plugin>
