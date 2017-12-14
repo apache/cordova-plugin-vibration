@@ -49,15 +49,11 @@ Although in the global scope, they are not available until after the `deviceread
 
 ## Supported Platforms
 
-navigator.vibrate,<br />
-navigator.notification.vibrate
-- Amazon Fire OS
+navigator.vibrate
+
 - Android
-- BlackBerry 10
-- Firefox OS
 - iOS
-- Windows Phone 7 and 8
-- Windows (Windows Phone 8.1 devices only)
+- Windows
 
 
 The Android webview (API level 19 and up) supports the [W3C Vibration API](https://www.w3.org/TR/vibration/) natively and therefore, the Android specific implementation of this plugin has been dropped.
@@ -93,7 +89,7 @@ or
 
     navigator.vibrate(3000); // 3000 is ignored
 
-#### Windows and Blackberry Quirks
+#### Windows Quirks
 
 - __time__: Max time is 5000ms (5s) and min time is 1ms
 
@@ -115,9 +111,6 @@ Vibrates the device with a given pattern
     // Vibrate for 5 seconds
     navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
 
-#### Windows Phone 8 Quirks
-
-- vibrate(pattern) falls back on vibrate with default duration
 
 ### Cancel vibration (not supported in iOS)
 
@@ -134,7 +127,4 @@ or
     navigator.vibrate([0])
 
 Passing in a parameter of 0, an empty array, or an array with one element of value 0 will cancel any vibrations.
-
-
-
 

@@ -6,15 +6,9 @@
   "cordova": {
     "id": "cordova-plugin-vibration",
     "platforms": [
-      "firefoxos",
-      "wp7",
-      "wp8",
       "android",
-      "amazon-fireos",
-      "ubuntu",
       "ios",
-      "blackberry10",
-      "tizen"
+      "windows"
     ]
   },
   "repository": {
@@ -28,15 +22,9 @@
     "cordova",
     "vibration",
     "ecosystem:cordova",
-    "cordova-firefoxos",
-    "cordova-wp7",
-    "cordova-wp8",
     "cordova-android",
-    "cordova-amazon-fireos",
-    "cordova-ubuntu",
     "cordova-ios",
-    "cordova-blackberry10",
-    "cordova-tizen"
+    "cordova-windows"
   ],
   "scripts": {
     "test": "npm run eslint",
