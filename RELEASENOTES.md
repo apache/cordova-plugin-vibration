@@ -20,6 +20,11 @@
 -->
 # Release Notes
 
+### 3.0.0 (Dec 15, 2017)
+* [CB-13666](https://issues.apache.org/jira/browse/CB-13666) : Removed deprecated platforms
+* Removed deprecated components and bumped version
+* [CB-13045](https://issues.apache.org/jira/browse/CB-13045) Removed **Android** implementation and Updated `README`
+
 ### 2.1.6 (Nov 06, 2017)
 * [CB-12895](https://issues.apache.org/jira/browse/CB-12895) added `eslint` and removed `jshint`
 * [CB-12847](https://issues.apache.org/jira/browse/CB-12847) added `bugs` entry to `package.json`.
