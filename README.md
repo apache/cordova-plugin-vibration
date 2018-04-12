@@ -83,6 +83,11 @@ or
     // Vibrate for 3 seconds
     navigator.vibrate([3000]);
 
+### Android Quirks
+
+Calls to `navigator.vibrate` will immediately return `false` if user hasn't tapped on the frame or any embedded frame yet. Please checkout https://issues.apache.org/jira/browse/CB-14022 for more information.
+
+
 #### iOS Quirks
 
 - __time__: Ignores the specified time and vibrates for a pre-set amount of time.
@@ -127,4 +132,3 @@ or
     navigator.vibrate([0])
 
 Passing in a parameter of 0, an empty array, or an array with one element of value 0 will cancel any vibrations.
-
