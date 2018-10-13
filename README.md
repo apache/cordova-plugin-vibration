@@ -34,15 +34,16 @@ This plugin provides a way to vibrate the device.
 This plugin defines global objects including `navigator.vibrate`.
 
 Although in the global scope, they are not available until after the `deviceready` event.
-
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-        console.log(navigator.vibrate);
-    }
-
+```javascript
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    console.log(navigator.vibrate);
+}
+```
 ## Installation
-
-    cordova plugin add cordova-plugin-vibration
+```console
+cordova plugin add cordova-plugin-vibration
+```
 
 ## Supported Platforms
 
@@ -63,23 +64,24 @@ This function has three different functionalities based on parameters passed to 
 
 Vibrates the device for a given amount of time.
 
-    navigator.vibrate(time)
-
+```javascript
+navigator.vibrate(time)
+```
 or
-
-    navigator.vibrate([time])
-
+```javascript
+navigator.vibrate([time])
+```
 
 -__time__: Milliseconds to vibrate the device. _(Number)_
 
 #### Example
+```javascript
+// Vibrate for 3 seconds
+navigator.vibrate(3000);
 
-    // Vibrate for 3 seconds
-    navigator.vibrate(3000);
-
-    // Vibrate for 3 seconds
-    navigator.vibrate([3000]);
-
+// Vibrate for 3 seconds
+navigator.vibrate([3000]);
+```
 ### Android Quirks
 
 Calls to `navigator.vibrate` will immediately return `false` if user hasn't tapped on the frame or any embedded frame yet. Please checkout https://issues.apache.org/jira/browse/CB-14022 for more information.
@@ -88,44 +90,47 @@ Calls to `navigator.vibrate` will immediately return `false` if user hasn't tapp
 #### iOS Quirks
 
 - __time__: Ignores the specified time and vibrates for a pre-set amount of time.
-
-    navigator.vibrate(3000); // 3000 is ignored
-
+```javascript
+navigator.vibrate(3000); // 3000 is ignored
+```
 #### Windows Quirks
 
 - __time__: Max time is 5000ms (5s) and min time is 1ms
 
-    navigator.vibrate(8000); // will be truncated to 5000
+```javascript
+navigator.vibrate(8000); // will be truncated to 5000
+```
 
 ### Vibrate with a pattern (Android and Windows only)
 Vibrates the device with a given pattern
-
-    navigator.vibrate(pattern);
-
+```javascript
+navigator.vibrate(pattern);
+```
 - __pattern__: Sequence of durations (in milliseconds) for which to turn on or off the vibrator. _(Array of Numbers)_
 
 #### Example
 
-    // Vibrate for 1 second
-    // Wait for 1 second
-    // Vibrate for 3 seconds
-    // Wait for 1 second
-    // Vibrate for 5 seconds
-    navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
-
+```javascript
+// Vibrate for 1 second
+// Wait for 1 second
+// Vibrate for 3 seconds
+// Wait for 1 second
+// Vibrate for 5 seconds
+navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
+```
 
 ### Cancel vibration (not supported in iOS)
 
 Immediately cancels any currently running vibration.
-
-    navigator.vibrate(0)
-
+```javascript
+navigator.vibrate(0)
+```
 or
-
-    navigator.vibrate([])
-
+```javascript
+navigator.vibrate([])
+```
 or
-
-    navigator.vibrate([0])
-
+```javascript
+navigator.vibrate([0])
+```
 Passing in a parameter of 0, an empty array, or an array with one element of value 0 will cancel any vibrations.
