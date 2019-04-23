@@ -7,10 +7,31 @@ env:
   global:
     - SAUCE_USERNAME=snay
     - TRAVIS_NODE_VERSION=6
+    - ANDROID_API_LEVEL=28
+    - ANDROID_BUILD_TOOLS_VERSION=28.0.3
 
 language: node_js
 node_js:
   - "6"
+
+# yaml anchor/alias: https://medium.com/@tommyvn/travis-yml-dry-with-anchors-8b6a3ac1b027
+_ios: &_ios
+  os: osx
+  osx_image: xcode10.2
+
+_android: &_android
+  language: android
+  os: linux
+  jdk: oraclejdk8
+  android:
+    components:
+      - tools
+      - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+      - android-$ANDROID_API_LEVEL
+    licenses:
+      - 'android-sdk-preview-license-.+'
+      - 'android-sdk-license-.+'
+      - 'google-gdk-license-.+'
 
 matrix:
   include:
@@ -18,44 +39,30 @@ matrix:
     - env: PLATFORM=browser-firefox
     - env: PLATFORM=browser-safari
     - env: PLATFORM=browser-edge
-    - env: PLATFORM=ios-9.3
-      os: osx
-      osx_image: xcode7.3
+
     - env: PLATFORM=ios-10.0
-      os: osx
-      osx_image: xcode7.3
+      <<: *_ios
+    - env: PLATFORM=ios-11.3
+      <<: *_ios
+    - env: PLATFORM=ios-12.0
+      <<: *_ios
+    - env: PLATFORM=ios-12.2
+      <<: *_ios
+
     - env: PLATFORM=android-4.4
-      os: linux
-      language: android
-      jdk: oraclejdk8
-      android:
-        components:
-        - tools
-        - build-tools-26.0.2
+      <<: *_android
     - env: PLATFORM=android-5.1
-      os: linux
-      language: android
-      jdk: oraclejdk8
-      android:
-        components:
-        - tools
-        - build-tools-26.0.2
+      <<: *_android
     - env: PLATFORM=android-6.0
-      os: linux
-      language: android
-      jdk: oraclejdk8
-      android:
-        components:
-        - tools
-        - build-tools-26.0.2
+      <<: *_android
     - env: PLATFORM=android-7.0
-      os: linux
-      language: android
-      jdk: oraclejdk8
-      android:
-        components:
-        - tools
-        - build-tools-26.0.2
+      <<: *_android
+    - env: PLATFORM=android-7.1
+      <<: *_android
+    - env: PLATFORM=android-8.0
+      <<: *_android
+    - env: PLATFORM=android-8.1
+      <<: *_android
 
 before_install:
   # `language: android` has no Node.js installed, therefore we need to install it manually
@@ -63,7 +70,6 @@ before_install:
   - node --version
   - if [[ "$PLATFORM" =~ android ]]; then gradle --version; fi
   - if [[ "$PLATFORM" =~ ios ]]; then npm install -g ios-deploy; fi
-  - if [[ "$PLATFORM" =~ android ]]; then echo y | android update sdk -u --filter android-22,android-23,android-24,android-25,android-26,android-27,android-28; fi
   - npm install -g cordova-paramedic@https://github.com/apache/cordova-paramedic.git
   - npm install -g cordova
 install:
