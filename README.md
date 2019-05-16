@@ -47,7 +47,7 @@ cordova plugin add cordova-plugin-vibration
 ## Supported Platforms
 
 - iOS
-- Windows Phone 8.1
+- Windows Phone
 - Android  
   The Android webview (API level 19 and up) supports the [W3C Vibration API](https://www.w3.org/TR/vibration/) natively, so no Android specific implementation in this plugin is necessary.
 
@@ -89,7 +89,7 @@ navigator.vibrate([3000]);
     navigator.vibrate(3000); // 3000 is ignored
     ```
 
-##### Windows Quirks
+##### Windows Phone Quirks
 
 - __time__: Max time is 5000ms (5s) and min time is 1ms
 
@@ -99,7 +99,9 @@ navigator.vibrate([3000]);
 
 ##### Android Quirks
 
-Calls to `navigator.vibrate` will immediately return `false` if user hasn't tapped on the frame or any embedded frame yet. Please checkout https://issues.apache.org/jira/browse/CB-14022 for more information.
+> Calls to `navigator.vibrate` will immediately return `false` if user hasn't tapped on the frame or any embedded frame yet. 
+
+See https://www.chromestatus.com/feature/5644273861001216
 
 ### Vibrate with a pattern
 
