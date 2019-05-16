@@ -20,9 +20,14 @@
 -->
 # Release Notes
 
+### 3.1.1 (May 16, 2019)
+* Update CI configuration and README ([#80](https://github.com/apache/cordova-plugin-vibration/pull/80), [#77](https://github.com/apache/cordova-plugin-vibration/pull/77), [#69](https://github.com/apache/cordova-plugin-vibration/pull/69), [#68](https://github.com/apache/cordova-plugin-vibration/pull/68))
+* fix(typescript): update types ([#75](https://github.com/apache/cordova-plugin-vibration/pull/75), [#78](https://github.com/apache/cordova-plugin-vibration/pull/78))
+* Add or update GitHub pull request and issue template
+
 ### 3.1.0 (Apr 12, 2018)
 * [CB-14022](https://issues.apache.org/jira/browse/CB-14022) documented **Android** quirk with vibration
-* CB-13892:(all) Remove `navigator.notification`
+* [CB-13892](https://issues.apache.org/jira/browse/CB-13892) (all) Remove `navigator.notification`
 
 ### 3.0.1 (Dec 27, 2017)
 * [CB-13711](https://issues.apache.org/jira/browse/CB-13711) Fix to allow 3.0.0 version install (#63)
