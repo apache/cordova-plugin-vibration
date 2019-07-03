@@ -1,4 +1,4 @@
-// Type definitions for cordova-plugin-vibration 3.1
+// Type definitions for cordova-plugin-vibration
 // Project: https://github.com/apache/cordova-plugin-vibration
 // Definitions by: Microsoft Open Technologies Inc <http://msopentech.com>
 //                 Louis Lagrange <https://github.com/Minishlink>
