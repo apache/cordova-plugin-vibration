@@ -19,8 +19,6 @@
  *
  */
 
-/* eslint-env jasmine */
-
 exports.defineManualTests = function (contentEl, createActionButton) {
     var logMessage = function (message, color) {
         var log = document.getElementById('info');
@@ -114,7 +112,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         vibrateOn = false;
     }
 
-    var vibrate_tests = '<h1>Vibrate Tests</h1>' +
+    var vibrate_tests =
+        '<h1>Vibrate Tests</h1>' +
         '<h3>Starred tests only work for Android and Windows. </h3>' +
         '<h3>iOS ignores the time given for a vibrate </h3>' +
         '<p/> <div id="vibrate_int"></div>' +
@@ -137,77 +136,104 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     contentEl.innerHTML = '<div id="info"></div>' + vibrate_tests;
 
     // standard vibrate with new call param int
-    createActionButton('Vibrate with int', function () {
-        vibrateWithInt();
-    }, 'vibrate_int');
+    createActionButton(
+        'Vibrate with int',
+        function () {
+            vibrateWithInt();
+        },
+        'vibrate_int'
+    );
 
     // standard vibrate with new call param array
-    createActionButton('Vibrate with array', function () {
-        vibrateWithArray();
-    }, 'vibrate_array');
+    createActionButton(
+        'Vibrate with array',
+        function () {
+            vibrateWithArray();
+        },
+        'vibrate_array'
+    );
 
     // vibrate with a pattern
-    createActionButton('* Vibrate with a pattern', function () {
-        vibrateWithPattern();
-    }, 'vibrate_with_pattern');
+    createActionButton(
+        '* Vibrate with a pattern',
+        function () {
+            vibrateWithPattern();
+        },
+        'vibrate_with_pattern'
+    );
 
     // cancel any existing vibrations with param 0
-    createActionButton('* Cancel vibration with 0', function () {
-
-        if (!vibrateOn) {
-            longVibrate();
-        } else {
-            cancelWithZero();
-            resetVibrateOn();
-            clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-        }
-    }, 'cancel_zero');
+    createActionButton(
+        '* Cancel vibration with 0',
+        function () {
+            if (!vibrateOn) {
+                longVibrate();
+            } else {
+                cancelWithZero();
+                resetVibrateOn();
+                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
+            }
+        },
+        'cancel_zero'
+    );
 
     // cancel any existing vibrations with param []
-    createActionButton('* Cancel vibration with []', function () {
-
-        if (!vibrateOn) {
-            longVibrate();
-        } else {
-            cancelWithEmpty();
-            resetVibrateOn();
-            clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-        }
-    }, 'cancel_array');
+    createActionButton(
+        '* Cancel vibration with []',
+        function () {
+            if (!vibrateOn) {
+                longVibrate();
+            } else {
+                cancelWithEmpty();
+                resetVibrateOn();
+                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
+            }
+        },
+        'cancel_array'
+    );
 
     // cancel vibration with pattern with param 0
-    createActionButton('* Cancel vibration with pattern with 0', function () {
-
-        if (!vibrateOn) {
-            longVibrateWithPattern();
-        } else {
-            cancelWithZero();
-            resetVibrateOn();
-            clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-        }
-    }, 'cancelWithPattern_zero');
+    createActionButton(
+        '* Cancel vibration with pattern with 0',
+        function () {
+            if (!vibrateOn) {
+                longVibrateWithPattern();
+            } else {
+                cancelWithZero();
+                resetVibrateOn();
+                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
+            }
+        },
+        'cancelWithPattern_zero'
+    );
 
     // cancel vibration with pattern with param []
-    createActionButton('* Cancel vibration with pattern with []', function () {
-
-        if (!vibrateOn) {
-            longVibrateWithPattern();
-        } else {
-            cancelWithEmpty();
-            resetVibrateOn();
-            clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-        }
-    }, 'cancelWithPattern_array');
+    createActionButton(
+        '* Cancel vibration with pattern with []',
+        function () {
+            if (!vibrateOn) {
+                longVibrateWithPattern();
+            } else {
+                cancelWithEmpty();
+                resetVibrateOn();
+                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
+            }
+        },
+        'cancelWithPattern_array'
+    );
 
     // cancel multiple vibrations
-    createActionButton('* Cancel multiple vibrations', function () {
-
-        if (!vibrateOn) {
-            multipleVibrations();
-        } else {
-            cancelWithZero();
-            resetVibrateOn();
-            clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-        }
-    }, 'cancelMultipleVibrations');
+    createActionButton(
+        '* Cancel multiple vibrations',
+        function () {
+            if (!vibrateOn) {
+                multipleVibrations();
+            } else {
+                cancelWithZero();
+                resetVibrateOn();
+                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
+            }
+        },
+        'cancelMultipleVibrations'
+    );
 };

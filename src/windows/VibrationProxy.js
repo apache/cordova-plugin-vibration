@@ -22,7 +22,15 @@
 /* global Windows, WinJS, Vibration */
 
 function checkReqs (actionName, fail) {
-    if (!(Windows.Phone && Windows.Phone.Devices && Windows.Phone.Devices.Notification && Windows.Phone.Devices.Notification.VibrationDevice) && WinJS.Utilities.isPhone !== true) {
+    if (
+        !(
+            Windows.Phone &&
+            Windows.Phone.Devices &&
+            Windows.Phone.Devices.Notification &&
+            Windows.Phone.Devices.Notification.VibrationDevice
+        ) &&
+        WinJS.Utilities.isPhone !== true
+    ) {
         fail(actionName + ' is unsupported by this platform.');
         return false;
     }
@@ -129,12 +137,16 @@ function vibratePattern (patternArr, shouldRepeat, fail, patternCycle) {
     return patternArr.reduce(function (previousValue, currentValue, index) {
         if (index % 2 === 0) {
             return previousValue.then(function () {
-                module.exports.vibrate(function () { }, function (err) {
-                    console.error(err);
-                    if (fail) {
-                        fail(err);
-                    }
-                }, [currentValue]);
+                module.exports.vibrate(
+                    function () {},
+                    function (err) {
+                        console.error(err);
+                        if (fail) {
+                            fail(err);
+                        }
+                    },
+                    [currentValue]
+                );
 
                 if (index === patternArr.length - 1 && shouldRepeat) {
                     return WinJS.Promise.timeout(currentValue).then(function () {
@@ -161,7 +173,12 @@ function vibratePattern (patternArr, shouldRepeat, fail, patternCycle) {
 var DEFAULT_DURATION = 200;
 var patternChainPromise;
 
-var VibrationDevice = (Windows.Phone && Windows.Phone.Devices && Windows.Phone.Devices.Notification && Windows.Phone.Devices.Notification.VibrationDevice && Windows.Phone.Devices.Notification.VibrationDevice);
+var VibrationDevice =
+    Windows.Phone &&
+    Windows.Phone.Devices &&
+    Windows.Phone.Devices.Notification &&
+    Windows.Phone.Devices.Notification.VibrationDevice &&
+    Windows.Phone.Devices.Notification.VibrationDevice;
 if (VibrationDevice) {
     // Windows Phone 10 code paths
     module.exports = {
@@ -187,7 +204,7 @@ if (VibrationDevice) {
 
                 var pattern = checkReqsResult.patternParsingResult.parsed;
                 var repeatFromIndex = args[1];
-                var shouldRepeat = (repeatFromIndex !== -1);
+                var shouldRepeat = repeatFromIndex !== -1;
                 var patternCycle;
 
                 if (shouldRepeat) {
