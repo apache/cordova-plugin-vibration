@@ -27,38 +27,33 @@ description: Vibrate the device.
 
 # cordova-plugin-vibration
 
-This plugin aligns with the W3C vibration specification http://www.w3.org/TR/vibration/
+This plugin provides a way to vibrate the device. Its API aligns with the W3C vibration specification at http://www.w3.org/TR/vibration/
 
-This plugin provides a way to vibrate the device.
+The plugin defines a global object/method `navigator.vibrate`. Although in the global scope, it is not available until after the `deviceready` event.
 
-This plugin defines global objects including `navigator.vibrate`.
-
-Although in the global scope, they are not available until after the `deviceready` event.
 ```javascript
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     console.log(navigator.vibrate);
 }
 ```
+
 ## Installation
+
 ```console
 cordova plugin add cordova-plugin-vibration
 ```
 
 ## Supported Platforms
 
-navigator.vibrate
-
-- Android
 - iOS
-- Windows
+- Windows Phone
+- Android  
+  The Android webview (API level 19 and up) supports the [W3C Vibration API](https://www.w3.org/TR/vibration/) natively, so no Android specific implementation in this plugin is necessary.
 
+## navigator.vibrate
 
-The Android webview (API level 19 and up) supports the [W3C Vibration API](https://www.w3.org/TR/vibration/) natively and therefore, the Android specific implementation of this plugin has been dropped.
-
-## vibrate
-
-This function has three different functionalities based on parameters passed to it.
+This function has three different functionalities based on parameters passed to it:
 
 ### Standard vibrate
 
@@ -72,9 +67,10 @@ or
 navigator.vibrate([time])
 ```
 
--__time__: Milliseconds to vibrate the device. _(Number)_
+- __time__: Milliseconds to vibrate the device. _(Number)_
 
 #### Example
+
 ```javascript
 // Vibrate for 3 seconds
 navigator.vibrate(3000);
@@ -82,27 +78,35 @@ navigator.vibrate(3000);
 // Vibrate for 3 seconds
 navigator.vibrate([3000]);
 ```
-### Android Quirks
 
-Calls to `navigator.vibrate` will immediately return `false` if user hasn't tapped on the frame or any embedded frame yet. Please checkout https://issues.apache.org/jira/browse/CB-14022 for more information.
+#### Quirks
 
-
-#### iOS Quirks
+##### iOS Quirks
 
 - __time__: Ignores the specified time and vibrates for a pre-set amount of time.
-```javascript
-navigator.vibrate(3000); // 3000 is ignored
-```
-#### Windows Quirks
+
+    ```javascript
+    navigator.vibrate(3000); // 3000 is ignored
+    ```
+
+##### Windows Phone Quirks
 
 - __time__: Max time is 5000ms (5s) and min time is 1ms
 
-```javascript
-navigator.vibrate(8000); // will be truncated to 5000
-```
+    ```javascript
+    navigator.vibrate(8000); // will be truncated to 5000
+    ```
 
-### Vibrate with a pattern (Android and Windows only)
+##### Android Quirks
+
+> Calls to `navigator.vibrate` will immediately return `false` if user hasn't tapped on the frame or any embedded frame yet. 
+
+See https://www.chromestatus.com/feature/5644273861001216
+
+### Vibrate with a pattern
+
 Vibrates the device with a given pattern
+
 ```javascript
 navigator.vibrate(pattern);
 ```
@@ -119,7 +123,11 @@ navigator.vibrate(pattern);
 navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
 ```
 
-### Cancel vibration (not supported in iOS)
+#### Quirks
+
+- Not supported on iOS
+
+### Cancel vibration
 
 Immediately cancels any currently running vibration.
 ```javascript
@@ -134,3 +142,7 @@ or
 navigator.vibrate([0])
 ```
 Passing in a parameter of 0, an empty array, or an array with one element of value 0 will cancel any vibrations.
+
+#### Quirks
+
+- Not supported on iOS
