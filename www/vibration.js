@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 var exec = require('cordova/exec');
 
@@ -26,7 +26,6 @@ var exec = require('cordova/exec');
  */
 
 module.exports = {
-
     /**
      * Vibrates the device for a given amount of time or for a given pattern or immediately cancels any ongoing vibrations (depending on the parameter).
      *
@@ -54,11 +53,11 @@ module.exports = {
         /* Aligning with w3c spec */
 
         // vibrate
-        if ((typeof param === 'number') && param !== 0) {
+        if (typeof param === 'number' && param !== 0) {
             exec(null, null, 'Vibration', 'vibrate', [param]);
 
         // vibrate with array ( i.e. vibrate([3000]) )
-        } else if ((typeof param === 'object') && param.length === 1) {
+        } else if (typeof param === 'object' && param.length === 1) {
             // cancel if vibrate([0])
             if (param[0] === 0) {
                 exec(null, null, 'Vibration', 'cancelVibration', []);
@@ -69,12 +68,14 @@ module.exports = {
             }
 
         // vibrate with a pattern
-        } else if ((typeof param === 'object') && param.length > 1) {
+        } else if (typeof param === 'object' && param.length > 1) {
             var repeat = -1; // no repeat
             exec(null, null, 'Vibration', 'vibrateWithPattern', [param, repeat]);
 
         // cancel vibration (param = 0 or [])
-        } else { exec(null, null, 'Vibration', 'cancelVibration', []); }
+        } else {
+            exec(null, null, 'Vibration', 'cancelVibration', []);
+        }
 
         return true;
     }
