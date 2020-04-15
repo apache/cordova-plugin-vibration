@@ -11,13 +11,8 @@
       "windows"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/apache/cordova-plugin-vibration"
-  },
-  "bugs": {
-    "url": "https://issues.apache.org/jira/browse/CB"
-  },
+  "repository": "github:apache/cordova-plugin-vibration",
+  "bugs": "https://github.com/apache/cordova-plugin-vibration/issues",
   "keywords": [
     "cordova",
     "vibration",
