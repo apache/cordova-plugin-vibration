@@ -21,10 +21,6 @@ description: Vibrate the device.
 #         under the License.
 -->
 
-|AppVeyor|Travis CI|
-|:-:|:-:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-vibration?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-vibration)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-vibration.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-vibration)|
-
 # cordova-plugin-vibration
 
 This plugin provides a way to vibrate the device. Its API aligns with the W3C vibration specification at http://www.w3.org/TR/vibration/
