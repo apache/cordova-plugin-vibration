@@ -23,6 +23,8 @@ description: Vibrate the device.
 
 # cordova-plugin-vibration
 
+[![Android Testsuite](https://github.com/apache/cordova-plugin-vibration/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-vibration/actions/workflows/android.yml) [![Chrome Testsuite](https://github.com/apache/cordova-plugin-vibration/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-vibration/actions/workflows/chrome.yml) [![iOS Testsuite](https://github.com/apache/cordova-plugin-vibration/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-vibration/actions/workflows/ios.yml) [![Lint Test](https://github.com/apache/cordova-plugin-vibration/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-vibration/actions/workflows/lint.yml)
+
 This plugin provides a way to vibrate the device. Its API aligns with the W3C vibration specification at http://www.w3.org/TR/vibration/
 
 The plugin defines a global object/method `navigator.vibrate`. Although in the global scope, it is not available until after the `deviceready` event.
