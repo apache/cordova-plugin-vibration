@@ -20,220 +20,88 @@
  */
 
 exports.defineManualTests = function (contentEl, createActionButton) {
-    var logMessage = function (message, color) {
-        var log = document.getElementById('info');
-        var logLine = document.createElement('div');
-        if (color) {
-            logLine.style.color = color;
-        }
+    const logMessage = (message, color = 'black') => {
+        const log = document.getElementById('info');
+        const logLine = document.createElement('div');
+        logLine.style.color = color;
         logLine.innerHTML = message;
         log.appendChild(logLine);
     };
 
-    var clearLog = function () {
-        var log = document.getElementById('info');
-        log.innerHTML = '';
-    };
+    const clearLog = () => (document.getElementById('info').innerHTML = '');
 
     // -------------------------------------------------------------------------
     // Vibrations
     // -------------------------------------------------------------------------
 
-    // new standard vibrate call that aligns to w3c spec with param long
-    var vibrateWithInt = function () {
+    const vibrateAction = (pattern, message) => {
         clearLog();
-        navigator.vibrate(3000);
-        logMessage('navigator.vibrate(3000)', 'green');
+        navigator.vibrate(pattern);
+        logMessage(message, 'green');
     };
 
-    // new standard vibrate call that aligns to w3c spec with param array
-    var vibrateWithArray = function () {
-        clearLog();
-        navigator.vibrate([3000]);
-        logMessage('navigator.vibrate([3000])', 'green');
+    const cancelVibration = (method, timeoutId) => {
+        method();
+        resetVibrateOn();
+        clearTimeout(timeoutId);
     };
 
-    // vibrate with a pattern using w3c spec
-    var vibrateWithPattern = function () {
+    let timeout;
+    let vibrateOn = false;
+
+    const resetVibrateOn = () => (vibrateOn = false);
+
+    // Action functions for various vibration tests
+    const vibrateWithInt = () => vibrateAction(3000, 'navigator.vibrate(3000)');
+    const vibrateWithArray = () => vibrateAction([3000], 'navigator.vibrate([3000])');
+    const vibrateWithPattern = () => vibrateAction([1000, 2000, 3000, 2000, 5000], 'navigator.vibrate([1000, 2000, 3000, 2000, 5000])');
+    const longVibrate = () => initiateLongVibration(60000, 'navigator.vibrate(60000)');
+    const longVibrateWithPattern = () => initiateLongVibration([1000, 2000, 3000, 2000, 5000, 2000, 30000], 'navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000])', 45000);
+    const multipleVibrations = () => initiateLongVibration(45000, 'navigator.vibrate(15000)\nnavigator.vibrate(45000)', 45000);
+
+    const initiateLongVibration = (pattern, message, duration = 60000) => {
         clearLog();
-        navigator.vibrate([1000, 2000, 3000, 2000, 5000]);
-        logMessage('navigator.vibrate([1000, 2000, 3000, 2000, 5000])', 'green');
-    };
-
-    // cancel existing vibration using w3c spec navigator.vibrate(0)
-    var cancelWithZero = function () {
-        clearLog();
-        navigator.vibrate(0);
-        logMessage('navigator.vibrate(0)', 'green');
-    };
-
-    // cancel existing vibration using w3c spec navigator.vibrate([])
-    var cancelWithEmpty = function () {
-        clearLog();
-        navigator.vibrate([]);
-        logMessage('navigator.vibrate([])', 'green');
-    };
-
-    // reference to the timeout variable
-    var timeout;
-
-    // check whether there is an ongoing vibration
-    var vibrateOn = false;
-
-    // special long vibrate used to test cancel
-    var longVibrate = function () {
-        clearLog();
-        navigator.vibrate(60000);
+        navigator.vibrate(pattern);
         vibrateOn = true;
-        logMessage('navigator.vibrate(60000)', 'green');
-        timeout = setTimeout(resetVibrateOn, 60000); // if user doesn't cancel vibrate, reset vibrateOn var after 60 seconds
+        logMessage(message, 'green');
+        timeout = setTimeout(resetVibrateOn, duration);
     };
 
-    // special long vibrate with pattern used to test cancel
-    var longVibrateWithPattern = function () {
-        clearLog();
-        navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000]);
-        vibrateOn = true;
-        logMessage('navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000])', 'green');
-        timeout = setTimeout(resetVibrateOn, 45000); // if user doesn't cancel vibrate, reset vibrateOn var after 45 seconds
-    };
+    // HTML structure and button creation
+    const vibrateTestsHTML = `
+        <h1>Vibrate Tests</h1>
+        <h3>Starred tests only work for Android and Windows.</h3>
+        <h3>iOS ignores the time given for a vibrate.</h3>
+        <div id="vibrate_int"></div>Expected result: Vibrate once for 3 seconds.
+        <div id="vibrate_array"></div>Expected result: Vibrate once for 3 seconds.
+        <div id="vibrate_with_pattern"></div>Expected result: Vibrate for 1s, pause for 2s, vibrate for 3s, pause for 2s, vibrate for 5s.
+        <div id="cancel_zero"></div>Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.
+        <div id="cancel_array"></div>Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.
+        <div id="cancelWithPattern_zero"></div>Expected result: Press once to initiate vibrate with pattern for 45s. Press again to cancel vibrate immediately.
+        <div id="cancelWithPattern_array"></div>Expected result: Press once to initiate vibrate with pattern for 45s. Press again to cancel vibrate immediately.
+        <div id="cancelMultipleVibrations"></div>Expected result: Press once to initiate two vibrations simultaneously (one for 20s the other for 45s so total of 45s). Press again to cancel both vibrations immediately.`;
 
-    // initiate two vibrations to test cancel
-    var multipleVibrations = function () {
-        clearLog();
-        navigator.vibrate(20000);
-        navigator.vibrate(45000);
-        vibrateOn = true;
-        logMessage('navigator.vibrate(15000)\nnavigator.vibrate(45000)', 'green');
-        timeout = setTimeout(resetVibrateOn, 45000); // if user doesn't cancel vibrate, reset vibrateOn var after 45 seconds
-    };
+    contentEl.innerHTML = `<div id="info"></div>${vibrateTestsHTML}`;
 
-    function resetVibrateOn () {
-        vibrateOn = false;
+    // Create action buttons for each vibration test
+    const buttons = [
+        { label: 'Vibrate with int', action: vibrateWithInt, id: 'vibrate_int' },
+        { label: 'Vibrate with array', action: vibrateWithArray, id: 'vibrate_array' },
+        { label: '* Vibrate with a pattern', action: vibrateWithPattern, id: 'vibrate_with_pattern' },
+        { label: '* Cancel vibration with 0', action: () => toggleLongVibrate(longVibrate, cancelWithZero), id: 'cancel_zero' },
+        { label: '* Cancel vibration with []', action: () => toggleLongVibrate(longVibrate, cancelWithEmpty), id: 'cancel_array' },
+        { label: '* Cancel vibration with pattern with 0', action: () => toggleLongVibrate(longVibrateWithPattern, cancelWithZero), id: 'cancelWithPattern_zero' },
+        { label: '* Cancel vibration with pattern with []', action: () => toggleLongVibrate(longVibrateWithPattern, cancelWithEmpty), id: 'cancelWithPattern_array' },
+        { label: '* Cancel multiple vibrations', action: () => toggleLongVibrate(multipleVibrations, cancelWithZero), id: 'cancelMultipleVibrations' },
+    ];
+
+    buttons.forEach(({ label, action, id }) => createActionButton(label, action, id));
+
+    function toggleLongVibrate(start, cancel) {
+        if (!vibrateOn) {
+            start();
+        } else {
+            cancelVibration(cancel, timeout);
+        }
     }
-
-    var vibrate_tests =
-        '<h1>Vibrate Tests</h1>' +
-        '<h3>Starred tests only work for Android and Windows. </h3>' +
-        '<h3>iOS ignores the time given for a vibrate </h3>' +
-        '<p/> <div id="vibrate_int"></div>' +
-        'Expected result: Vibrate once for 3 seconds.' +
-        '<p/> <div id="vibrate_array"></div>' +
-        'Expected result: Vibrate once for 3 seconds.' +
-        '<p/> <div id="vibrate_with_pattern"></div>' +
-        'Expected result: Vibrate for 1s, pause for 2s, vibrate for 3s, pause for 2s, vibrate for 5s.' +
-        '<p/> <div id="cancel_zero"></div>' +
-        'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
-        '<p/><div id="cancel_array"></div>' +
-        'Expected result: Press once to initiate vibrate for 60 seconds. Press again to cancel vibrate immediately.' +
-        '<p/> <div id="cancelWithPattern_zero"></div>' +
-        'Expected result: Press once to initiate vibrate with pattern for 45s. Press again to cancel vibrate immediately.' +
-        '<p/> <div id="cancelWithPattern_array"></div>' +
-        'Expected result: Press once to initiate vibrate with pattern for 45s. Press again to cancel vibrate immediately.' +
-        '<p/> <div id="cancelMultipleVibrations"></div>' +
-        'Expected result: Press once to initiate two vibrations simultaneously (one for 20s the other for 45s so total of 45s). Press again to cancel both vibrations immediately.';
-
-    contentEl.innerHTML = '<div id="info"></div>' + vibrate_tests;
-
-    // standard vibrate with new call param int
-    createActionButton(
-        'Vibrate with int',
-        function () {
-            vibrateWithInt();
-        },
-        'vibrate_int'
-    );
-
-    // standard vibrate with new call param array
-    createActionButton(
-        'Vibrate with array',
-        function () {
-            vibrateWithArray();
-        },
-        'vibrate_array'
-    );
-
-    // vibrate with a pattern
-    createActionButton(
-        '* Vibrate with a pattern',
-        function () {
-            vibrateWithPattern();
-        },
-        'vibrate_with_pattern'
-    );
-
-    // cancel any existing vibrations with param 0
-    createActionButton(
-        '* Cancel vibration with 0',
-        function () {
-            if (!vibrateOn) {
-                longVibrate();
-            } else {
-                cancelWithZero();
-                resetVibrateOn();
-                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-            }
-        },
-        'cancel_zero'
-    );
-
-    // cancel any existing vibrations with param []
-    createActionButton(
-        '* Cancel vibration with []',
-        function () {
-            if (!vibrateOn) {
-                longVibrate();
-            } else {
-                cancelWithEmpty();
-                resetVibrateOn();
-                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-            }
-        },
-        'cancel_array'
-    );
-
-    // cancel vibration with pattern with param 0
-    createActionButton(
-        '* Cancel vibration with pattern with 0',
-        function () {
-            if (!vibrateOn) {
-                longVibrateWithPattern();
-            } else {
-                cancelWithZero();
-                resetVibrateOn();
-                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-            }
-        },
-        'cancelWithPattern_zero'
-    );
-
-    // cancel vibration with pattern with param []
-    createActionButton(
-        '* Cancel vibration with pattern with []',
-        function () {
-            if (!vibrateOn) {
-                longVibrateWithPattern();
-            } else {
-                cancelWithEmpty();
-                resetVibrateOn();
-                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-            }
-        },
-        'cancelWithPattern_array'
-    );
-
-    // cancel multiple vibrations
-    createActionButton(
-        '* Cancel multiple vibrations',
-        function () {
-            if (!vibrateOn) {
-                multipleVibrations();
-            } else {
-                cancelWithZero();
-                resetVibrateOn();
-                clearTimeout(timeout); // clear the timeout since user has canceled the vibrate
-            }
-        },
-        'cancelMultipleVibrations'
-    );
 };
