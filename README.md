@@ -86,14 +86,6 @@ navigator.vibrate([3000]);
     navigator.vibrate(3000); // 3000 is ignored
     ```
 
-##### Windows Phone Quirks
-
-- __time__: Max time is 5000ms (5s) and min time is 1ms
-
-    ```javascript
-    navigator.vibrate(8000); // will be truncated to 5000
-    ```
-
 ##### Android Quirks
 
 > Calls to `navigator.vibrate` will immediately return `false` if user hasn't tapped on the frame or any embedded frame yet. 
