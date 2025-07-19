@@ -114,7 +114,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
     var vibrate_tests =
         '<h1>Vibrate Tests</h1>' +
-        '<h3>Starred tests only work for Android and Windows. </h3>' +
+        '<h3>Starred tests only work for Android. </h3>' +
         '<h3>iOS ignores the time given for a vibrate </h3>' +
         '<p/> <div id="vibrate_int"></div>' +
         'Expected result: Vibrate once for 3 seconds.' +

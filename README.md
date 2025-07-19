@@ -45,7 +45,6 @@ cordova plugin add cordova-plugin-vibration
 ## Supported Platforms
 
 - iOS
-- Windows Phone
 - Android  
   The Android webview (API level 19 and up) supports the [W3C Vibration API](https://www.w3.org/TR/vibration/) natively, so no Android specific implementation in this plugin is necessary.
 

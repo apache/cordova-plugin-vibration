@@ -7,8 +7,7 @@
     "id": "cordova-plugin-vibration",
     "platforms": [
       "android",
-      "ios",
-      "windows"
+      "ios"
     ]
   },
   "repository": "github:apache/cordova-plugin-vibration",
@@ -18,8 +17,7 @@
     "vibration",
     "ecosystem:cordova",
     "cordova-android",
-    "cordova-ios",
-    "cordova-windows"
+    "cordova-ios"
   ],
   "scripts": {
     "test": "npm run lint",
