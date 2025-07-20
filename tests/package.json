@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-vibration-tests",
-  "version": "3.1.2-dev",
+  "version": "4.0.0-dev",
   "description": "",
   "cordova": {
     "id": "cordova-plugin-vibration-tests",

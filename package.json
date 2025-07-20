@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-vibration",
-  "version": "3.1.2-dev",
+  "version": "4.0.0-dev",
   "description": "Cordova Vibration Plugin",
   "types": "./types/index.d.ts",
   "cordova": {
