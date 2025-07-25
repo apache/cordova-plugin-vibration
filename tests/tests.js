@@ -20,9 +20,9 @@
  */
 
 exports.defineManualTests = function (contentEl, createActionButton) {
-    var logMessage = function (message, color) {
-        var log = document.getElementById('info');
-        var logLine = document.createElement('div');
+    const logMessage = function (message, color) {
+        const log = document.getElementById('info');
+        const logLine = document.createElement('div');
         if (color) {
             logLine.style.color = color;
         }
@@ -30,8 +30,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         log.appendChild(logLine);
     };
 
-    var clearLog = function () {
-        var log = document.getElementById('info');
+    const clearLog = function () {
+        const log = document.getElementById('info');
         log.innerHTML = '';
     };
 
@@ -40,48 +40,48 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     // -------------------------------------------------------------------------
 
     // new standard vibrate call that aligns to w3c spec with param long
-    var vibrateWithInt = function () {
+    const vibrateWithInt = function () {
         clearLog();
         navigator.vibrate(3000);
         logMessage('navigator.vibrate(3000)', 'green');
     };
 
     // new standard vibrate call that aligns to w3c spec with param array
-    var vibrateWithArray = function () {
+    const vibrateWithArray = function () {
         clearLog();
         navigator.vibrate([3000]);
         logMessage('navigator.vibrate([3000])', 'green');
     };
 
     // vibrate with a pattern using w3c spec
-    var vibrateWithPattern = function () {
+    const vibrateWithPattern = function () {
         clearLog();
         navigator.vibrate([1000, 2000, 3000, 2000, 5000]);
         logMessage('navigator.vibrate([1000, 2000, 3000, 2000, 5000])', 'green');
     };
 
     // cancel existing vibration using w3c spec navigator.vibrate(0)
-    var cancelWithZero = function () {
+    const cancelWithZero = function () {
         clearLog();
         navigator.vibrate(0);
         logMessage('navigator.vibrate(0)', 'green');
     };
 
     // cancel existing vibration using w3c spec navigator.vibrate([])
-    var cancelWithEmpty = function () {
+    const cancelWithEmpty = function () {
         clearLog();
         navigator.vibrate([]);
         logMessage('navigator.vibrate([])', 'green');
     };
 
     // reference to the timeout variable
-    var timeout;
+    let timeout;
 
     // check whether there is an ongoing vibration
-    var vibrateOn = false;
+    let vibrateOn = false;
 
     // special long vibrate used to test cancel
-    var longVibrate = function () {
+    const longVibrate = function () {
         clearLog();
         navigator.vibrate(60000);
         vibrateOn = true;
@@ -90,7 +90,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     };
 
     // special long vibrate with pattern used to test cancel
-    var longVibrateWithPattern = function () {
+    const longVibrateWithPattern = function () {
         clearLog();
         navigator.vibrate([1000, 2000, 3000, 2000, 5000, 2000, 30000]);
         vibrateOn = true;
@@ -99,7 +99,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     };
 
     // initiate two vibrations to test cancel
-    var multipleVibrations = function () {
+    const multipleVibrations = function () {
         clearLog();
         navigator.vibrate(20000);
         navigator.vibrate(45000);
@@ -112,7 +112,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         vibrateOn = false;
     }
 
-    var vibrate_tests =
+    const vibrate_tests =
         '<h1>Vibrate Tests</h1>' +
         '<h3>Starred tests only work for Android. </h3>' +
         '<h3>iOS ignores the time given for a vibrate </h3>' +
